@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
-project(freeRTOSDemo)
-SET(TARGET "freeRTOSDemo")
+project(homeCinemaControl)
+SET(TARGET "homeCinemaControl")
 
 #custom command to use objcopy to create .bin files out of ELF files
 function(make_firmware INPUT)
