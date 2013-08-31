@@ -1,0 +1,2238 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject>
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="org.eclipse.cdt.core.default.config.1">
+			<storageModule buildSystemId="org.eclipse.cdt.core.defaultConfigDataProvider" id="org.eclipse.cdt.core.default.config.1" moduleId="org.eclipse.cdt.core.settings" name="Configuration">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GNU_ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.language.mapping">
+				<project-mappings/>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+			<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets">
+				<buildTargets>
+					<target name="[exe] freeRTOSDemo.elf" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>freeRTOSDemo.elf</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[exe] freeRTOSDemo.elf/fast" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>freeRTOSDemo.elf/fast</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="Build" path="[Targets]/[exe] freeRTOSDemo.elf" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments>-C "/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet" </buildArguments>
+						<buildTarget>freeRTOSDemo.elf</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="Clean" path="[Targets]/[exe] freeRTOSDemo.elf" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/cmake</buildCommand>
+						<buildArguments>-E chdir "/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet" "/usr/bin/cmake" -P "CMakeFiles/freeRTOSDemo.elf.dir/cmake_clean.cmake"</buildArguments>
+						<buildTarget/>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": rebuild_cache" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>rebuild_cache</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": all" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>all</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": clean" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>clean</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/STM32F4x7_ETH_Driver/src/stm32f4x7_eth.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/api/api_lib.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/api_lib.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/api/api_lib.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/api_lib.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/api/api_lib.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/api_lib.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/api/api_msg.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/api_msg.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/api/api_msg.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/api_msg.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/api/api_msg.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/api_msg.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/api/err.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/err.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/api/err.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/err.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/api/err.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/err.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/api/netbuf.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netbuf.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/api/netbuf.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netbuf.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/api/netbuf.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netbuf.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/api/netdb.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netdb.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/api/netdb.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netdb.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/api/netdb.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netdb.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/api/netifapi.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netifapi.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/api/netifapi.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netifapi.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/api/netifapi.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/netifapi.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/api/sockets.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/sockets.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/api/sockets.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/sockets.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/api/sockets.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/sockets.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/api/tcpip.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/tcpip.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/api/tcpip.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/tcpip.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/api/tcpip.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/api/tcpip.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/def.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/def.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/def.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/def.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/def.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/def.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/dhcp.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/dhcp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/dhcp.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/dhcp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/dhcp.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/dhcp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/dns.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/dns.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/dns.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/dns.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/dns.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/dns.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/inet_chksum.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/inet_chksum.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/inet_chksum.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/inet_chksum.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/inet_chksum.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/inet_chksum.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/init.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/init.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/init.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/init.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/init.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/init.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv4/autoip.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/autoip.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv4/autoip.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/autoip.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv4/autoip.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/autoip.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv4/icmp.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/icmp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv4/icmp.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/icmp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv4/icmp.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/icmp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv4/igmp.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/igmp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv4/igmp.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/igmp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv4/igmp.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/igmp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv4/ip4.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip4.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv4/ip4.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip4.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv4/ip4.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip4.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv4/ip4_addr.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip4_addr.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv4/ip4_addr.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip4_addr.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv4/ip4_addr.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip4_addr.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv4/ip_frag.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip_frag.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv4/ip_frag.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip_frag.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv4/ip_frag.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv4/ip_frag.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/dhcp6.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/dhcp6.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/dhcp6.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/dhcp6.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/dhcp6.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/dhcp6.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/ethip6.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ethip6.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/ethip6.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ethip6.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/ethip6.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ethip6.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/icmp6.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/icmp6.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/icmp6.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/icmp6.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/icmp6.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/icmp6.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/inet6.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/inet6.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/inet6.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/inet6.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/inet6.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/inet6.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/ip6.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/ip6.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/ip6.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/ip6_addr.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6_addr.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/ip6_addr.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6_addr.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/ip6_addr.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6_addr.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/ip6_frag.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6_frag.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/ip6_frag.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6_frag.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/ip6_frag.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/ip6_frag.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/mld6.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/mld6.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/mld6.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/mld6.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/mld6.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/mld6.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/ipv6/nd6.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/nd6.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/ipv6/nd6.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/nd6.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/ipv6/nd6.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/ipv6/nd6.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/mem.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/mem.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/mem.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/mem.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/mem.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/mem.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/memp.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/memp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/memp.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/memp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/memp.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/memp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/netif.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/netif.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/netif.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/netif.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/netif.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/netif.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/pbuf.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/pbuf.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/pbuf.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/pbuf.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/pbuf.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/pbuf.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/raw.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/raw.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/raw.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/raw.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/raw.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/raw.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/stats.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/stats.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/stats.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/stats.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/stats.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/stats.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/sys.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/sys.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/sys.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/sys.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/sys.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/sys.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/tcp.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/tcp.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/tcp.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/tcp_in.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp_in.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/tcp_in.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp_in.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/tcp_in.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp_in.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/tcp_out.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp_out.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/tcp_out.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp_out.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/tcp_out.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/tcp_out.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/timers.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/timers.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/timers.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/timers.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/timers.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/timers.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/core/udp.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/udp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/core/udp.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/udp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/core/udp.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/core/udp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/netif/etharp.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/etharp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/netif/etharp.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/etharp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/netif/etharp.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/etharp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/netif/ethernetif.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/ethernetif.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/netif/ethernetif.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/ethernetif.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/netif/ethernetif.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/ethernetif.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwipCore/src/netif/slipif.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/slipif.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwipCore/src/netif/slipif.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/slipif.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwipCore/src/netif/slipif.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwipCore/src/netif/slipif.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/ethernetif.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/ethernetif.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/ethernetif.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/ethernetif.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/ethernetif.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/ethernetif.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/sys_arch.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/sys_arch.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/sys_arch.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/sys_arch.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/sys_arch.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS/sys_arch.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/hw/uart.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/hw/uart.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/hw/uart.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/hw/uart.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/hw/uart.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/hw/uart.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/main.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/main.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/main.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/main.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/main.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/main.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/netconf.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/netconf.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/netconf.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/netconf.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/netconf.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/netconf.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4_discovery.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4_discovery.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4_discovery.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4_discovery.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4_discovery.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4_discovery.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4x7_eth_bsp.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4x7_eth_bsp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4x7_eth_bsp.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4x7_eth_bsp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4x7_eth_bsp.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4x7_eth_bsp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_it.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_it.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_it.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_it.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_it.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_it.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/syscalls.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/syscalls.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/syscalls.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/syscalls.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/syscalls.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/syscalls.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/system_stm32f4xx.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/system_stm32f4xx.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/system_stm32f4xx.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/system_stm32f4xx.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/system_stm32f4xx.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/system_stm32f4xx.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/tcpecho.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/tcpecho.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/tcpecho.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/tcpecho.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/tcpecho.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/tcpecho.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/udpecho.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/udpecho.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/udpecho.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/udpecho.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/udpecho.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/udpecho.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/ustime.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/ustime.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/ustime.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/ustime.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/ustime.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/ustime.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] STM32F4_LIB_CMSIS" path="lib/STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>STM32F4_LIB_CMSIS</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] STM32F4_LIB_CMSIS/fast" path="lib/STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>STM32F4_LIB_CMSIS/fast</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="Build" path="[Targets]/[lib] STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments>-C "/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet" </buildArguments>
+						<buildTarget>STM32F4_LIB_CMSIS</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="Clean" path="[Targets]/[lib] STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/cmake</buildCommand>
+						<buildArguments>-E chdir "/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/STM32F4_LIB_CMSIS" "/usr/bin/cmake" -P "CMakeFiles/STM32F4_LIB_CMSIS.dir/cmake_clean.cmake"</buildArguments>
+						<buildTarget/>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": all" path="lib/STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>all</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": clean" path="lib/STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>clean</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/startup.c.o" path="lib/STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/startup.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/startup.c.i" path="lib/STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/startup.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/startup.c.s" path="lib/STM32F4_LIB_CMSIS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/startup.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] STM32F4_LIB_PeriphLib" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>STM32F4_LIB_PeriphLib</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] STM32F4_LIB_PeriphLib/fast" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>STM32F4_LIB_PeriphLib/fast</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="Build" path="[Targets]/[lib] STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments>-C "/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet" </buildArguments>
+						<buildTarget>STM32F4_LIB_PeriphLib</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="Clean" path="[Targets]/[lib] STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/cmake</buildCommand>
+						<buildArguments>-E chdir "/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/STM32F4_LIB_PeriphLib" "/usr/bin/cmake" -P "CMakeFiles/STM32F4_LIB_PeriphLib.dir/cmake_clean.cmake"</buildArguments>
+						<buildTarget/>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": all" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>all</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": clean" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>clean</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/misc.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/misc.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/misc.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/misc.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/misc.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/misc.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_adc.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_adc.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_adc.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_adc.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_adc.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_adc.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_can.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_can.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_can.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_can.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_can.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_can.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_crc.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_crc.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_crc.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_crc.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_crc.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_crc.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_cryp.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_cryp.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_cryp.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_cryp_aes.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_aes.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_cryp_aes.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_aes.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_cryp_aes.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_aes.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_cryp_des.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_des.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_cryp_des.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_des.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_cryp_des.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_des.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_cryp_tdes.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_tdes.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_cryp_tdes.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_tdes.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_cryp_tdes.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_cryp_tdes.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_dac.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dac.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_dac.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dac.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_dac.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dac.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_dbgmcu.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dbgmcu.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_dbgmcu.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dbgmcu.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_dbgmcu.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dbgmcu.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_dcmi.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dcmi.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_dcmi.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dcmi.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_dcmi.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dcmi.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_dma.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dma.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_dma.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dma.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_dma.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_dma.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_exti.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_exti.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_exti.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_exti.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_exti.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_exti.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_flash.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_flash.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_flash.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_flash.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_flash.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_flash.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_fsmc.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_fsmc.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_fsmc.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_fsmc.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_fsmc.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_fsmc.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_gpio.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_gpio.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_gpio.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_gpio.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_gpio.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_gpio.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_hash.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_hash.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_hash.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_hash_md5.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash_md5.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_hash_md5.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash_md5.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_hash_md5.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash_md5.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_hash_sha1.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash_sha1.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_hash_sha1.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash_sha1.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_hash_sha1.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_hash_sha1.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_i2c.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_i2c.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_i2c.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_i2c.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_i2c.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_i2c.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_iwdg.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_iwdg.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_iwdg.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_iwdg.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_iwdg.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_iwdg.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_pwr.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_pwr.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_pwr.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_pwr.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_pwr.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_pwr.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_rcc.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rcc.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_rcc.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rcc.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_rcc.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rcc.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_rng.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rng.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_rng.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rng.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_rng.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rng.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_rtc.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rtc.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_rtc.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rtc.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_rtc.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_rtc.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_sdio.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_sdio.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_sdio.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_sdio.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_sdio.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_sdio.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_spi.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_spi.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_spi.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_spi.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_spi.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_spi.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_syscfg.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_syscfg.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_syscfg.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_syscfg.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_syscfg.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_syscfg.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_tim.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_tim.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_tim.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_tim.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_tim.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_tim.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_usart.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_usart.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_usart.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_usart.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_usart.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_usart.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] src/stm32f4xx_wwdg.c.o" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_wwdg.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] src/stm32f4xx_wwdg.c.i" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_wwdg.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] src/stm32f4xx_wwdg.c.s" path="lib/STM32F4_LIB_PeriphLib" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>src/stm32f4xx_wwdg.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] FREERTOS_752" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FREERTOS_752</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[lib] FREERTOS_752/fast" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FREERTOS_752/fast</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="Build" path="[Targets]/[lib] FREERTOS_752" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments>-C "/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet" </buildArguments>
+						<buildTarget>FREERTOS_752</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="Clean" path="[Targets]/[lib] FREERTOS_752" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/cmake</buildCommand>
+						<buildArguments>-E chdir "/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/FreeRTOS" "/usr/bin/cmake" -P "CMakeFiles/FREERTOS_752.dir/cmake_clean.cmake"</buildArguments>
+						<buildTarget/>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": all" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>all</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name=": clean" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>clean</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] FreeRTOS/Source/croutine.c.o" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/croutine.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] FreeRTOS/Source/croutine.c.i" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/croutine.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] FreeRTOS/Source/croutine.c.s" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/croutine.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] FreeRTOS/Source/list.c.o" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/list.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] FreeRTOS/Source/list.c.i" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/list.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] FreeRTOS/Source/list.c.s" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/list.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.o" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.i" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.s" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] FreeRTOS/Source/queue.c.o" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/queue.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] FreeRTOS/Source/queue.c.i" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/queue.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] FreeRTOS/Source/queue.c.s" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/queue.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] FreeRTOS/Source/tasks.c.o" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/tasks.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] FreeRTOS/Source/tasks.c.i" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/tasks.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] FreeRTOS/Source/tasks.c.s" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/tasks.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[obj] FreeRTOS/Source/timers.c.o" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/timers.c.o</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[pre] FreeRTOS/Source/timers.c.i" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/timers.c.i</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+					<target name="[to asm] FreeRTOS/Source/timers.c.s" path="lib/FreeRTOS" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+						<buildCommand>/usr/bin/gmake</buildCommand>
+						<buildArguments/>
+						<buildTarget>FreeRTOS/Source/timers.c.s</buildTarget>
+						<stopOnError>true</stopOnError>
+						<useDefaultCommand>false</useDefaultCommand>
+					</target>
+				</buildTargets>
+			</storageModule>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="freeRTOSDemo.null.1" name="freeRTOSDemo"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile"/>
+		<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerProjectProfile">
+			<buildOutputProvider>
+				<openAction enabled="true" filePath=""/>
+				<parser enabled="true"/>
+			</buildOutputProvider>
+			<scannerInfoProvider id="specsFile">
+				<runAction arguments="-E -P -v -dD ${plugin_state_location}/${specs_file}" command="arm-none-eabi-gcc" useDefault="true"/>
+				<parser enabled="true"/>
+			</scannerInfoProvider>
+		</profile>
+		<profile id="org.eclipse.cdt.make.core.GCCStandardMakePerFileProfile">
+			<buildOutputProvider>
+				<openAction enabled="true" filePath=""/>
+				<parser enabled="true"/>
+			</buildOutputProvider>
+			<scannerInfoProvider id="makefileGenerator">
+				<runAction arguments="-f ${project_name}_scd.mk" command="/usr/bin/gmake" useDefault="true"/>
+				<parser enabled="true"/>
+			</scannerInfoProvider>
+		</profile>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="org.eclipse.cdt.core.pathentry">
+		<pathentry excluding="**/CMakeFiles/" kind="out" path=""/>
+		<pathentry kind="src" path=""/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/STM32F4_LIB_CMSIS/inc" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/STM32F4_LIB_PeriphLib/inc" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/FreeRTOS/FreeRTOS/Source/include" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/FreeRTOS/FreeRTOS/Source/portable/GCC/ARM_CM4F" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/lwipCore/src/include" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/lwipCore/src/include/ipv4" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/lwipCore/src/include/ipv6" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/lwip_STM32f4Port/port/STM32F4x7" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/lwip_STM32f4Port/port/STM32F4x7/FreeRTOS" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/STM32F4x7_ETH_Driver/inc" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/inc" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/src" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/CMSIS/inc" kind="inc" path="" system="true"/>
+		<pathentry include="/home/pyro/Projekte/STM32F4Tools/EclipseWorkspace/FreeRTOSS_STM32F4_Ethernet/lib/PeriphLib/inc" kind="inc" path="" system="true"/>
+	</storageModule>
+</cproject>
