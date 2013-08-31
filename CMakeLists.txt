@@ -91,7 +91,8 @@ include_directories("src")
 # add source files from folder
 AUX_SOURCE_DIRECTORY("src" SRCS)
 AUX_SOURCE_DIRECTORY("src/hw" SRCSHW)
-SET(SRCS ${SRCS} ${SRCSHW})
+AUX_SOURCE_DIRECTORY("src/irmp" SRCS_IRMP)
+SET(SRCS ${SRCS} ${SRCSHW} ${SRCS_IRMP})
 
 #AUX_SOURCE_DIRECTORY("src/syscalls/" SRCSCalls)
 #AUX_SOURCE_DIRECTORY("src/periph/" SRCSPeri)

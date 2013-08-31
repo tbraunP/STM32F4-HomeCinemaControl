@@ -26,7 +26,7 @@
 #include "stm32f4x7_eth.h"
 #include "netconf.h"
 #include "hw/uart.h"
-#include "stm32f4_discovery.h"
+#include "hw/stm32f4_discovery.h"
 
 // FreeRTOS
 #include "FreeRTOS.h"
@@ -72,7 +72,7 @@ void ToggleLed4(void * pvParameters) {
 		if (test != 0) {
 			for (;;) {
 				/* toggle LED4 each 250ms */
-				STM_EVAL_LEDToggle(LED1);
+				STM_EVAL_LEDToggle(LED2);
 				vTaskDelay(250);
 			}
 		}
