@@ -26,6 +26,13 @@
 
 #include "irmp/irmp.h"
 
+// just for eclipse
+#ifndef ARM_STM32
+	#define ARM_STM32
+	#define ARM_STM32F4XX
+#endif
+
+
 #if IRMP_SUPPORT_GRUNDIG_PROTOCOL == 1 || IRMP_SUPPORT_NOKIA_PROTOCOL == 1 || IRMP_SUPPORT_IR60_PROTOCOL == 1
 #  define IRMP_SUPPORT_GRUNDIG_NOKIA_IR60_PROTOCOL  1
 #else

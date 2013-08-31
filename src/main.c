@@ -27,6 +27,9 @@
 #include "netconf.h"
 #include "hw/uart.h"
 #include "hw/stm32f4_discovery.h"
+#include "tasks/Task_Priorities.h"
+#include "tasks/LED_Alive_Task.h"
+#include "irmp/irmp_stm32f4.h"
 
 // FreeRTOS
 #include "FreeRTOS.h"
@@ -35,51 +38,22 @@
 // lwIP
 #include "lwip/tcpip.h"
 
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-
-/*--------------- LCD Messages ---------------*/
-#define MESSAGE1   "     STM32F4x7      "
-#define MESSAGE2   "  STM32F-4 Series   "
-#define MESSAGE3   " UDP/TCP EchoServer "
-#define MESSAGE4   "                    "
-
-/*--------------- Tasks Priority -------------*/
-#define DHCP_TASK_PRIO   ( tskIDLE_PRIORITY + 2 )      
-#define LED_TASK_PRIO    ( tskIDLE_PRIORITY + 1 )
-
-/* Private macro -------------------------------------------------------------*/
-/* Private variables ---------------------------------------------------------*/
-extern struct netif xnetif;
-__IO uint32_t test;
-
 /* Private function prototypes -----------------------------------------------*/
-void LCD_LED_Init(void);
 extern void tcpecho_init(void);
 extern void udpecho_init(void);
 
-/* Private functions ---------------------------------------------------------*/
-
 /**
- * @brief  Toggle Led4 task
- * @param  pvParameters not used
+ * @brief  Initializes the STM324xG-EVAL's LCD and LEDs resources.
+ * @param  None
  * @retval None
  */
-void ToggleLed4(void * pvParameters) {
-	while (1) {
-		test = xnetif.ip_addr.addr;
-		/*check if IP address assigned*/
-		if (test != 0) {
-			for (;;) {
-				/* toggle LED4 each 250ms */
-				STM_EVAL_LEDToggle(LED2);
-				vTaskDelay(250);
-			}
-		}
-	}
+void LED_Init(void) {
+	/* Initialize STM324xG-EVAL's LEDs */
+	STM_EVAL_LEDInit(LED1);
+	STM_EVAL_LEDInit(LED2);
+	STM_EVAL_LEDInit(LED3);
+	STM_EVAL_LEDInit(LED4);
 }
-
-volatile uint8_t* tmp = NULL;
 
 /**
  * @brief  Main program.
@@ -98,7 +72,7 @@ int main(void) {
 	printf("Running Ethernet Demo\n");
 
 	/*Initialize LCD and Leds */
-	LCD_LED_Init();
+	LED_Init();
 
 	/* configure ethernet (GPIOs, clocks, MAC, DMA) */
 	ETH_BSP_Config();
@@ -106,11 +80,15 @@ int main(void) {
 	/* Initilaize the LwIP stack */
 	LwIP_Init();
 
+	/* Initialize IRMP */
+	IRMP_Init();
+
 	/* Initialize tcp echo server */
 	tcpecho_init();
 
 	/* Initialize udp echo server */
 	udpecho_init();
+
 #ifdef USE_DHCP
 	/* Start DHCPClient */
 	xTaskCreate(LwIP_DHCP_task, (const signed char * const ) "DHCPClient",
@@ -118,7 +96,7 @@ int main(void) {
 #endif
 
 	/* Start toogleLed4 task : Toggle LED4  every 250ms */
-	xTaskCreate(ToggleLed4, (const signed char * const ) "LED4",
+	xTaskCreate(LED_ToggleLed_ALIVE, (const signed char * const ) "LED_ALIVE",
 			configMINIMAL_STACK_SIZE, NULL, LED_TASK_PRIO, NULL);
 
 	/* Start scheduler */
@@ -127,41 +105,6 @@ int main(void) {
 	/* We should never get here as control is now taken by the scheduler */
 	for (;;)
 		;
-}
-
-/**
- * @brief  Initializes the STM324xG-EVAL's LCD and LEDs resources.
- * @param  None
- * @retval None
- */
-void LCD_LED_Init(void) {
-#ifdef USE_LCD
-	/* Initialize the STM324xG-EVAL's LCD */
-	STM324xG_LCD_Init();
-#endif
-
-	/* Initialize STM324xG-EVAL's LEDs */
-	STM_EVAL_LEDInit(LED1);
-	STM_EVAL_LEDInit(LED2);
-	STM_EVAL_LEDInit(LED3);
-	STM_EVAL_LEDInit(LED4);
-
-#ifdef USE_LCD
-	/* Clear the LCD */
-	LCD_Clear(Black);
-
-	/* Set the LCD Back Color */
-	LCD_SetBackColor(Black);
-
-	/* Set the LCD Text Color */
-	LCD_SetTextColor(White);
-
-	/* Display message on the LCD*/
-	LCD_DisplayStringLine(Line0, (uint8_t*)MESSAGE1);
-	LCD_DisplayStringLine(Line1, (uint8_t*)MESSAGE2);
-	LCD_DisplayStringLine(Line2, (uint8_t*)MESSAGE3);
-	LCD_DisplayStringLine(Line3, (uint8_t*)MESSAGE4);
-#endif
 }
 
 #ifdef  USE_FULL_ASSERT

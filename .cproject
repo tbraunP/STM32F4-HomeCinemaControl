@@ -20,7 +20,7 @@
 <storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 <storageModule moduleId="org.eclipse.cdt.core.pathentry">
 <pathentry kind="src" path="[Source directory]"/>
-<pathentry excluding="[Source directory]/|**/CMakeFiles/" kind="out" path=""/>
+<pathentry excluding="**/CMakeFiles/" kind="out" path=""/>
 <pathentry kind="mac" name="__STDC__" path="" value="1"/>
 <pathentry kind="mac" name="__STDC_HOSTED__" path="" value="1"/>
 <pathentry kind="mac" name="__GNUC__" path="" value="4"/>
@@ -1368,6 +1368,27 @@
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
+<target name="[obj] src/irmp/irmp_stm32f4.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/irmp/irmp_stm32f4.c.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] src/irmp/irmp_stm32f4.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/irmp/irmp_stm32f4.c.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] src/irmp/irmp_stm32f4.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/irmp/irmp_stm32f4.c.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
 <target name="[obj] src/irmp/irmpextlog.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
@@ -1596,6 +1617,27 @@
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
 <buildTarget>src/system_stm32f4xx.c.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[obj] src/tasks/LED_Alive_Task.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/LED_Alive_Task.c.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] src/tasks/LED_Alive_Task.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/LED_Alive_Task.c.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] src/tasks/LED_Alive_Task.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/LED_Alive_Task.c.s</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>

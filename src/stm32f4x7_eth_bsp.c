@@ -19,13 +19,16 @@
   ******************************************************************************
   */
 
-/* Includes ------------------------------------------------------------------*/
+#include <stdint.h>
+#include <stdbool.h>
+
 #include "stm32f4x7_eth.h"
 #include "stm32f4x7_eth_bsp.h"
 #include "main.h"
 #include "stm32f4xx.h"
 #include "hw/stm32f4_discovery.h"
 #include "stm32f4xx_conf.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/

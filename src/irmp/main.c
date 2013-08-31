@@ -16,8 +16,8 @@
  * (at your option) any later version.
  *---------------------------------------------------------------------------------------------------------------------------------------------------
  */
-
-#include "irmp.h"
+#if 0
+#include "irmp/irmp.h"
 
 #ifndef F_CPU
 #error F_CPU unkown
@@ -140,4 +140,5 @@ main (void)
     }
 }
 
+#endif
 #endif

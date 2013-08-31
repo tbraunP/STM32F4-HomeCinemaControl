@@ -17,10 +17,10 @@
 #ifndef _IRMP_H_
 #define _IRMP_H_
 
-#include "irmpsystem.h"
+#include "irmp/irmpsystem.h"
 
 #ifndef IRMP_USE_AS_LIB
-#  include "irmpconfig.h"
+#  include "irmp/irmpconfig.h"
 #endif
 
 #if defined (ATMEL_AVR)

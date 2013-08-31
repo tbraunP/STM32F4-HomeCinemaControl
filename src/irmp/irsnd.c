@@ -24,7 +24,13 @@
 
 #include "irmp/irsnd.h"
 
-#ifndef F_CPU
+// just for eclipse
+#ifndef ARM_STM32
+	#define ARM_STM32
+	#define ARM_STM32F4XX
+#endif
+
+#if !defined(F_CPU) &!defined(ARM_STM32)
 #  error F_CPU unkown
 #endif
 

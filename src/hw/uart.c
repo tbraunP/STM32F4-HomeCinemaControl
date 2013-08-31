@@ -167,7 +167,7 @@ void UART_init(int baudrate) {
 	DMA_ClearITPendingBit(USART_TX_DMA, DMA_IT_TCIF7);
 
 	// Enable DMA Transfer finished interrupt for DMA
-	NVIC_Init(&(NVIC_InitTypeDef ) { .NVIC_IRQChannel = DMA2_Stream7_IRQn,
+	NVIC_Init(&(NVIC_InitTypeDef) { .NVIC_IRQChannel = DMA2_Stream7_IRQn,
 					.NVIC_IRQChannelPreemptionPriority =
 					configLIBRARY_KERNEL_INTERRUPT_PRIORITY,
 					.NVIC_IRQChannelSubPriority = 0, .NVIC_IRQChannelCmd =

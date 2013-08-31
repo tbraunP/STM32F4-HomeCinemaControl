@@ -15,6 +15,15 @@
 #ifndef _IRMPSYSTEM_H_
 #define _IRMPSYSTEM_H_
 
+// set architecture for eclipse only needed
+#ifndef STM32F4XX
+#define STM32F4XX
+#endif
+
+#ifndef USE_STDPERIPH_DRIVER
+#define USE_STDPERIPH_DRIVER
+#endif
+
 #if !defined(_IRMP_H_) && !defined(_IRSND_H_)
 #  error please include only irmp.h or irsnd.h, not irmpsystem.h
 #endif

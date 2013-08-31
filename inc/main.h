@@ -20,7 +20,6 @@
   ******************************************************************************
   */
 
-/* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
 #define __MAIN_H
 
@@ -28,14 +27,9 @@
  extern "C" {
 #endif
 
-/* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx.h"
 #include "stm32f4x7_eth_bsp.h"
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-
-//#define USE_LCD        /* enable LCD  */  
 #define USE_DHCP       /* enable DHCP, if disabled static address is used*/
 
 /* Uncomment SERIAL_DEBUG to enables retarget of printf to  serial port (COM1 on STM32 evalboard) 
@@ -48,7 +42,7 @@
 #define MAC_ADDR2   00
 #define MAC_ADDR3   00
 #define MAC_ADDR4   00
-#define MAC_ADDR5   00
+#define MAC_ADDR5   02
  
 /*Static IP ADDRESS*/
 #define IP_ADDR0   192
@@ -96,11 +90,6 @@
     +  JP8    |          Open                           |  Close                               +
     +==========================================================================================+
   */
-
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */  
-void Time_Update(void);
-void Delay(uint32_t nCount);
 
 
 #ifdef __cplusplus

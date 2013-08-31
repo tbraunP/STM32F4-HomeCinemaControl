@@ -224,9 +224,19 @@
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/irmp/irsnd.c</location>
 		</link>
 		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/irmp_stm32f4.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/irmp/irmp_stm32f4.c</location>
+		</link>
+		<link>
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/irmpextlog.c</name>
 			<type>1</type>
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/irmp/irmpextlog.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/LED_Alive_Task.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/LED_Alive_Task.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/netifapi.c</name>
