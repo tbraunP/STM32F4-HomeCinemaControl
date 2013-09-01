@@ -12,9 +12,9 @@
 extern "C" {
 #endif
 
-void IRMP_Init(void);
+void IRMP_Init();
 
-void TIM1_UP_TIM10_IRQHandler(void);
+void TIM1_UP_TIM10_IRQHandler();
 
 #ifdef __cplusplus
 }
