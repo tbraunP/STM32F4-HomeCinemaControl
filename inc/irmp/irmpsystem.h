@@ -47,6 +47,7 @@
 #  include <stm32f4xx.h>
 #  define ARM_STM32
 #  define ARM_STM32F4XX
+#  define F_CPU			("UNUSED")
 #elif defined(TARGET_IS_BLIZZARD_RA2)                                                                                           // TI Stellaris (tested on Stellaris Launchpad with Code Composer Studio)
 #  define STELLARIS_ARM_CORTEX_M4
 #  define F_CPU (SysCtlClockGet())
