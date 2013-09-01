@@ -30,7 +30,7 @@
 #include "tasks/Task_Priorities.h"
 #include "tasks/LED_Alive_Task.h"
 #include "tasks/tcpecho.h"
-#include "irmp/irmp_stm32f4.h"
+#include "tasks/irmpTask.h"
 
 // FreeRTOS
 #include "FreeRTOS.h"
@@ -77,9 +77,6 @@ int main(void) {
 	/* Initilaize the LwIP stack */
 	LwIP_Init();
 
-	/* Initialize IRMP */
-	IRMP_Init();
-
 	/* Initialize tcp echo server */
 	tcpecho_init();
 
@@ -93,6 +90,9 @@ int main(void) {
 	xTaskCreate(LED_ToggleLed_ALIVE, (const signed char * const ) "LED_ALIVE",
 			configMINIMAL_STACK_SIZE, NULL, LED_TASK_PRIO, NULL);
 
+	// IRMP task starten
+	IRSND_Task_init();
+	
 	/* Start scheduler */
 	vTaskStartScheduler();
 

@@ -30,7 +30,7 @@
 	#define ARM_STM32F4XX
 #endif
 
-#if !defined(F_CPU) &!defined(ARM_STM32)
+#ifndef F_CPU
 #  error F_CPU unkown
 #endif
 
@@ -446,6 +446,7 @@ irsnd_off (void)
         TIM_SelectOCxM(IRSND_TIMER, IRSND_TIMER_CHANNEL, TIM_ForcedAction_InActive);   // force output inactive
         TIM_CCxCmd(IRSND_TIMER, IRSND_TIMER_CHANNEL, TIM_CCx_Enable);      // enable OC-output (is being disabled in TIM_SelectOCxM())
         TIM_SetCounter(IRSND_TIMER, 0);                 // reset counter value
+	TIM_Cmd(IRSND_TIMER, ENABLE);
 #  else //AVR
 
 #    if   IRSND_OCx == IRSND_OC2                        // use OC2

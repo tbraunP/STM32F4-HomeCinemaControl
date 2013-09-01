@@ -100,8 +100,10 @@ sendextlog (unsigned char data)
 
 #endif //IRMP_EXT_LOGGING
 
+#ifdef PIC_C18
 static void
 dummy (void)
 {
   // Only to avoid C18 compiler error
 }
+#endif
