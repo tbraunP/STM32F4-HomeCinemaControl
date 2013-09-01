@@ -29,6 +29,7 @@
 #include "hw/stm32f4_discovery.h"
 #include "tasks/Task_Priorities.h"
 #include "tasks/LED_Alive_Task.h"
+#include "tasks/tcpecho.h"
 #include "irmp/irmp_stm32f4.h"
 
 // FreeRTOS
@@ -37,10 +38,6 @@
 
 // lwIP
 #include "lwip/tcpip.h"
-
-/* Private function prototypes -----------------------------------------------*/
-extern void tcpecho_init(void);
-extern void udpecho_init(void);
 
 /**
  * @brief  Initializes the STM324xG-EVAL's LCD and LEDs resources.
@@ -85,9 +82,6 @@ int main(void) {
 
 	/* Initialize tcp echo server */
 	tcpecho_init();
-
-	/* Initialize udp echo server */
-	udpecho_init();
 
 #ifdef USE_DHCP
 	/* Start DHCPClient */

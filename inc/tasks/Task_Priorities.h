@@ -14,6 +14,7 @@
 /*--------------- Tasks Priority -------------*/
 #define DHCP_TASK_PRIO   ( tskIDLE_PRIORITY + 2 )
 #define LED_TASK_PRIO    ( tskIDLE_PRIORITY + 1 )
+#define TCPECHO_TASK_PRIO ( tskIDLE_PRIORITY + 1 )
 
 
 #endif /* TASK_PRIORITIES_H_ */
