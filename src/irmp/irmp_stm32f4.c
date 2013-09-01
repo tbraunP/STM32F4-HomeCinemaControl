@@ -11,7 +11,7 @@
 #include "stm32f4xx_tim.h"
 
 void IRMP_Init() {
-	irmp_init();
+	//irmp_init();
 	irsnd_init();
 
 	// activate timer interrupt

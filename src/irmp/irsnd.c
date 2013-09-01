@@ -381,6 +381,8 @@ static volatile uint8_t                         irsnd_is_on = FALSE;
 static void                                     (*irsnd_callback_ptr) (uint8_t);
 #endif // IRSND_USE_CALLBACK == 1
 
+static void irsnd_set_freq (IRSND_FREQ_TYPE freq);
+
 /*---------------------------------------------------------------------------------------------------------------------------------------------------
  *  Switch PWM on
  *---------------------------------------------------------------------------------------------------------------------------------------------------
@@ -446,6 +448,9 @@ irsnd_off (void)
         TIM_SelectOCxM(IRSND_TIMER, IRSND_TIMER_CHANNEL, TIM_ForcedAction_InActive);   // force output inactive
         TIM_CCxCmd(IRSND_TIMER, IRSND_TIMER_CHANNEL, TIM_CCx_Enable);      // enable OC-output (is being disabled in TIM_SelectOCxM())
         TIM_SetCounter(IRSND_TIMER, 0);                 // reset counter value
+	
+	// reenable timer for usage with irmp
+	irsnd_set_freq (IRSND_FREQ_36_KHZ);                                         // set default frequency
 	TIM_Cmd(IRSND_TIMER, ENABLE);
 #  else //AVR
 

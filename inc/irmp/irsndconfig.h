@@ -108,9 +108,14 @@
  * ARM STM32 section:
  *---------------------------------------------------------------------------------------------------------------------------------------------------
  */
-#elif defined (ARM_STM32)                                               // use A6 as IR output on STM32
+#elif defined (ARM_STM32)                                               // use A6 as IR output on STM32, B8 on STM32F4XX
+#ifdef ARM_STM32F4XX
+#  define IRSND_PORT_LETTER                     B
+#  define IRSND_BIT_NUMBER                      8
+#else
 #  define IRSND_PORT_LETTER                     A
 #  define IRSND_BIT_NUMBER                      6
+#endif
 #  define IRSND_TIMER_NUMBER                    10
 #  define IRSND_TIMER_CHANNEL_NUMBER            1                       // only channel 1 can be used at the moment, others won't work
 
