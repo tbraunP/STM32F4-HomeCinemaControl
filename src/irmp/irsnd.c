@@ -295,6 +295,7 @@
 #  define IRSND_FREQ_455_KHZ                    (IRSND_FREQ_TYPE) ((F_CPU / 455000 / 2 / Pre_Scaler / PIC_Scaler) - 1)
 #elif defined (ARM_STM32)                       // STM32
 #  define IRSND_FREQ_TYPE                       uint32_t
+#  define IRSND_FREQ_15_KHZ 			(IRSND_FREQ_TYPE) (15000)
 #  define IRSND_FREQ_30_KHZ                     (IRSND_FREQ_TYPE) (30000)
 #  define IRSND_FREQ_32_KHZ                     (IRSND_FREQ_TYPE) (32000)
 #  define IRSND_FREQ_36_KHZ                     (IRSND_FREQ_TYPE) (36000)
@@ -302,6 +303,7 @@
 #  define IRSND_FREQ_40_KHZ                     (IRSND_FREQ_TYPE) (40000)
 #  define IRSND_FREQ_56_KHZ                     (IRSND_FREQ_TYPE) (56000)
 #  define IRSND_FREQ_455_KHZ                    (IRSND_FREQ_TYPE) (455000)
+#  define IRSND_IRMP_DEFAULT_FREQ		IRSND_FREQ_15_KHZ
 #else                                           // AVR
 #  if F_CPU >= 16000000L
 #    define AVR_PRESCALER                       8
@@ -449,9 +451,7 @@ irsnd_off (void)
         TIM_CCxCmd(IRSND_TIMER, IRSND_TIMER_CHANNEL, TIM_CCx_Enable);      // enable OC-output (is being disabled in TIM_SelectOCxM())
         TIM_SetCounter(IRSND_TIMER, 0);                 // reset counter value
 	
-	// reenable timer for usage with irmp
-	irsnd_set_freq (IRSND_FREQ_36_KHZ);                                         // set default frequency
-	TIM_Cmd(IRSND_TIMER, ENABLE);
+	TIM_Cmd(IRSND_TIMER, ENABLE);			// timer needs to be reenabled since otherwise no further transmission would work (analog to AVR)
 #  else //AVR
 
 #    if   IRSND_OCx == IRSND_OC2                        // use OC2
@@ -527,6 +527,9 @@ irsnd_set_freq (IRSND_FREQ_TYPE freq)
 
          freq = TimeBaseFreq/freq;
 
+	 // disable timer if running
+	 //TIM_Cmd(IRSND_TIMER, DISABLE);
+	 
          /* Set frequency */
          TIM_SetAutoreload(IRSND_TIMER, freq - 1);
          /* Set duty cycle */
@@ -555,6 +558,7 @@ irsnd_set_freq (IRSND_FREQ_TYPE freq)
 /*---------------------------------------------------------------------------------------------------------------------------------------------------
  *  Initialize the PWM
  *  @details  Configures 0CR0A, 0CR0B and 0CR2B as PWM channels
+ *  @note     For STM32f4 enable the timer TIM_Cmd(.., ENABLE) and enable the resp. timer interrupts
  *---------------------------------------------------------------------------------------------------------------------------------------------------
  */
 void
@@ -620,7 +624,12 @@ irsnd_init (void)
         TIM_ARRPreloadConfig(IRSND_TIMER, ENABLE);
         TIM_OC1PreloadConfig(IRSND_TIMER, TIM_OCPreload_Enable);
 
+  #ifdef  STM32F4_IRSND_IRMP_COMBINED
+	irsnd_set_freq(IRSND_IRMP_DEFAULT_FREQ);
+  #else
         irsnd_set_freq (IRSND_FREQ_36_KHZ);                                         // set default frequency
+  #endif
+  // end of stm32 block
 #  else                                                                             // AVR
         IRSND_PORT &= ~(1<<IRSND_BIT);                                              // set IRSND_BIT to low
         IRSND_DDR |= (1<<IRSND_BIT);                                                // set IRSND_BIT to output
@@ -2318,6 +2327,11 @@ irsnd_ISR (void)
     else
     {
         putchar ('1');
+    }
+#endif
+#ifdef STM32F4_IRSND_IRMP_COMBINED
+    if (! irsnd_busy){
+        irsnd_set_freq(IRSND_IRMP_DEFAULT_FREQ);
     }
 #endif
 
