@@ -26,14 +26,13 @@ volatile static struct {
 
      DMA_InitTypeDef uartTXDMA;
      bool dmaRunning;
-     xSemaphoreHandle mutex;
 } uart_state;
 
-static inline void startDMAFromBuffer()
-{
+static inline void startDMAFromBuffer(){
      // copy message
-     uint8_t* str = ( uint8_t* ) malloc ( uart_state.tx_buf.len * sizeof ( uint8_t ) );
-     int len = rb_read ( ( ringbuf_t* ) &uart_state.tx_buf, str, uart_state.tx_buf.len );
+     int len = uart_state.tx_buf.len;
+     uint8_t* str = ( uint8_t* ) malloc ( len * sizeof ( uint8_t ) );
+     len = rb_read ( ( ringbuf_t* ) &uart_state.tx_buf, str, len );
      uart_state.uartTXDMA.DMA_Memory0BaseAddr = ( uint32_t ) str;
      uart_state.uartTXDMA.DMA_BufferSize = len;
 
@@ -44,55 +43,50 @@ static inline void startDMAFromBuffer()
      uart_state.dmaRunning = true;
 }
 
-void DMA2_Stream7_IRQHandler ( void )
-{
+void DMA2_Stream7_IRQHandler ( void ){
+     
      DMA_Cmd ( USART_TX_DMA, DISABLE );
      DMA_ClearITPendingBit ( USART_TX_DMA, DMA_IT_TCIF7 );
 
      // ready for next transmission
      USART_ClearITPendingBit ( OUT_USART, USART_IT_TC );
 
-     // free current memory of finished transmission
      vPortEnterCritical();
-     free ( ( uint8_t* ) uart_state.uartTXDMA.DMA_Memory0BaseAddr );
-
-     // check for new transmission
-     uart_state.dmaRunning = false;
-
-     // check if we should start a new transfer
-     if ( uart_state.tx_buf.len > 0 ) {
-          startDMAFromBuffer();
+     {
+	// free current memory of finished transmission
+	free ( ( uint8_t* ) uart_state.uartTXDMA.DMA_Memory0BaseAddr );
+	uart_state.uartTXDMA.DMA_Memory0BaseAddr = (uint32_t) NULL;
+    
+	// check if we should start a new transfer
+	if ( uart_state.tx_buf.len > 0 ) {
+	  startDMAFromBuffer();
+	}else{
+	  uart_state.dmaRunning = false;
+	}
      }
-
      vPortExitCritical();
 }
 
-ssize_t UART_write_r ( struct _reent *r, int fd, const void *ptr, size_t len )
-{
+ssize_t UART_write_r ( struct _reent *r, int fd, const void *ptr, size_t len ){
      int ln = 0;
-
-     if ( xSemaphoreTakeRecursive ( uart_state.mutex, ( portTickType ) 0 ) == pdTRUE ) {
+     vPortEnterCritical();
+     {
           ln = rb_write ( ( ringbuf_t* ) &uart_state.tx_buf, ( const uint8_t* ) ptr, len );
           if ( ln != len ) {
                ++uart_state.uart_stats.tx_overrun;
           }
 
-          vPortEnterCritical();
+          
           // start a new transfer if none is running
           if ( !uart_state.dmaRunning && ln > 0 ) {
                startDMAFromBuffer();
           }
-          vPortExitCritical();
-          xSemaphoreGiveRecursive ( uart_state.mutex );
-     } else {
-          ++uart_state.uart_stats.tx_overrun;
      }
-
+     vPortExitCritical();
      return ln;
 }
 
-ssize_t UART_read_r ( struct _reent *r, int fd, void *ptr, size_t len )
-{
+ssize_t UART_read_r ( struct _reent *r, int fd, void *ptr, size_t len ){
      /*
       while (!rx_buf.len)
       ;
@@ -107,8 +101,7 @@ ssize_t UART_read_r ( struct _reent *r, int fd, void *ptr, size_t len )
      return len;
 }
 
-void UART_poll_send ( const char *ch )
-{
+void UART_poll_send ( const char *ch ){
      while ( *ch ) {
           OUT_USART->DR = *ch++ & 0xff;
           while ( ! ( OUT_USART->SR & USART_FLAG_TXE ) )
@@ -125,12 +118,10 @@ void UART_poll_send ( const char *ch )
  *  PB7   USART1_RXD
  *
  */
-void UART_init ( int baudrate )
-{
+void UART_init ( int baudrate ){
      // allocate memory
      rb_alloc ( ( ringbuf_t* ) &uart_state.tx_buf, TX_SIZE );
      uart_state.dmaRunning = false;
-     uart_state.mutex = xSemaphoreCreateRecursiveMutex();
 
      // Enable peripheral clocks
      RCC->AHB1ENR |= RCC_AHB1Periph_GPIOB;
@@ -175,6 +166,7 @@ void UART_init ( int baudrate )
      uart_state.uartTXDMA.DMA_DIR = DMA_DIR_MemoryToPeripheral;
      uart_state.uartTXDMA.DMA_PeripheralBaseAddr = ( uint32_t ) & ( USART1->DR );
      uart_state.uartTXDMA.DMA_MemoryInc = DMA_MemoryInc_Enable;
+     uart_state.uartTXDMA.DMA_Memory0BaseAddr = (uint32_t) 0;
 
      // Enable DMA finished interrupt
      DMA_ITConfig ( USART_TX_DMA, DMA_IT_TC, ENABLE );
@@ -185,7 +177,7 @@ void UART_init ( int baudrate )
           .NVIC_IRQChannel = DMA2_Stream7_IRQn,
            .NVIC_IRQChannelPreemptionPriority =
                 configLIBRARY_KERNEL_INTERRUPT_PRIORITY,
-                .NVIC_IRQChannelSubPriority = 0, .NVIC_IRQChannelCmd =
+                .NVIC_IRQChannelSubPriority = 1, .NVIC_IRQChannelCmd =
                           ENABLE
      } );
 
