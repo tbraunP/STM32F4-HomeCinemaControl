@@ -28,7 +28,7 @@ void IRSND_thread ( void *arg )
           irsnd_send_data ( &irmp_data, TRUE ); // send frame, wait for completion
 
           // wait one second till next transmission
-          vTaskDelay ( 1000 );
+          vTaskDelay ( 5000 );
      }
 }
 
@@ -40,12 +40,13 @@ void IRMP_thread ( void *arg )
           printf ( "IRMP receiving\n" );
 
           if ( irmp_get_data ( &irmp_data ) ) {
-               printf ( "Receiving %i \n", ( ( int ) irmp_data.protocol ) &0xFF );
-               // ir signal decoded, do something here...
-               // irmp_data.protocol is the protocol, see irmp.h
-               // irmp_data.address is the address/manufacturer code of ir sender
-               // irmp_data.command is the command code
-               // irmp_protocol_names[irmp_data.protocol] is the protocol name (if enabled, see irmpconfig.h)
+               printf ( "Receiving\nprotocol %x \n", ( ( int ) irmp_data.protocol ) &0xFF );
+	       printf ( "address %x \n", ( ( int ) irmp_data.address ) &0xFFFF );
+	       printf ( "command %x \n", ( ( int ) irmp_data.command ) &0xFFFF );
+	       printf ( "flags %x \n", ( ( int ) irmp_data.flags ) &0xFF);
+                    
+	       // set to zero
+	       memset(&irmp_data, 0, sizeof(IRMP_DATA));
           }
 
           // wait one second till next transmission
@@ -61,8 +62,8 @@ void IRSND_Task_init()
      /* Initialize IRMP */
      IRMP_Init();
 
-     xTaskCreate ( IRSND_thread, ( const signed char * const ) "IRSND_Task",
-                   configMINIMAL_STACK_SIZE, NULL, IRSND_TASK_PRIO, NULL );
+     //xTaskCreate ( IRSND_thread, ( const signed char * const ) "IRSND_Task",
+     //              configMINIMAL_STACK_SIZE, NULL, IRSND_TASK_PRIO, NULL );
 
      xTaskCreate ( IRMP_thread, ( const signed char * const ) "IRMP_Task",
                    configMINIMAL_STACK_SIZE, NULL, LED_TASK_PRIO, NULL );

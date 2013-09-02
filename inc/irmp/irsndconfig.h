@@ -112,6 +112,7 @@
 #ifdef ARM_STM32F4XX
 #  define IRSND_PORT_LETTER                     B
 #  define IRSND_BIT_NUMBER                      8
+#  define STM32F4_IRSND_IRMP_COMBINED					// use same timer for irmp and irsnd, see main irmp_irsnd_main.c for details
 #else
 #  define IRSND_PORT_LETTER                     A
 #  define IRSND_BIT_NUMBER                      6
