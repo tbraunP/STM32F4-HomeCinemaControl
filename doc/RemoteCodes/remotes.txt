@@ -1,0 +1,35 @@
+Fernbedienungsprotokolle:
+==========================
+
+Epson Beamer:
+Einschalttaste:
+IRMP receiving
+Receiving
+protocol 0x2 
+address 0x5583 
+command 0x90
+flags 0x0
+
+Ein lang: flags 1
+
+
+Enter:
+Receiving
+protocol 0x2 
+address 0x5583 
+command 0x85 
+flags 0x0
+
+HDMI 1:
+protocol 0x2 
+address 0x5583 
+command 0x73 
+flags 0x1 
+
+
+HDMI 2:
+Receiving
+protocol 0x2 
+address 0x5583 
+command 0x77 
+flags 0x0
