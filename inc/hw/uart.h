@@ -8,6 +8,12 @@
  extern "C" {
 #endif
 
+/**
+ * UART: USART1, 
+ * Transmission: DMA2_Stream7_IRQHandler,
+ * TX-PIN PB6
+ * RXD-PIN PB7 
+ */
 void UART_init(int baudrate);
 void DMA2_Stream7_IRQHandler(void);
 void UART_poll_send(const char *ch);
