@@ -71,7 +71,7 @@ ssize_t UART_write_r ( struct _reent *r, int fd, const void *ptr, size_t len )
 {
      int ln = 0;
 
-     if ( xSemaphoreTake ( uart_state.mutex, ( portTickType ) 10 ) == pdTRUE ) {
+     if ( xSemaphoreTakeRecursive ( uart_state.mutex, ( portTickType ) 0 ) == pdTRUE ) {
           ln = rb_write ( ( ringbuf_t* ) &uart_state.tx_buf, ( const uint8_t* ) ptr, len );
           if ( ln != len ) {
                ++uart_state.uart_stats.tx_overrun;
@@ -83,7 +83,7 @@ ssize_t UART_write_r ( struct _reent *r, int fd, const void *ptr, size_t len )
                startDMAFromBuffer();
           }
           vPortExitCritical();
-          xSemaphoreGive ( uart_state.mutex );
+          xSemaphoreGiveRecursive ( uart_state.mutex );
      } else {
           ++uart_state.uart_stats.tx_overrun;
      }
@@ -130,7 +130,7 @@ void UART_init ( int baudrate )
      // allocate memory
      rb_alloc ( ( ringbuf_t* ) &uart_state.tx_buf, TX_SIZE );
      uart_state.dmaRunning = false;
-     uart_state.mutex = xSemaphoreCreateMutex();
+     uart_state.mutex = xSemaphoreCreateRecursiveMutex();
 
      // Enable peripheral clocks
      RCC->AHB1ENR |= RCC_AHB1Periph_GPIOB;
