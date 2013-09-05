@@ -1159,6 +1159,20 @@ irsnd_stop (void)
     irsnd_repeat = 0;
 }
 
+/**
+ * ISR_EXIT executed right before return of the irsnd_ISR
+ */
+#ifdef STM32F4_IRSND_IRMP_COMBINED
+  #define ISR_EXIT()	{ \
+				if (irsnd_busy == FALSE){ \
+				  irsnd_set_freq(IRSND_IRMP_DEFAULT_FREQ);\
+				} \
+			  }
+#else
+    #define ISR_EXIT()	
+#endif
+
+
 /*---------------------------------------------------------------------------------------------------------------------------------------------------
  *  ISR routine
  *  @details  ISR routine, called 10000 times per second
@@ -1269,6 +1283,7 @@ irsnd_ISR (void)
                         putchar ('1');
                     }
 #endif
+		    ISR_EXIT();
                     return irsnd_busy;
                 }
             }
@@ -1290,6 +1305,7 @@ irsnd_ISR (void)
                     putchar ('1');
                 }
 #endif
+		ISR_EXIT();
                 return irsnd_busy;
             }
             else
@@ -1298,6 +1314,7 @@ irsnd_ISR (void)
                 {
                     irsnd_busy = FALSE;
                     send_trailer = FALSE;
+		    ISR_EXIT();
                     return irsnd_busy;
                 }
                 
@@ -2329,12 +2346,8 @@ irsnd_ISR (void)
         putchar ('1');
     }
 #endif
-#ifdef STM32F4_IRSND_IRMP_COMBINED
-    if (! irsnd_busy){
-        irsnd_set_freq(IRSND_IRMP_DEFAULT_FREQ);
-    }
-#endif
 
+    ISR_EXIT();
     return irsnd_busy;
 }
 
