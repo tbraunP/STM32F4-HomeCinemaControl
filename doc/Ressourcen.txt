@@ -1,0 +1,23 @@
+Uart1
+-----------
+TX-PIN: PB6
+RX-PIN: PB7
+
+
+IRSND:
+-----------
+PB8
+
+
+IRMP:
+-----------
+PC13
+
+
+SolidState
+----------
+PD11
+PD10
+PD9
+PD8
+PD7
