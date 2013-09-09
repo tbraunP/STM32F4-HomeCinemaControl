@@ -41,7 +41,7 @@ void SolidState_Task_init(){
      
      solidStateQueue = xQueueCreate(10, sizeof(SolidStateCommand_t));
      
-     if(solidStateQueue){
+     if(solidStateQueue == 0){
        printf("SolidState queue creation failed\n");
      }
 
