@@ -31,6 +31,7 @@
 #include "tasks/LED_Alive_Task.h"
 #include "tasks/tcpecho.h"
 #include "tasks/irmpTask.h"
+#include "tasks/solidStateTask.h"
 
 // FreeRTOS
 #include "FreeRTOS.h"
@@ -90,8 +91,11 @@ int main(void) {
 	xTaskCreate(LED_ToggleLed_ALIVE, (const signed char * const ) "LED_ALIVE",
 			configMINIMAL_STACK_SIZE, NULL, LED_TASK_PRIO, NULL);
 
-	// IRMP task starten
+	// IRSND & IRMP task starten
 	IRSND_Task_init();
+	
+	// Solidstate Task
+	SolidState_Task_init();
 	
 	/* Start scheduler */
 	vTaskStartScheduler();
