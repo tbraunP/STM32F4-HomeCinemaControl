@@ -110,7 +110,6 @@ int main(void) {
 }
 
 #ifdef  USE_FULL_ASSERT
-
 /**
  * @brief  Reports the name of the source file and the source line number
  *   where the assert_param error has occurred.
@@ -124,6 +123,7 @@ void assert_failed(uint8_t* file, uint32_t line)
 	 ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
 	/* Infinite loop */
+	printf("Assertion failed %s at line %d\n", (const char*) file, (int) line);
 	while (1)
 	{}
 }

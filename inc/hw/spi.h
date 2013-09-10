@@ -4,6 +4,8 @@
 #include <sys/types.h>
 #include <reent.h>
 #include <string.h>
+#include <stdbool.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
  extern "C" {
@@ -15,9 +17,9 @@
  * CLK	-> PB10
  * SDI	-> PB15
  */
-void SPI_init();
-//void DMA2_Stream7_IRQHandler(void);
-void SPI_send(const uint8_t* data, size_t len);
+void SPI_HW_init();
+void DMA1_Stream4_IRQHandler ( void );
+bool SPI_HW_DMA_send(const uint8_t* data, size_t len);
 
 #ifdef __cplusplus
 }

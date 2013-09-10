@@ -49,7 +49,7 @@ void DMA1_Stream4_IRQHandler ( void )
      vPortExitCritical();
 }
 
-bool SPI_DMA_send(const uint8_t* data, size_t len){
+bool SPI_HW_DMA_send(const uint8_t* data, size_t len){
      bool succStart = false;
      vPortEnterCritical();
      {
@@ -66,7 +66,7 @@ bool SPI_DMA_send(const uint8_t* data, size_t len){
 /**
  * Initialize SPI.
  */
-void SPI_init()
+void SPI_HW_init()
 {
      // Enable peripheral clocks
      RCC->AHB1ENR |= RCC_AHB1Periph_GPIOB;
@@ -90,8 +90,9 @@ void SPI_init()
 	.SPI_CPOL = SPI_CPOL_Low,
 	.SPI_CPHA = SPI_CPHA_1Edge,
 	.SPI_NSS = SPI_NSS_Soft,
-	.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_256,
-	.SPI_FirstBit = SPI_FirstBit_LSB
+	.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64,
+	.SPI_FirstBit = SPI_FirstBit_LSB,
+	.SPI_CRCPolynomial = 7
     });
      
      // ENABLE DMA
