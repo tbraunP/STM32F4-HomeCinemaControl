@@ -1,5 +1,10 @@
 #include "hw/uart.h"
+
 #include "stm32f4xx.h"
+#include "stm32f4xx_rcc.h"
+#include "stm32f4xx_gpio.h"
+#include "stm32f4xx_usart.h"
+
 #include "util/ringbuf.h"
 #include <stdlib.h>
 #include <stdio.h>
