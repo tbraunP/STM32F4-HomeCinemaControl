@@ -37,7 +37,7 @@ void WS2803_thread ( void *arg )
 
           for ( ;; ) {
                for ( int i=0; i<LEDS*3; i++ ) {
-                    ledState[i] = 0xF1;
+                    ledState[i] = 0xFF;
                }
                // load frame
                while ( !SPI_HW_DMA_send ( ledState,  LEDS * 3 ) ) {
