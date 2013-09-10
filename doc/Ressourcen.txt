@@ -21,3 +21,8 @@ PD10
 PD9
 PD8
 PD7
+
+SPI (SPI2) for WS2803
+----------
+CLK	-> PB10
+SDI	-> PB15
