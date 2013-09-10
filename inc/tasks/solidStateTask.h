@@ -12,6 +12,10 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
 
+#ifdef __cplusplus
+ extern "C" {
+#endif
+
 typedef enum {
   BEAMER = 0,
   LEINWAND = 1,
@@ -46,5 +50,9 @@ void SolidState_thread(void *arg);
  * Read actual state
  */
 SolidStateRelais_Mode_t SolidState_getState(SolidStateRelais_t relais);
+
+#ifdef __cplusplus
+ }
+#endif
 
 #endif // SOLIDSTATETASK.H_H
