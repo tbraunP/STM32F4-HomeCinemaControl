@@ -6,7 +6,6 @@
 #include "stm32f4xx_spi.h"
 #include "stm32f4xx_dma.h"
 
-#include "util/ringbuf.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -15,12 +14,7 @@
 #include "FreeRTOS.h"
 #include "semphr.h"
 
-
-#define RX_SIZE  (256)
-#define TX_SIZE  (256)
-
 #define SPI_TX_DMA	(DMA1_Stream4)
-#define OUT_USART	(USART1)
 
 volatile static struct {
      DMA_InitTypeDef spiTXDMA;
@@ -55,7 +49,7 @@ void DMA1_Stream4_IRQHandler ( void )
      vPortExitCritical();
 }
 
-bool SPI_send(const uint8_t* data, size_t len){
+bool SPI_DMA_send(const uint8_t* data, size_t len){
      bool succStart = false;
      vPortEnterCritical();
      {
@@ -71,12 +65,6 @@ bool SPI_send(const uint8_t* data, size_t len){
 
 /**
  * Initialize SPI.
- *
- * \param  baudrate  Baudrate
- *
- *  PB6   USART1_TXD
- *  PB7   USART1_RXD
- *
  */
 void SPI_init()
 {

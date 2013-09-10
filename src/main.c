@@ -31,6 +31,7 @@
 #include "tasks/LED_Alive_Task.h"
 #include "tasks/tcpecho.h"
 #include "tasks/irmpTask.h"
+#include "tasks/ws2803Task.h"
 #include "tasks/solidStateTask.h"
 
 // FreeRTOS
@@ -96,6 +97,9 @@ int main(void) {
 	
 	// Solidstate Task
 	SolidState_Task_init();
+	
+	// WS2803 Task
+	WS2803_Task_init();
 	
 	/* Start scheduler */
 	vTaskStartScheduler();
