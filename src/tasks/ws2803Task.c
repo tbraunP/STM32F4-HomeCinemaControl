@@ -25,7 +25,7 @@ void WS2803_Task_init()
      }
 
      // deactivate all leds
-     for ( int i=0; i<LEDS*3; i++ ) {
+     for ( int i=0; i< LEDS*3; i++ ) {
           ledState[i] = ( 0xFF );
      }
      // all leds off
@@ -42,20 +42,20 @@ void WS2803_thread ( void *arg )
      static WS2803Command_t command;
      for ( ;; ) {
 
-	  uint8_t i =  0;
+	  uint8_t i =  0x00;
           for ( ;; ) {
 		
 	       ledState[17] =  i;
-               ledState[16] =  i;
-	       ledState[15] =  i;
+               //ledState[16] =  i;
+	       //ledState[15] =  i;
 
                // load frame
                while ( !SPI_HW_DMA_send ( ledState,  LEDS * 3 ) ) {
                     vTaskDelay ( 250 );
                }
                // be sure that controller is ready again
-               vTaskDelay ( 2000 );
-	       ++i;
+               vTaskDelay ( 3000 );
+	       i+=2;
 	       printf("Value set %x\n",(int) i);
           }
 

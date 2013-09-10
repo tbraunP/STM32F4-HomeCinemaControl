@@ -87,10 +87,10 @@ void SPI_HW_init()
 	.SPI_Direction = SPI_Direction_1Line_Tx,
 	.SPI_Mode = SPI_Mode_Master,
 	.SPI_DataSize = SPI_DataSize_8b,
-	.SPI_CPOL = SPI_CPOL_Low,
+	.SPI_CPOL = SPI_CPOL_High,
 	.SPI_CPHA = SPI_CPHA_1Edge,
 	.SPI_NSS = SPI_NSS_Soft,
-	.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_2,
+	.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64,
 	.SPI_FirstBit = SPI_FirstBit_MSB,
 	.SPI_CRCPolynomial = 7
     });
