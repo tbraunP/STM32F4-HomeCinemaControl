@@ -1,10 +1,9 @@
-#include "hw/uart.h"
+#include "hw/spi.h"
 
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
-#include "stm32f4xx_usart.h"
-#include "stm32f4xx_dma.h"
+#include "stm32f4xx_spi.h"
 
 #include "util/ringbuf.h"
 #include <stdlib.h>
@@ -124,31 +123,22 @@ void UART_poll_send ( const char *ch ){
  *  PB7   USART1_RXD
  *
  */
-void UART_init ( int baudrate ){
-     // allocate memory
-     rb_alloc ( ( ringbuf_t* ) &uart_state.tx_buf, TX_SIZE );
-     uart_state.dmaRunning = false;
-
+void SPI_init(){
      // Enable peripheral clocks
      RCC->AHB1ENR |= RCC_AHB1Periph_GPIOB;
-     RCC->APB2ENR |= RCC_APB2Periph_USART1;
+     RCC->APB1ENR |= RCC_APB1Periph_SPI2;
 
      // Initialize Serial Port
      GPIO_Init ( GPIOB, & ( GPIO_InitTypeDef ) {
-       .GPIO_Pin = GPIO_Pin_6,
+       .GPIO_Pin = (GPIO_Pin_10 | GPIO_Pin_15),
        .GPIO_Speed = GPIO_Speed_50MHz, .GPIO_Mode = GPIO_Mode_AF,
        .GPIO_OType = GPIO_OType_PP
      } );
 
-     GPIO_Init ( GPIOB, & ( GPIO_InitTypeDef ) {
-       .GPIO_Pin = GPIO_Pin_7, 
-       .GPIO_Mode =GPIO_Mode_AF, 
-       .GPIO_PuPd = GPIO_PuPd_UP
-     } );
+     GPIO_PinAFConfig ( GPIOB, GPIO_PinSource10, GPIO_AF_SPI2 );
+     GPIO_PinAFConfig ( GPIOB, GPIO_PinSource15, GPIO_AF_SPI2 );
 
-     GPIO_PinAFConfig ( GPIOB, GPIO_PinSource6, GPIO_AF_USART1 );
-     GPIO_PinAFConfig ( GPIOB, GPIO_PinSource7, GPIO_AF_USART1 );
-
+     // SPI Init
      USART_Init ( OUT_USART, & ( USART_InitTypeDef ) {
           .USART_BaudRate = baudrate,
           .USART_WordLength = USART_WordLength_8b, 
