@@ -45,7 +45,7 @@ void WS2803_thread ( void *arg )
 	  uint8_t i =  0;
           for ( ;; ) {
 		
-
+	       ledState[17] =  i;
                ledState[16] =  i;
 	       ledState[15] =  i;
 
