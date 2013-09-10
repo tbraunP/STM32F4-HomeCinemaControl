@@ -24,7 +24,15 @@ void WS2803_Task_init()
           printf ( "WS2803 queue creation failed\n" );
      }
 
-     printf("WS2803 init done\n");
+     // deactivate all leds
+     for ( int i=0; i<LEDS*3; i++ ) {
+          ledState[i] = ( 0xFF );
+     }
+     // all leds off
+     while ( !SPI_HW_DMA_send ( ledState,  LEDS * 3 ));
+     
+     // message and start thread
+     printf ( "WS2803 init done\n" );
      xTaskCreate ( WS2803_thread, ( const signed char * const ) "WS2803_Task",
                    configMINIMAL_STACK_SIZE, NULL, WS2803_TASK_PRIO, NULL );
 }
@@ -34,18 +42,23 @@ void WS2803_thread ( void *arg )
      static WS2803Command_t command;
      for ( ;; ) {
 
-
+	  uint8_t i =  0;
           for ( ;; ) {
-               for ( int i=0; i<LEDS*3; i++ ) {
-                    ledState[i] = 0xFF;
-               }
+		
+
+               ledState[16] =  i;
+	       ledState[15] =  i;
+
                // load frame
                while ( !SPI_HW_DMA_send ( ledState,  LEDS * 3 ) ) {
                     vTaskDelay ( 250 );
                }
                // be sure that controller is ready again
-               vTaskDelay ( 1500 );
+               vTaskDelay ( 2000 );
+	       ++i;
+	       printf("Value set %x\n",(int) i);
           }
+
 
           while ( xQueueReceive ( ws2803Queue, & ( command ), ( portTickType ) portMAX_DELAY ) ) {
                ledState[command.led*3] = command.red;

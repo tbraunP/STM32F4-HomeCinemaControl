@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>homeCinemaControl@STM32F4-HomeCinemaControl</name>
+	<name>homeCinemaControl-Debug@STM32F4-HomeCinemaControl</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -169,16 +169,6 @@
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/stm32f4xx_it.c</location>
 		</link>
 		<link>
-			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/tcpecho.c</name>
-			<type>1</type>
-			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tcpecho.c</location>
-		</link>
-		<link>
-			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/udpecho.c</name>
-			<type>1</type>
-			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/udpecho.c</location>
-		</link>
-		<link>
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/netconf.c</name>
 			<type>1</type>
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/netconf.c</location>
@@ -197,6 +187,11 @@
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/uart.c</name>
 			<type>1</type>
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/hw/uart.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/spi.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/hw/spi.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/stm32f4_discovery.c</name>
@@ -234,9 +229,29 @@
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/irmp/irmpextlog.c</location>
 		</link>
 		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/solidStateTask.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/solidStateTask.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/irmpTask.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/irmpTask.c</location>
+		</link>
+		<link>
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/LED_Alive_Task.c</name>
 			<type>1</type>
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/LED_Alive_Task.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/tcpecho.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/tcpecho.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/ws2803Task.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/ws2803Task.c</location>
 		</link>
 		<link>
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/netifapi.c</name>
