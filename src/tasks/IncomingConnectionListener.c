@@ -42,8 +42,12 @@ void IncomingConnectionListener_thread ( void *arg )
 
                     /* Process the new connection. */
                     if ( xErr== ERR_OK ) {
-			 printf("Spawning new process for incoming commands\n");
-                         NewIncomingDataHandlerTask ( newconn );
+			 printf("Trying to spawn new process for incoming commands...");
+                         if(NewIncomingDataHandlerTask ( newconn )){
+			   printf("... successfull\n");
+			 }else{
+			   printf("... failed to many connections\n");
+			}
                     }
                }
           } else {
