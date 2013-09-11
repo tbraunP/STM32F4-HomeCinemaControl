@@ -24,7 +24,7 @@ static uint8_t ledState[LEDS*3];
 
 int highs = 0;
 
-#define WS_HW_SPI
+//#define WS_HW_SPI
 
 #ifdef WS_HW_SPI
 #define WS_SPI_INIT()		SPI_HW_init()
@@ -63,12 +63,12 @@ void WS2803_Lowlevel_init(){
 
 void WS2803_SPI_send_byte(uint8_t data){
   for(int i=0; i<8;i++){
-    CLK_LOW();
     if(data & (1<<i)){
       SDI_HIGH();
     }else{
       SDI_LOW();
     }
+    CLK_LOW();
     delay_us(1);
     CLK_HIGH();
     delay_us(1);
