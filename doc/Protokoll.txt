@@ -1,0 +1,31 @@
+Datenprotokoll:
+--------------------
+
+0xAB | 0xCD | HEADER | 0xFF | PAYLOAD | 0xEF | 0xFE
+
+
+
+
+HEADER
+--------------------
+
+| LENGTH | TYP | COMPONENT |
+
+-- 
+TYP = 1 Byte
+0x01	-> 	Normal Package: Handy to Controller
+0x02	->	Status Package: Controller to Handy 
+
+--
+LENGTH 	->	1 Byte Length 
+Total length containing the number of bytes from 0xAB to 0xFE
+--
+COMPONENT->	1 Byte Length
+Identificator of Control SW Component
+
+
+
+
+Payload
+--------------------
+Depends upon the reception component
