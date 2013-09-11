@@ -8,6 +8,8 @@
 #include "tasks/Task_Priorities.h"
 #include "tasks/IncomingDataHandler.h"
 
+#include "util/ringbuf.h"
+
 #include "lwip/opt.h"
 
 
@@ -19,10 +21,20 @@
 volatile int threads = 0;
 #define MAXTHREADS	(2)
 
+typedef struct IncomingDataHandler_t{
+  struct netconn *connection;
+  ringbuf_t incomingRingBuffer;
+}IncomingDataHandler_t;
+
+void IncomingDataHandler_parseFrame(IncomingDataHandler_t* threadState){
+}
+
 /*-----------------------------------------------------------------------------------*/
 void IncomingDataHandler_thread ( void *arg )
 {
-     struct netconn *connection = ( struct netconn * ) arg;
+     IncomingDataHandler_t* lArg = (IncomingDataHandler_t*) arg;
+     struct netconn *connection = lArg->connection;
+     
      err_t xErr;
 
      struct netbuf *buf;
@@ -33,15 +45,21 @@ void IncomingDataHandler_thread ( void *arg )
           do {
                netbuf_data ( buf, &data, &len );
                netconn_write ( connection, data, len, NETCONN_COPY );
-
+	       rb_write(&lArg->incomingRingBuffer, (const uint8_t *) data, len);
           } while ( netbuf_next ( buf ) >= 0 );
 
           netbuf_delete ( buf );
+	  
+	  // try to parse frame
+	  IncomingDataHandler_parseFrame(lArg);
      }
 
      /* Close connection and discard connection identifier. */
      netconn_close ( connection );
      netconn_delete ( connection );
+     rb_free(&(lArg->incomingRingBuffer));
+     free(lArg);
+     
      vPortEnterCritical();
      --threads;
      vPortExitCritical();
@@ -53,8 +71,12 @@ bool NewIncomingDataHandlerTask ( void* connection )
      bool result = false;
      vPortEnterCritical();
      if ( threads < MAXTHREADS ) {
+	  IncomingDataHandler_t* threadState = malloc(sizeof(IncomingDataHandler_t));
+	  threadState->connection = connection;
+	  rb_alloc(&(threadState->incomingRingBuffer), 512);
+       
           xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
-                        configMINIMAL_STACK_SIZE, connection, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
+                        configMINIMAL_STACK_SIZE, threadState, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
           result =  true;
           ++threads;
      } else {
