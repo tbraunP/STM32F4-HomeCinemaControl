@@ -30,6 +30,7 @@
 #include "tasks/Task_Priorities.h"
 #include "tasks/LED_Alive_Task.h"
 #include "tasks/tcpecho.h"
+#include "tasks/IncomingConnectionListener.h"
 #include "tasks/irmpTask.h"
 #include "tasks/ws2803Task.h"
 #include "tasks/solidStateTask.h"
@@ -80,7 +81,7 @@ int main(void) {
 	LwIP_Init();
 
 	/* Initialize tcp echo server */
-	tcpecho_init();
+	//tcpecho_init();
 
 #ifdef USE_DHCP
 	/* Start DHCPClient */
@@ -99,7 +100,10 @@ int main(void) {
 	SolidState_Task_init();
 	
 	// WS2803 Task
-	WS2803_Task_init();
+	//WS2803_Task_init();
+	
+	// Listen for control connections
+	IncomingConnectionListener_Task_init();
 	
 	/* Start scheduler */
 	vTaskStartScheduler();

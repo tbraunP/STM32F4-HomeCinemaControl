@@ -13,9 +13,15 @@
 /*--------------- Tasks Priority -------------*/
 #define DHCP_TASK_PRIO   	( tskIDLE_PRIORITY + 5 )
 #define LED_TASK_PRIO    	( tskIDLE_PRIORITY + 1 )
-#define TCPECHO_TASK_PRIO 	( tskIDLE_PRIORITY + 2 )
+
+#define TCPINCOMINGListener_TASK_PRIO 	 ( tskIDLE_PRIORITY + 2 )
+#define TCPINCOMINGDATAHandler_TASK_PRIO ( tskIDLE_PRIORITY + 2 )
+
+#define TCPECHO_TASK_PRIO 	( tskIDLE_PRIORITY + 1 )
+
 #define IRSND_TASK_PRIO 	( tskIDLE_PRIORITY + 2 )
-#define SOLIDSTATE_TASK_PRIO	( tskIDLE_PRIORITY + 2 )
+#define SOLIDSTATE_TASK_PRIO	( tskIDLE_PRIORITY + 3 )
+
 #define WS2803_TASK_PRIO	( tskIDLE_PRIORITY + 2 )
 
 

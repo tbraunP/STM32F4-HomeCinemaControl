@@ -239,6 +239,16 @@
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/irmpTask.c</location>
 		</link>
 		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/IncomingConnectionListener.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/IncomingConnectionListener.c</location>
+		</link>
+		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/IncomingDataHandler.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/IncomingDataHandler.c</location>
+		</link>
+		<link>
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/LED_Alive_Task.c</name>
 			<type>1</type>
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/LED_Alive_Task.c</location>

@@ -38,10 +38,10 @@
 
 /* MAC ADDRESS*/
 #define MAC_ADDR0   02
-#define MAC_ADDR1   00
-#define MAC_ADDR2   00
-#define MAC_ADDR3   00
-#define MAC_ADDR4   00
+#define MAC_ADDR1   03
+#define MAC_ADDR2   01
+#define MAC_ADDR3   01
+#define MAC_ADDR4   03
 #define MAC_ADDR5   02
  
 /*Static IP ADDRESS*/
