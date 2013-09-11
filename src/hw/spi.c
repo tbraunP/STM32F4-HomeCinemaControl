@@ -76,7 +76,8 @@ void SPI_HW_init()
      GPIO_Init ( GPIOB, & ( GPIO_InitTypeDef ) {
           .GPIO_Pin = ( GPIO_Pin_10 | GPIO_Pin_15 ),
            .GPIO_Speed = GPIO_Speed_50MHz, .GPIO_Mode = GPIO_Mode_AF,
-            .GPIO_OType = GPIO_OType_PP
+            .GPIO_OType = GPIO_OType_PP, 
+	    .GPIO_PuPd = GPIO_PuPd_DOWN
      } );
 
      GPIO_PinAFConfig ( GPIOB, GPIO_PinSource10, GPIO_AF_SPI2 );
@@ -90,8 +91,8 @@ void SPI_HW_init()
 	.SPI_CPOL = SPI_CPOL_Low,
 	.SPI_CPHA = SPI_CPHA_1Edge,
 	.SPI_NSS = SPI_NSS_Soft,
-	.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_64,
-	.SPI_FirstBit = SPI_FirstBit_LSB,
+	.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8,
+	.SPI_FirstBit = SPI_FirstBit_MSB,
 	.SPI_CRCPolynomial = 7
     });
      
