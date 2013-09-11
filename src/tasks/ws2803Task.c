@@ -51,7 +51,7 @@ void WS2803_Lowlevel_init(){
      // Initialize Serial Port
      GPIO_Init ( GPIOB, & ( GPIO_InitTypeDef ) {
           .GPIO_Pin = ( GPIO_Pin_10 | GPIO_Pin_15 ),
-           .GPIO_Speed = GPIO_Speed_50MHz, .GPIO_Mode = GPIO_Mode_OUT,
+           .GPIO_Speed = GPIO_Speed_100MHz, .GPIO_Mode = GPIO_Mode_OUT,
             .GPIO_OType = GPIO_OType_PP, 
 	    .GPIO_PuPd = GPIO_PuPd_NOPULL
      } );
@@ -62,16 +62,18 @@ void WS2803_Lowlevel_init(){
 }
 
 void WS2803_SPI_send_byte(uint8_t data){
-  for(int i=0; i<8;i++){
+  for(int i=0; i<7;i++){
     if(data & (1<<i)){
       SDI_HIGH();
     }else{
       SDI_LOW();
     }
     CLK_LOW();
-    delay_us(1);
+    for(int j=0;j<10;j++)
+      asm volatile ("NOP");
     CLK_HIGH();
-    delay_us(1);
+    for(int j=0;j<10;j++)
+      asm volatile ("NOP");
   }
 }
 
