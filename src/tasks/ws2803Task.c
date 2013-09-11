@@ -24,7 +24,7 @@ static uint8_t ledState[LEDS*3];
 
 int highs = 0;
 
-//#define WS_HW_SPI
+#define WS_HW_SPI
 
 #ifdef WS_HW_SPI
 #define WS_SPI_INIT()		SPI_HW_init()
