@@ -33,7 +33,13 @@ typedef struct IncomingDataHandler_t {
      uint8_t length, type, component;
 } IncomingDataHandler_t;
 
-void IncomingDataHandler_frameFound(uint8_t type, uint8_t component, uint8_t* payload, size_t len){
+void IncomingDataHandler_frameFound ( uint8_t type, uint8_t component, uint8_t* payload, size_t len )
+{
+  if(type==0x01){
+    printf("Frame of type %d for component %d received\n", (int) type, (int) component);
+  }else{ 
+    printf("Unknown frametype\n");
+  }
 }
 
 void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
@@ -82,20 +88,20 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
                // wait for more data
                if ( dataBuffer->len < threadState->length )
                     return;
-	       
+
                // look for end
                if ( rb_peek ( dataBuffer,threadState->length - 2 ) == ( 0xEF )
                          && rb_peek ( dataBuffer, threadState->length - 1 ) == ( 0xFE ) ) {
-                    
-		    // remove prefix and header
-		    for(int i=0; i< 6; i++)
-		      rb_getc ( dataBuffer, &tmp );
-		    
-		    // copy payload and construct frame
-		    size_t len = threadState->length - 8;
-		    uint8_t* payload = malloc(len);
-		    rb_read(dataBuffer, payload, len);
-                    IncomingDataHandler_frameFound( threadState->type, threadState->component, payload, len);
+
+                    // remove prefix and header
+                    for ( int i=0; i< 6; i++ )
+                         rb_getc ( dataBuffer, &tmp );
+
+                    // copy payload and construct frame
+                    size_t len = threadState->length - 8;
+                    uint8_t* payload = malloc ( len );
+                    rb_read ( dataBuffer, payload, len );
+                    IncomingDataHandler_frameFound ( threadState->type, threadState->component, payload, len );
 
                     // remove trailer from buffer
                     for ( int i = 0; i < 2; i++ )
