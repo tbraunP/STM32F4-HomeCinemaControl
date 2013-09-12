@@ -31,15 +31,17 @@ typedef struct IncomingDataHandler_t {
      ParseState_t state;
 
      uint8_t length, type, component;
+     uint16_t received;
 } IncomingDataHandler_t;
 
-void IncomingDataHandler_frameFound ( uint8_t type, uint8_t component, uint8_t* payload, size_t len )
+void IncomingDataHandler_frameFound ( IncomingDataHandler_t* threadState, uint8_t type, uint8_t component, uint8_t* payload, size_t len )
 {
      if ( type==0x01 ) {
-          printf ( "Frame received\n" );
-          printf ( "Frame of type %d for component %d received\n", ( int ) type, ( int ) component );
+          ++ ( threadState->received );
+//          printf ( "Frame received\n" );
+//          printf ( "Frame of type %d for component %d received\n", ( int ) type, ( int ) component );
      } else {
-          printf ( "Unknown frametype\n" );
+//          printf ( "Unknown frametype\n" );
      }
 }
 
@@ -102,14 +104,15 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
                     size_t len = threadState->length - 8;
                     uint8_t* payload = malloc ( len );
                     rb_read ( dataBuffer, payload, len );
-                    IncomingDataHandler_frameFound ( threadState->type, threadState->component, payload, len );
+                    IncomingDataHandler_frameFound ( threadState, threadState->type, threadState->component, payload, len );
+                    free ( payload );
 
                     // remove trailer from buffer
                     for ( int i = 0; i < 2; i++ )
                          rb_getc ( dataBuffer, &tmp );
-		    
-		    // output buffer state
-		    printf("DatabufferLen %d\n", (int) dataBuffer->len);
+
+                    // output buffer state
+                    //printf("DatabufferLen %d\n", (int) dataBuffer->len);
                } else {
                     // something went wrong, retry
                     rb_getc ( dataBuffer, &tmp );
@@ -145,10 +148,10 @@ void IncomingDataHandler_thread ( void *arg )
           netbuf_delete ( buf );
 
           // try to parse frame
-	  printf("Parsing...\n");
+          //printf("Parsing...\n");
           IncomingDataHandler_parseFrame ( lArg );
-	  
-	  printf("Waiting for new data\n");
+
+          //printf("Waiting for new data\n");
      }
 
      /* Close connection and discard connection identifier. */
@@ -160,9 +163,9 @@ void IncomingDataHandler_thread ( void *arg )
      vPortEnterCritical();
      --threads;
      vPortExitCritical();
-     printf("Terminating IncomingDataHandler\n");
-     
-     vTaskDelete(NULL);
+     printf ( "Terminating IncomingDataHandler %d\n", ( int ) lArg->received );
+
+     vTaskDelete ( NULL );
 }
 /*-----------------------------------------------------------------------------------*/
 
@@ -174,7 +177,9 @@ bool NewIncomingDataHandlerTask ( void* connection )
           IncomingDataHandler_t* threadState = malloc ( sizeof ( IncomingDataHandler_t ) );
           threadState->connection = connection;
           threadState->state = init;
-          rb_alloc ( & ( threadState->incomingRingBuffer ), 300 );
+          threadState->received = 0;
+
+          rb_alloc ( & ( threadState->incomingRingBuffer ), 768 );
 
           xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
                         configMINIMAL_STACK_SIZE, threadState, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
