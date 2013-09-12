@@ -56,6 +56,7 @@ int _isatty_r(struct _reent *r, int fd) {
 }
 
 void *_sbrk_r(struct _reent *r, ptrdiff_t incr) {
+	static const char* MEMFUL = "MEMORY FULL";
 	extern char end;   // provided by the linker script
 
 	if (__brkval == 0)
@@ -63,6 +64,8 @@ void *_sbrk_r(struct _reent *r, ptrdiff_t incr) {
 
 	if (__brkval + incr > (char*) __get_MSP() - __malloc_margin) {
 		r->_errno = ENOMEM;
+		UART_poll_send(MEMFUL);
+		while(1);
 		return (void*) -1;
 	}
 

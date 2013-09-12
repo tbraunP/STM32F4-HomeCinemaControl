@@ -21,7 +21,7 @@ void IRSND_thread ( void *arg )
      bool hasSend = false;
 
      for ( ;; ) {
-          printf ( "IRSND starting to transmit\n" );
+          //printf ( "IRSND starting to transmit\n" );
           irmp_data.protocol = IRMP_NEC_PROTOCOL; // use NEC protocol
           irmp_data.address = 0x00FF; // set address to 0x00FF
           irmp_data.command = 0x0001; // set command to 0x0001
@@ -41,7 +41,7 @@ void IRMP_thread ( void *arg )
      static IRMP_DATA irmp_data;
 
      for ( ;; ) {
-          printf ( "IRMP receiving\n" );
+          //printf ( "IRMP receiving\n" );
 
           if ( irmp_get_data ( &irmp_data ) ) {
                printf ( "Receiving\nprotocol %x \n", ( ( int ) irmp_data.protocol ) &0xFF );

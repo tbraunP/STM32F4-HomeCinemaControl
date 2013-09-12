@@ -30,7 +30,7 @@ void IncomingConnectionListener_thread ( void *arg )
 
      if ( conn!=NULL ) {
           /* Bind connection to well known port number 7. */
-          err = netconn_bind ( conn, NULL, 7 );
+          err = netconn_bind ( conn, NULL, LISTENPORT);
 
           if ( err == ERR_OK ) {
                /* Tell connection to go into listening mode. */
@@ -56,6 +56,7 @@ void IncomingConnectionListener_thread ( void *arg )
      } else {
           printf ( "can not create TCP netconn" );
      }
+     vTaskDelete(NULL);
 }
 /*-----------------------------------------------------------------------------------*/
 

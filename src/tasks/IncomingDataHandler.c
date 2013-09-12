@@ -35,11 +35,12 @@ typedef struct IncomingDataHandler_t {
 
 void IncomingDataHandler_frameFound ( uint8_t type, uint8_t component, uint8_t* payload, size_t len )
 {
-  if(type==0x01){
-    printf("Frame of type %d for component %d received\n", (int) type, (int) component);
-  }else{ 
-    printf("Unknown frametype\n");
-  }
+     if ( type==0x01 ) {
+          printf ( "Frame received\n" );
+          printf ( "Frame of type %d for component %d received\n", ( int ) type, ( int ) component );
+     } else {
+          printf ( "Unknown frametype\n" );
+     }
 }
 
 void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
@@ -106,12 +107,15 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
                     // remove trailer from buffer
                     for ( int i = 0; i < 2; i++ )
                          rb_getc ( dataBuffer, &tmp );
+		    
+		    // output buffer state
+		    printf("DatabufferLen %d\n", (int) dataBuffer->len);
                } else {
                     // something went wrong, retry
                     rb_getc ( dataBuffer, &tmp );
-                    threadState->state = init;
-                    break;
                }
+               threadState->state = init;
+               break;
           }
           default:
                printf ( "WTF unknown state\n" );
@@ -141,7 +145,10 @@ void IncomingDataHandler_thread ( void *arg )
           netbuf_delete ( buf );
 
           // try to parse frame
+	  printf("Parsing...\n");
           IncomingDataHandler_parseFrame ( lArg );
+	  
+	  printf("Waiting for new data\n");
      }
 
      /* Close connection and discard connection identifier. */
@@ -153,6 +160,9 @@ void IncomingDataHandler_thread ( void *arg )
      vPortEnterCritical();
      --threads;
      vPortExitCritical();
+     printf("Terminating IncomingDataHandler\n");
+     
+     vTaskDelete(NULL);
 }
 /*-----------------------------------------------------------------------------------*/
 
@@ -163,7 +173,8 @@ bool NewIncomingDataHandlerTask ( void* connection )
      if ( threads < MAXTHREADS ) {
           IncomingDataHandler_t* threadState = malloc ( sizeof ( IncomingDataHandler_t ) );
           threadState->connection = connection;
-          rb_alloc ( & ( threadState->incomingRingBuffer ), 512 );
+          threadState->state = init;
+          rb_alloc ( & ( threadState->incomingRingBuffer ), 1024 );
 
           xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
                         configMINIMAL_STACK_SIZE, threadState, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
