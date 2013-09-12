@@ -179,7 +179,7 @@ bool NewIncomingDataHandlerTask ( void* connection )
           threadState->state = init;
           threadState->received = 0;
 
-          rb_alloc ( & ( threadState->incomingRingBuffer ), 768 );
+          rb_alloc ( & ( threadState->incomingRingBuffer ), 800 );
 
           xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
                         configMINIMAL_STACK_SIZE, threadState, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
