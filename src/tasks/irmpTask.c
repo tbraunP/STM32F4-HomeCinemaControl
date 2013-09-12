@@ -25,26 +25,28 @@ void IRSND_thread ( void *arg )
      static IRMP_DATA* irmp_data;
 
      for ( ;; ) {
-          if ( xQueueReceive ( solidStateQueue, & ( incoming ), ( portTickType ) portMAX_DELAY ) ) {
+          if ( xQueueReceive ( irsndQueue, & ( incoming ), ( portTickType ) portMAX_DELAY ) ) {
                irmp_data = incoming.irsndData;
 
-               printf ( "IRSND starting to transmit\n" );
+               printf ( "IRSND starting to transmit\n");
                //irmp_data->protocol = IRMP_NEC_PROTOCOL; // use NEC protocol
                //irmp_data.address = 0x00FF; // set address to 0x00FF
                //irmp_data.command = 0x0001; // set command to 0x0001
                //irmp_data.flags = 0; // don't repeat frame
 
-               printf ( "Sending\nprotocol %x \n", ( ( int ) irmp_data->protocol ) &0xFF );
+#if 0
+               printf ( "Size %d (IRMPData) and payload len %d\n", ( int ) sizeof ( IRMP_DATA ), ( int ) incoming.len );
+               printf("Sending\nprotocol %x \n", ( ( int ) irmp_data->protocol ) &0xFF);
+	       printf ( "Sending\nprotocol %x \n", ( ( int ) irmp_data->protocol ) &0xFF );
                printf ( "address %x \n", ( ( int ) irmp_data->address ) &0xFFFF );
                printf ( "command %x \n", ( ( int ) irmp_data->command ) &0xFFFF );
                printf ( "flags %x \n", ( ( int ) irmp_data->flags ) &0xFF );
-
+#endif
                irsnd_send_data ( irmp_data, TRUE ); // send frame, wait for completion
-
+	      
                free ( incoming.raw );
-               vTaskDelay ( 100/ portTICK_RATE_MS );
+               vTaskDelay ( (portTickType) 100 );
           }
-
      }
 }
 
@@ -60,9 +62,7 @@ void IRMP_thread ( void *arg )
      portTickType delay = portMAX_DELAY;
 
      for ( ;; ) {
-          //
-
-          if ( xQueueReceive ( solidStateQueue, & ( incoming ), delay ) ) {
+          if ( xQueueReceive ( irmpQueue, & ( incoming ), delay ) ) {
                // IRMP command
                irmpCommand = incoming.irmpCommand;
 
@@ -103,8 +103,14 @@ void IRSND_Task_init()
 
      // create queues
      irmpQueue = xQueueCreate ( 2, sizeof ( Command_t ) );
-     irsndQueue = xQueueCreate ( 4, sizeof ( Command_t ) );
+     if ( irmpQueue == 0 ) {
+          printf ( "irmpQueue queue creation failed\n" );
+     }
 
+     irsndQueue = xQueueCreate ( 4, sizeof ( Command_t ) );
+     if ( irsndQueue == 0 ) {
+          printf ( "irsndQueue queue creation failed\n" );
+     }
 
      xTaskCreate ( IRSND_thread, ( const signed char * const ) "IRSND_Task",
                    configMINIMAL_STACK_SIZE, NULL, IRSND_TASK_PRIO, NULL );

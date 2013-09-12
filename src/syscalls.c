@@ -65,7 +65,8 @@ void *_sbrk_r(struct _reent *r, ptrdiff_t incr) {
 	if (__brkval + incr > (char*) __get_MSP() - __malloc_margin) {
 		r->_errno = ENOMEM;
 		UART_poll_send(MEMFUL);
-		while(1);
+		while(1){
+		}
 		return (void*) -1;
 	}
 
