@@ -13,26 +13,26 @@
 #include "stm32f4xx_gpio.h"
 
 #ifdef __cplusplus
- extern "C" {
+extern "C" {
 #endif
 
-typedef enum {
-  BEAMER = 0,
-  LEINWAND = 1,
-  AMPLIFIER = 2
+typedef enum SolidStateRelais_t{
+     BEAMER = 0,
+     LEINWAND = 1,
+     AMPLIFIER = 2
 } SolidStateRelais_t;
 
 typedef enum {
-  ON, OFF
-} SolidStateRelais_Mode_t; 
+     SR_ON= 0x01, SR_OFF =0x00
+} SolidStateRelais_Mode_t;
 
 /**
  * Command to set specific state
  */
-typedef struct SolidStateCommand_t{
-  SolidStateRelais_t relais;
-  SolidStateRelais_Mode_t newState;
-}SolidStateCommand_t;
+typedef struct __attribute__ ( ( __packed__ ) ) SolidStateCommand_t {
+     SolidStateRelais_t relais;
+     SolidStateRelais_Mode_t newState;
+} SolidStateCommand_t;
 
 /**
  * Commandqueue for solidStateTask
@@ -44,15 +44,15 @@ extern xQueueHandle solidStateQueue;
  */
 void SolidState_Task_init();
 
-void SolidState_thread(void *arg);
+void SolidState_thread ( void *arg );
 
 /**
  * Read actual state
  */
-SolidStateRelais_Mode_t SolidState_getState(SolidStateRelais_t relais);
+SolidStateRelais_Mode_t SolidState_getState ( SolidStateRelais_t relais );
 
 #ifdef __cplusplus
- }
+}
 #endif
 
 #endif // SOLIDSTATETASK.H_H

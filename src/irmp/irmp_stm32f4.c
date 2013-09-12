@@ -4,7 +4,6 @@
  *  Created on: 01.09.2013
  *      Author: pyro
  */
-
 #include "irmp/irmp.h"
 #include "irmp/irsnd.h"
 #include "stm32f4xx.h"

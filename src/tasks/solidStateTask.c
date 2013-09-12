@@ -10,10 +10,12 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 
+#include "tasks/command_dispatcher.h"
+
 xQueueHandle solidStateQueue;
 
 static uint16_t device2pin[] = { GPIO_Pin_7, GPIO_Pin_8, GPIO_Pin_9, GPIO_Pin_10, GPIO_Pin_11};
-static SolidStateRelais_Mode_t pinState[] = { OFF, OFF, OFF, OFF, OFF};
+static SolidStateRelais_Mode_t pinState[] = { SR_OFF, SR_OFF, SR_OFF, SR_OFF, SR_OFF};
 static uint8_t devicePins = 5;
 
 void SolidState_Task_LowLevel_init(){
@@ -39,7 +41,7 @@ void SolidState_Task_LowLevel_init(){
 void SolidState_Task_init(){
      SolidState_Task_LowLevel_init();
      
-     solidStateQueue = xQueueCreate(10, sizeof(SolidStateCommand_t));
+     solidStateQueue = xQueueCreate(10, sizeof(Command_t));
      
      if(solidStateQueue == 0){
        printf("SolidState queue creation failed\n");
@@ -50,20 +52,24 @@ void SolidState_Task_init(){
 }
 
 void SolidState_thread ( void *arg ){
-  static SolidStateCommand_t command;
+  static Command_t incoming;
+  static SolidStateCommand_t* command;
+  
   for(;;){
-     if( xQueueReceive( solidStateQueue, &( command ), ( portTickType ) portMAX_DELAY ) ){
-	if(pinState[command.relais] == command.newState)
+     if( xQueueReceive( solidStateQueue, &( incoming ), ( portTickType ) portMAX_DELAY ) ){
+        command = incoming.solidStateCommands;
+	if(pinState[command->relais] == command->newState)
 	  continue;
        
 	// change pin state
-	pinState[command.relais] = command.newState;
-	if(command.newState == ON){
-	  GPIO_SetBits(GPIOD, device2pin[command.relais]);
+	pinState[command->relais] = command->newState;
+	if(command->newState == SR_ON){
+	  GPIO_SetBits(GPIOD, device2pin[command->relais]);
 	}else{
-	  GPIO_ResetBits(GPIOD, device2pin[command.relais]);
+	  GPIO_ResetBits(GPIOD, device2pin[command->relais]);
 	}
-	
+	// free payload
+	free(incoming.raw);
     }
   }
 }

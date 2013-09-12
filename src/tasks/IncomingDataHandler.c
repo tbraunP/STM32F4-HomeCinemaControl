@@ -7,6 +7,7 @@
 
 #include "tasks/Task_Priorities.h"
 #include "tasks/IncomingDataHandler.h"
+#include "tasks/command_dispatcher.h"
 
 #include "util/ringbuf.h"
 
@@ -34,14 +35,18 @@ typedef struct IncomingDataHandler_t {
      uint16_t received;
 } IncomingDataHandler_t;
 
+
 void IncomingDataHandler_frameFound ( IncomingDataHandler_t* threadState, uint8_t type, uint8_t component, uint8_t* payload, size_t len )
 {
      if ( type==0x01 ) {
           ++ ( threadState->received );
+          Command_t command = { .len = len, .component = component, .raw = payload};
+          Dispatcher_dispatch ( &command );
 //          printf ( "Frame received\n" );
 //          printf ( "Frame of type %d for component %d received\n", ( int ) type, ( int ) component );
      } else {
 //          printf ( "Unknown frametype\n" );
+          free ( payload );
      }
 }
 
@@ -102,10 +107,13 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
 
                     // copy payload and construct frame
                     size_t len = threadState->length - 8;
-                    uint8_t* payload = malloc ( len );
-                    rb_read ( dataBuffer, payload, len );
+                    uint8_t* payload = NULL;
+                    if ( len != 0 ) {
+                         payload = malloc ( len );
+                         rb_read ( dataBuffer, payload, len );
+                    }
+                    // frameFound cares also about data freeing  or forwards to components caring about the freeing
                     IncomingDataHandler_frameFound ( threadState, threadState->type, threadState->component, payload, len );
-                    free ( payload );
 
                     // remove trailer from buffer
                     for ( int i = 0; i < 2; i++ )

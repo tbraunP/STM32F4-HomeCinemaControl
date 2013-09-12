@@ -126,7 +126,7 @@ typedef unsigned short                  uint16_t;
 #  define FALSE                         0
 #endif
 
-typedef struct
+typedef struct __attribute__ ((__packed__))
 {
   uint8_t                               protocol;                                   // protocol, i.e. NEC_PROTOCOL
   uint16_t                              address;                                    // address

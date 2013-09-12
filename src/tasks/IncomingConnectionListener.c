@@ -8,6 +8,7 @@
 #include "tasks/Task_Priorities.h"
 #include "tasks/IncomingConnectionListener.h"
 #include "tasks/IncomingDataHandler.h"
+#include "tasks/command_dispatcher.h"
 
 #include "lwip/opt.h"
 
@@ -30,7 +31,7 @@ void IncomingConnectionListener_thread ( void *arg )
 
      if ( conn!=NULL ) {
           /* Bind connection to well known port number 7. */
-          err = netconn_bind ( conn, NULL, LISTENPORT);
+          err = netconn_bind ( conn, NULL, LISTENPORT );
 
           if ( err == ERR_OK ) {
                /* Tell connection to go into listening mode. */
@@ -42,12 +43,12 @@ void IncomingConnectionListener_thread ( void *arg )
 
                     /* Process the new connection. */
                     if ( xErr== ERR_OK ) {
-			 printf("Trying to spawn new process for incoming commands...");
-                         if(NewIncomingDataHandlerTask ( newconn )){
-			   printf("... successfull\n");
-			 }else{
-			   printf("... failed to many connections\n");
-			}
+                         printf ( "Trying to spawn new process for incoming commands..." );
+                         if ( NewIncomingDataHandlerTask ( newconn ) ) {
+                              printf ( "... successfull\n" );
+                         } else {
+                              printf ( "... failed to many connections\n" );
+                         }
                     }
                }
           } else {
@@ -56,12 +57,16 @@ void IncomingConnectionListener_thread ( void *arg )
      } else {
           printf ( "can not create TCP netconn" );
      }
-     vTaskDelete(NULL);
+     vTaskDelete ( NULL );
 }
 /*-----------------------------------------------------------------------------------*/
 
 void IncomingConnectionListener_Task_init ( void )
 {
+     // initialize dispatcher
+     Dispatcher_init();
+
+     // listen to port for incoming command frames
      xTaskCreate ( IncomingConnectionListener_thread, ( const signed char * const ) "ConnectionListener",
                    configMINIMAL_STACK_SIZE, NULL, TCPINCOMINGListener_TASK_PRIO, NULL );
 }
