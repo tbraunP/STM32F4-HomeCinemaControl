@@ -31,9 +31,11 @@
 #include "tasks/LED_Alive_Task.h"
 #include "tasks/tcpecho.h"
 #include "tasks/IncomingConnectionListener.h"
+#include "tasks/systemStateWatcher.h"
 #include "tasks/irmpTask.h"
 #include "tasks/ws2803Task.h"
 #include "tasks/solidStateTask.h"
+
 
 // FreeRTOS
 #include "FreeRTOS.h"
@@ -104,6 +106,9 @@ int main(void) {
 	
 	// Listen for control connections
 	IncomingConnectionListener_Task_init();
+	
+	// system state watcher
+	SystemStateWatcher_Task_init();
 	
 	/* Start scheduler */
 	vTaskStartScheduler();

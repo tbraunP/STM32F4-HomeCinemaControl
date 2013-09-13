@@ -12,12 +12,24 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+
+#include "tasks/Task_Priorities.h"
 #include "util/linkedlist.h"
 
 struct {
      linkedlist_t statusMessages;
      xQueueHandle systemStateQueue;
 } ssw_state;
+
+
+
+void SystemStateWatcher_Task_thread(){
+  for(;;){
+    
+    
+  }
+}
+
 
 // Init dispatcher
 void SystemStateWatcher_Task_init()
@@ -28,6 +40,9 @@ void SystemStateWatcher_Task_init()
      }
 
      ssw_state.statusMessages = createLinkedList();
+     
+          xTaskCreate ( SystemStateWatcher_Task_thread, ( const signed char * const ) "SystemState_Task",
+                   configMINIMAL_STACK_SIZE, NULL, SYSTEMSTATE_TASK_PRIO, NULL );
 }
 
 
