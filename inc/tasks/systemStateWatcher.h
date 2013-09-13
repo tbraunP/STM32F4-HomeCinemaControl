@@ -25,9 +25,6 @@
 extern "C" {
 #endif
 
-// status updates
-extern xQueueHandle systemStateQueue;
-
 // add new status update
 // fromComponent and uuid identify are memory slot, where the status message is stored resp. updated
 // if a newer message with these keys appear
