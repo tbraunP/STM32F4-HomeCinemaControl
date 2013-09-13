@@ -66,7 +66,7 @@ static inline void IRMP_sendIRMPData ( IRMP_DATA* irmp_data )
      SystemStateWatcher_Enqueue ( &status );
 }
 
-static inline void IRMP_sendOnOffState ( IRMP_Command_Mode_t mode )
+static void IRMP_sendOnOffState ( IRMP_Command_Mode_t mode )
 {
      // transmit frame to status update
      IRMP_Status_t* ldt = malloc ( sizeof ( IRMP_Status_t ) );
@@ -77,11 +77,33 @@ static inline void IRMP_sendOnOffState ( IRMP_Command_Mode_t mode )
      SystemStateWatcher_Enqueue ( &status );
 }
 
+
+void IRMP_readIncomingFrame()
+{
+     // set to zero
+     static IRMP_DATA irmp_data;
+     memset ( &irmp_data, 0, sizeof ( IRMP_DATA ) );
+
+     if ( irmp_get_data ( &irmp_data ) ) {
+#if 0
+          printf ( "Receiving\nprotocol %x \n", ( ( int ) irmp_data.protocol ) &0xFF );
+          printf ( "address %x \n", ( ( int ) irmp_data.address ) &0xFFFF );
+          printf ( "command %x \n", ( ( int ) irmp_data.command ) &0xFFFF );
+          printf ( "flags %x \n", ( ( int ) irmp_data.flags ) &0xFF );
+#endif
+          // transmit frame to status update
+          IRMP_sendIRMPData ( &irmp_data );
+     }
+
+}
+
 void IRMP_thread ( void *arg )
 {
      static Command_t incoming;
      static IRMP_Command_t* irmpCommand;
-     static IRMP_DATA irmp_data;
+
+     static IRMP_Command_Mode_t mode = IRMP_OFF;
+     IRMP_sendOnOffState ( mode );
 
      portTickType delay = portMAX_DELAY;
 
@@ -89,31 +111,25 @@ void IRMP_thread ( void *arg )
           if ( xQueueReceive ( irmpQueue, & ( incoming ), delay ) ) {
                // IRMP command
                irmpCommand = incoming.payload.irmpCommand;
+               IRMP_sendOnOffState ( irmpCommand->mode );
 
                if ( irmpCommand->mode == IRMP_ON ) {
                     printf ( "IRMP receiver activated\n" );
                     delay = 750 / portTICK_RATE_MS;
-
-                    // set to zero
-                    memset ( &irmp_data, 0, sizeof ( IRMP_DATA ) );
-
-                    if ( irmp_get_data ( &irmp_data ) ) {
-#if 0
-                         printf ( "Receiving\nprotocol %x \n", ( ( int ) irmp_data.protocol ) &0xFF );
-                         printf ( "address %x \n", ( ( int ) irmp_data.address ) &0xFFFF );
-                         printf ( "command %x \n", ( ( int ) irmp_data.command ) &0xFFFF );
-                         printf ( "flags %x \n", ( ( int ) irmp_data.flags ) &0xFF );
-#endif
-			 // transmit frame to status update
-			 IRMP_sendIRMPData(&irmp_data);
-                    }
+                    IRMP_readIncomingFrame();
+                    mode = IRMP_ON;
                } else {
                     // wait forever, until new command arrives
-                    printf ( "IRMP receiver deactivated\n" );
+                    //printf ( "IRMP receiver deactivated\n" );
                     delay = portMAX_DELAY;
                }
                // free command
                free ( incoming.payload.raw );
+          } else {
+               // delay caused execution
+               if ( mode == IRMP_ON ) {
+                    IRMP_readIncomingFrame();
+               }
           }
      }
 }
