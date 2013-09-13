@@ -35,7 +35,7 @@ static inline linkedlist_t createLinkedList()
  * \param data - data to be added
  * \return linkedlist_node with data
  */
-static inline linkedlist_node_t* createNode ( void* data )
+static inline linkedlist_node_t* linkedlist_createNode ( void* data )
 {
      linkedlist_node_t* node = malloc ( sizeof ( linkedlist_node_t ) );
      node->data = data;
@@ -47,7 +47,7 @@ static inline linkedlist_node_t* createNode ( void* data )
  * \param node - to be freed
  * \return pointer to stored data
  */
-static inline void* freeNode ( linkedlist_node_t* node )
+static inline void* linkedlist_freeNode ( linkedlist_node_t* node )
 {
      void * data = node->data;
      free ( node );
@@ -55,18 +55,20 @@ static inline void* freeNode ( linkedlist_node_t* node )
 }
 
 /**
- * Comparator
+ * Comparator and processor
  */
 typedef bool ( *LinkedListComparator_t ) ( void* data );
+typedef void ( *LinkedListProcessor_t ) ( void* data );
 
 /**
  * Search an element. This method returns a pointer to the first linkedlist_node_t d1 of lst with comp(d1.data)==true.
  * If such an element is not found null is returned.
+ *
  * \param list - linkedlist
  * \param comp - comparator
  * \return   pointer to the first linkedlist_node_t d1 of lst with comp(d1.data)==true or null if none exists.
  */
-static inline linkedlist_node_t* searchNode ( linkedlist_t* list, LinkedListComparator_t comp )
+static inline linkedlist_node_t* linkedlist_searchNode ( linkedlist_t* list, LinkedListComparator_t comp )
 {
      for ( volatile linkedlist_node_t** it = &list->next; *it != NULL; it = ( volatile linkedlist_node_t** ) & ( ( *it )->next ) ) {
           if ( comp ( ( void* ) ( *it )->data ) ) {
@@ -74,6 +76,21 @@ static inline linkedlist_node_t* searchNode ( linkedlist_t* list, LinkedListComp
           }
      }
      return NULL;
+}
+
+
+/**
+ * Execute method process for every element contained.
+ *
+ * \param list - linkedlist
+ * \param process - handle data
+ * \return   pointer to the first linkedlist_node_t d1 of lst with comp(d1.data)==true or null if none exists.
+ */
+static inline void linkedlist_processList ( linkedlist_t* list, LinkedListProcessor_t process )
+{
+     for ( volatile linkedlist_node_t** it = &list->next; *it != NULL; it = ( volatile linkedlist_node_t** ) & ( ( *it )->next ) ) {
+          process ( ( void* ) ( *it )->data ) ;
+     }
 }
 
 #endif

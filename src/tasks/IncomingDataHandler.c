@@ -2,15 +2,9 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "FreeRTOS.h"
-#include "task.h"
-#include "semphr.h"
-
 #include "tasks/Task_Priorities.h"
 #include "tasks/IncomingDataHandler.h"
 #include "tasks/command_dispatcher.h"
-
-#include "util/ringbuf.h"
 
 #include "lwip/opt.h"
 
@@ -25,19 +19,19 @@ volatile int threads = 0;
 
 typedef enum ParseState_t {
      init, preambleFound, headerFound
-} ParseState_t;
+}
+ParseState_t;
+
 
 typedef struct IncomingDataHandler_t {
-     struct netconn *connection;
-     xSemaphoreHandle connectionFreeSemaphore;
-     
+     IncomingConnection_t con;
+
      ringbuf_t incomingRingBuffer;
      ParseState_t state;
 
      uint8_t length, type, component;
      uint16_t received;
 } IncomingDataHandler_t;
-
 
 void IncomingDataHandler_frameFound ( IncomingDataHandler_t* threadState, uint8_t type, uint8_t component, uint8_t* payload, size_t len )
 {
@@ -138,6 +132,9 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
 }
 
 /*-----------------------------------------------------------------------------------*/
+/**
+ * Handle incoming frames
+ */
 void IncomingDataHandler_thread ( void *arg )
 {
      IncomingDataHandler_t* lArg = ( IncomingDataHandler_t* ) arg;
@@ -170,7 +167,7 @@ void IncomingDataHandler_thread ( void *arg )
      netconn_close ( connection );
      netconn_delete ( connection );
      rb_free ( & ( lArg->incomingRingBuffer ) );
-     vSemaphoreDelete (lArg->connectionFreeSemaphore);
+     vSemaphoreDelete ( lArg->connectionFreeSemaphore );
      free ( lArg );
 
      vPortEnterCritical();
@@ -191,7 +188,7 @@ bool NewIncomingDataHandlerTask ( void* connection )
           threadState->connection = connection;
           threadState->state = init;
           threadState->received = 0;
-	  vSemaphoreCreateBinary(threadState-> connectionFreeSemaphore);
+          vSemaphoreCreateBinary ( threadState-> connectionFreeSemaphore );
 
           rb_alloc ( & ( threadState->incomingRingBuffer ), 800 );
 
