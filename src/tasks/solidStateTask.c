@@ -10,6 +10,7 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 
+#include "tasks/systemStateWatcher.h"
 #include "tasks/command_dispatcher.h"
 
 xQueueHandle solidStateQueue;
@@ -17,7 +18,7 @@ xQueueHandle solidStateQueue;
 static uint16_t device2pin[] = { GPIO_Pin_7, GPIO_Pin_8, GPIO_Pin_9, GPIO_Pin_10, GPIO_Pin_11};
 static SolidStateRelais_Mode_t pinState[] = { SR_OFF, SR_OFF, SR_OFF, SR_OFF, SR_OFF};
 static uint8_t devicePins = 5;
- 
+
 
 void SolidState_Task_LowLevel_init()
 {
@@ -37,11 +38,33 @@ void SolidState_Task_LowLevel_init()
           GPIO_ResetBits ( GPIOD, device2pin[i] );
      }
 
-     printf ( "SolidState_Task lowlevel init done\n" );
+     //printf ( "SolidState_Task lowlevel init done\n" );
 }
 
+void SolidState_sendStatus ( SolidStateRelais_t relais, SolidStateRelais_Mode_t mode )
+{
+     static Status_Update_t status;
+     status.key.fromComponent = SOLIDSTATE;
+     status.key.uuid = relais;
 
+     // create message
+     status.payload.solidStateStatus = malloc ( sizeof ( SolidStateCommand_t ) );
+     status.payload.solidStateStatus->relais = relais;
+     status.payload.solidStateStatus->newState = mode;
 
+     // send message
+     SystemStateWatcher_Enqueue ( &status );
+}
+
+void SolitState_statusFullDump()
+{
+     for ( int i=0; i< SOLIDSTATE_RELAIS; i++ )
+          SolidState_sendStatus ( i, SR_OFF );
+}
+
+/*
+ * Thread for solidState relais handling
+ */
 void SolidState_thread ( void *arg )
 {
      static Command_t incoming;
@@ -52,6 +75,9 @@ void SolidState_thread ( void *arg )
                command = incoming.payload.solidStateCommands;
                if ( pinState[command->relais] == command->newState )
                     continue;
+
+               // send status message
+               SolidState_sendStatus ( command->relais, command->newState );
 
                // change pin state
                pinState[command->relais] = command->newState;
@@ -79,9 +105,4 @@ void SolidState_Task_init()
 
      xTaskCreate ( SolidState_thread, ( const signed char * const ) "SolidState_Task",
                    configMINIMAL_STACK_SIZE, NULL, SOLIDSTATE_TASK_PRIO, NULL );
-}
-
-SolidStateRelais_Mode_t SolidState_getState ( SolidStateRelais_t relais )
-{
-     return pinState[relais];
 }

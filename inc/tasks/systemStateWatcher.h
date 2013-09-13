@@ -41,7 +41,7 @@ typedef struct __attribute__ ( ( __packed__ ) ) Status_Update_t {
      // payload must be stored on the heap!
 union __attribute__ ( ( __packed__ ) ) {
      IRMP_Status_t* irmpStatus;
-     SolidStateStatus_t* solidStateCommands;
+     SolidStateStatus_t* solidStateStatus;
      uint8_t* raw;
 } payload;
 } Status_Update_t;

@@ -16,11 +16,15 @@
 extern "C" {
 #endif
 
-typedef enum SolidStateRelais_t{
+
+#define SOLIDSTATE_RELAIS (3)
+
+typedef enum SolidStateRelais_t {
      BEAMER = 0,
      LEINWAND = 1,
      AMPLIFIER = 2
-} SolidStateRelais_t;
+}
+            SolidStateRelais_t;
 
 typedef enum {
      SR_ON= 0x01, SR_OFF =0x00
@@ -46,11 +50,6 @@ extern xQueueHandle solidStateQueue;
  * Init solid state task and activate task
  */
 void SolidState_Task_init();
-
-/**
- * Read actual state
- */
-SolidStateRelais_Mode_t SolidState_getState ( SolidStateRelais_t relais );
 
 #ifdef __cplusplus
 }
