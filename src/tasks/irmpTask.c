@@ -126,7 +126,7 @@ void IRMP_thread ( void *arg )
                // free command
                free ( incoming.payload.raw );
           } else {
-               // delay caused execution
+               // delay caused execution, since no frame has been received
                if ( mode == IRMP_ON ) {
                     IRMP_readIncomingFrame();
                }
