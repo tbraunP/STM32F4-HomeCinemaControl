@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <string.h>
 
+// include massage types for Command_t structs payload
 #include "irmp/irmp.h"
 #include "tasks/solidStateTask.h"
 #include "tasks/irmpTask.h"
@@ -16,12 +17,13 @@ extern "C" {
 typedef struct __attribute__ ( ( __packed__ ) ) Command_t {
      size_t len;
      uint8_t component; // adress of target component (indirectly identifies also the contained type)
+     // payload must be stored on the heap!
      union __attribute__ ( ( __packed__ ) ) {
           IRMP_DATA* irsndData;
           IRMP_Command_t* irmpCommand;
           SolidStateCommand_t* solidStateCommands;
           uint8_t* raw;
-     };
+     }payload;
 } Command_t;
 
 

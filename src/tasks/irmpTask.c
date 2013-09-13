@@ -14,7 +14,9 @@
 #include "irmp/irmp.h"
 #include "irmp/irmp_stm32f4.h"
 
+// dispatcher
 #include "tasks/command_dispatcher.h"
+#include "tasks/systemStateWatcher.h"
 
 /*-----------------------------------------------------------------------------------*/
 xQueueHandle irsndQueue;
@@ -26,9 +28,9 @@ void IRSND_thread ( void *arg )
 
      for ( ;; ) {
           if ( xQueueReceive ( irsndQueue, & ( incoming ), ( portTickType ) portMAX_DELAY ) ) {
-               irmp_data = incoming.irsndData;
+               irmp_data = incoming.payload.irsndData;
 
-               printf ( "IRSND starting to transmit\n");
+               printf ( "IRSND starting to transmit\n" );
                //irmp_data->protocol = IRMP_NEC_PROTOCOL; // use NEC protocol
                //irmp_data.address = 0x00FF; // set address to 0x00FF
                //irmp_data.command = 0x0001; // set command to 0x0001
@@ -36,22 +38,44 @@ void IRSND_thread ( void *arg )
 
 #if 0
                printf ( "Size %d (IRMPData) and payload len %d\n", ( int ) sizeof ( IRMP_DATA ), ( int ) incoming.len );
-               printf("Sending\nprotocol %x \n", ( ( int ) irmp_data->protocol ) &0xFF);
-	       printf ( "Sending\nprotocol %x \n", ( ( int ) irmp_data->protocol ) &0xFF );
+               printf ( "Sending\nprotocol %x \n", ( ( int ) irmp_data->protocol ) &0xFF );
+               printf ( "Sending\nprotocol %x \n", ( ( int ) irmp_data->protocol ) &0xFF );
                printf ( "address %x \n", ( ( int ) irmp_data->address ) &0xFFFF );
                printf ( "command %x \n", ( ( int ) irmp_data->command ) &0xFFFF );
                printf ( "flags %x \n", ( ( int ) irmp_data->flags ) &0xFF );
 #endif
                irsnd_send_data ( irmp_data, TRUE ); // send frame, wait for completion
-	      
-               free ( incoming.raw );
-               vTaskDelay ( (portTickType) 100 );
+
+               free ( incoming.payload.raw );
+               vTaskDelay ( ( portTickType ) 100 );
           }
      }
 }
 
 /*-----------------------------------------------------------------------------------*/
 xQueueHandle irmpQueue;
+
+static inline void IRMP_sendIRMPData ( IRMP_DATA* irmp_data )
+{
+     // transmit frame to status update
+     IRMP_Status_t* ldt = malloc ( sizeof ( IRMP_Status_t ) );
+     ldt->messageType = 0x01;
+     memcpy ( & ( ldt->payload.irmpData ), irmp_data, sizeof ( IRMP_DATA ) );
+
+     Status_Update_t status = { .key.fromComponent= IRMP, .key.uuid = 0x01, .payload.irmpStatus = ldt };
+     SystemStateWatcher_Enqueue ( &status );
+}
+
+static inline void IRMP_sendOnOffState ( IRMP_Command_Mode_t mode )
+{
+     // transmit frame to status update
+     IRMP_Status_t* ldt = malloc ( sizeof ( IRMP_Status_t ) );
+     ldt->messageType = 0x00;
+     ldt->payload.irmpCommand = mode;
+
+     Status_Update_t status = { .key.fromComponent= IRMP, .key.uuid = 0x00, .payload.irmpStatus = ldt };
+     SystemStateWatcher_Enqueue ( &status );
+}
 
 void IRMP_thread ( void *arg )
 {
@@ -64,23 +88,24 @@ void IRMP_thread ( void *arg )
      for ( ;; ) {
           if ( xQueueReceive ( irmpQueue, & ( incoming ), delay ) ) {
                // IRMP command
-               irmpCommand = incoming.irmpCommand;
+               irmpCommand = incoming.payload.irmpCommand;
 
                if ( irmpCommand->mode == IRMP_ON ) {
                     printf ( "IRMP receiver activated\n" );
                     delay = 750 / portTICK_RATE_MS;
 
+                    // set to zero
+                    memset ( &irmp_data, 0, sizeof ( IRMP_DATA ) );
+
                     if ( irmp_get_data ( &irmp_data ) ) {
+#if 0
                          printf ( "Receiving\nprotocol %x \n", ( ( int ) irmp_data.protocol ) &0xFF );
                          printf ( "address %x \n", ( ( int ) irmp_data.address ) &0xFFFF );
                          printf ( "command %x \n", ( ( int ) irmp_data.command ) &0xFFFF );
                          printf ( "flags %x \n", ( ( int ) irmp_data.flags ) &0xFF );
-
-                         // set to zero
-                         memset ( &irmp_data, 0, sizeof ( IRMP_DATA ) );
-
-                         // TODO: transmit frame to handy
-
+#endif
+			 // transmit frame to status update
+			 IRMP_sendIRMPData(&irmp_data);
                     }
                } else {
                     // wait forever, until new command arrives
@@ -88,7 +113,7 @@ void IRMP_thread ( void *arg )
                     delay = portMAX_DELAY;
                }
                // free command
-               free ( incoming.raw );
+               free ( incoming.payload.raw );
           }
      }
 }

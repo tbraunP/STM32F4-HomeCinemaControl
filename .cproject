@@ -1767,6 +1767,27 @@
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
+<target name="[obj] src/tasks/systemStateWatcher.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/systemStateWatcher.c.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] src/tasks/systemStateWatcher.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/systemStateWatcher.c.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] src/tasks/systemStateWatcher.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/systemStateWatcher.c.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
 <target name="[obj] src/tasks/tcpecho.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>

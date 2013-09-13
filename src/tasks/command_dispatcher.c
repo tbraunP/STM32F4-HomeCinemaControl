@@ -30,11 +30,11 @@ void Dispatcher_dispatch ( Command_t* command )
           if ( xQueueSend ( *COMPONENT_QUEUES[command->component], command , 20 / portTICK_RATE_MS ) == errQUEUE_FULL ) {
                // free data if command can not stored
                printf ( "Dispatcher: Queue full, dropping command\n" );
-               free ( command->raw );
+               free ( command->payload.raw );
           }
      } else {
           printf ( "Dispatcher: Unknown component\n" );
-          free ( command->raw );
+          free ( command->payload.raw );
      }
 }
 

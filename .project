@@ -239,6 +239,11 @@
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/command_dispatcher.c</location>
 		</link>
 		<link>
+			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/systemStateWatcher.c</name>
+			<type>1</type>
+			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/systemStateWatcher.c</location>
+		</link>
+		<link>
 			<name>[Targets]/[exe] homeCinemaControl.elf/Source Files/irmpTask.c</name>
 			<type>1</type>
 			<location>/home/pyro/workspace/workspace_STM32/STM32F4-HomeCinemaControl/src/tasks/irmpTask.c</location>

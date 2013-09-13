@@ -34,6 +34,9 @@ typedef struct __attribute__ ( ( __packed__ ) ) SolidStateCommand_t {
      SolidStateRelais_Mode_t newState;
 } SolidStateCommand_t;
 
+// same just give new name to easly rememeber different meaning
+typedef SolidStateCommand_t SolidStateStatus_t;
+
 /**
  * Commandqueue for solidStateTask
  */
@@ -43,8 +46,6 @@ extern xQueueHandle solidStateQueue;
  * Init solid state task and activate task
  */
 void SolidState_Task_init();
-
-void SolidState_thread ( void *arg );
 
 /**
  * Read actual state

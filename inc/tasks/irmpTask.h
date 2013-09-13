@@ -6,6 +6,8 @@
 #include "FreeRTOS.h"
 #include "queue.h"
 
+#include "irmp/irmp.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -18,6 +20,18 @@ typedef enum {
 typedef struct __attribute__((__packed__)) IRMP_Command_t{
   IRMP_Command_Mode_t mode;
 }IRMP_Command_t;
+
+// Status message from IRMP task
+// messageType = 0  means irmpCommand
+// messageType = 1 means IRMP_Data
+typedef struct __attribute__((__packed__)) IRMP_Status_t{
+   uint8_t messageType;
+   union __attribute__((__packed__)){
+     IRMP_Command_Mode_t irmpCommand;
+     IRMP_DATA irmpData;
+   }payload;
+}IRMP_Status_t;
+     
 
 // Definition of queues
 extern xQueueHandle irmpQueue;

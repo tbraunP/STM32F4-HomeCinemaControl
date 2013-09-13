@@ -4,6 +4,7 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
+#include "semphr.h"
 
 #include "tasks/Task_Priorities.h"
 #include "tasks/IncomingDataHandler.h"
@@ -28,6 +29,8 @@ typedef enum ParseState_t {
 
 typedef struct IncomingDataHandler_t {
      struct netconn *connection;
+     xSemaphoreHandle connectionFreeSemaphore;
+     
      ringbuf_t incomingRingBuffer;
      ParseState_t state;
 
@@ -40,7 +43,7 @@ void IncomingDataHandler_frameFound ( IncomingDataHandler_t* threadState, uint8_
 {
      if ( type==0x01 ) {
           ++ ( threadState->received );
-          Command_t command = { .len = len, .component = component, .raw = payload};
+          Command_t command = { .len = len, .component = component, .payload.raw = payload};
           Dispatcher_dispatch ( &command );
 //          printf ( "Frame received\n" );
 //          printf ( "Frame of type %d for component %d received\n", ( int ) type, ( int ) component );
@@ -163,9 +166,11 @@ void IncomingDataHandler_thread ( void *arg )
      }
 
      /* Close connection and discard connection identifier. */
+     // wait until listener has given up the semaphore
      netconn_close ( connection );
      netconn_delete ( connection );
      rb_free ( & ( lArg->incomingRingBuffer ) );
+     vSemaphoreDelete (lArg->connectionFreeSemaphore);
      free ( lArg );
 
      vPortEnterCritical();
@@ -186,6 +191,7 @@ bool NewIncomingDataHandlerTask ( void* connection )
           threadState->connection = connection;
           threadState->state = init;
           threadState->received = 0;
+	  vSemaphoreCreateBinary(threadState-> connectionFreeSemaphore);
 
           rb_alloc ( & ( threadState->incomingRingBuffer ), 800 );
 
