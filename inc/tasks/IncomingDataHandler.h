@@ -14,10 +14,11 @@
 extern "C" {
 #endif
 
-typedef struct IncomingConnection_t{
-  struct netconn *connection;
+typedef struct IncomingConnection_t {
+     struct netconn *connection;
      xSemaphoreHandle connectionFreeSemaphore;
-}IncomingConnection_t;
+     volatile bool connectionBroken;
+} IncomingConnection_t;
 
 
 /**

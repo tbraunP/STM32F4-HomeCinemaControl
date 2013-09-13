@@ -5,6 +5,7 @@
 #include "tasks/Task_Priorities.h"
 #include "tasks/IncomingDataHandler.h"
 #include "tasks/command_dispatcher.h"
+#include "tasks/systemStateWatcher.h"
 
 #include "lwip/opt.h"
 
@@ -32,6 +33,7 @@ typedef struct IncomingDataHandler_t {
      uint8_t length, type, component;
      uint16_t received;
 } IncomingDataHandler_t;
+
 
 void IncomingDataHandler_frameFound ( IncomingDataHandler_t* threadState, uint8_t type, uint8_t component, uint8_t* payload, size_t len )
 {
@@ -138,13 +140,16 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
 void IncomingDataHandler_thread ( void *arg )
 {
      IncomingDataHandler_t* lArg = ( IncomingDataHandler_t* ) arg;
-     struct netconn *connection = lArg->connection;
+     struct netconn *connection = lArg->con.connection;
 
      err_t xErr;
 
      struct netbuf *buf;
      void *data;
      u16_t len;
+
+     // register connection a systemWatcher
+     SystemStateWatcher_registerConnection(&lArg->con);
 
      while ( ( xErr = netconn_recv ( connection, &buf ) ) == ERR_OK ) {
           do {
@@ -164,10 +169,16 @@ void IncomingDataHandler_thread ( void *arg )
 
      /* Close connection and discard connection identifier. */
      // wait until listener has given up the semaphore
+     lArg->con.connectionBroken = true;
+     while ( xSemaphoreTake ( lArg->con.connectionFreeSemaphore, ( portTickType ) portMAX_DELAY ) != pdTRUE );
+
+     // clos connection and cleanup
      netconn_close ( connection );
      netconn_delete ( connection );
      rb_free ( & ( lArg->incomingRingBuffer ) );
-     vSemaphoreDelete ( lArg->connectionFreeSemaphore );
+     vSemaphoreDelete ( lArg->con.connectionFreeSemaphore );
+
+     // free state container
      free ( lArg );
 
      vPortEnterCritical();
@@ -185,10 +196,15 @@ bool NewIncomingDataHandlerTask ( void* connection )
      vPortEnterCritical();
      if ( threads < MAXTHREADS ) {
           IncomingDataHandler_t* threadState = malloc ( sizeof ( IncomingDataHandler_t ) );
-          threadState->connection = connection;
+
+          // connection related stuff
+          threadState->con.connection = connection;
+          threadState->con.connectionBroken = false;
+          vSemaphoreCreateBinary ( threadState->con.connectionFreeSemaphore );
+
           threadState->state = init;
           threadState->received = 0;
-          vSemaphoreCreateBinary ( threadState-> connectionFreeSemaphore );
+
 
           rb_alloc ( & ( threadState->incomingRingBuffer ), 800 );
 

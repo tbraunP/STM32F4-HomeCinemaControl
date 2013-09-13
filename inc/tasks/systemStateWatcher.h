@@ -17,6 +17,7 @@
 #include "irmp/irmp.h"
 #include "tasks/solidStateTask.h"
 #include "tasks/irmpTask.h"
+#include "tasks/IncomingDataHandler.h"
 
 // lwIP
 #include "lwip/tcpip.h"
@@ -51,6 +52,11 @@ void SystemStateWatcher_Task_init();
  * futher. It will also be freed automatically.
  */ 
 void SystemStateWatcher_Enqueue ( Status_Update_t* status );
+
+/**
+ * Register a new connection
+ */
+void SystemStateWatcher_registerConnection(IncomingConnection_t* connection);
 
 #ifdef __cplusplus
 }

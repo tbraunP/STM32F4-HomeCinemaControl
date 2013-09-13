@@ -58,7 +58,7 @@ static inline void* linkedlist_freeNode ( linkedlist_node_t* node )
  * Comparator and processor
  */
 typedef bool ( *LinkedListComparator_t ) ( void* data );
-typedef void ( *LinkedListProcessor_t ) ( void* data );
+typedef void ( *LinkedListProcessor_t ) ( linkedlist_node_t* data );
 
 /**
  * Search an element. This method returns a pointer to the first linkedlist_node_t d1 of lst with comp(d1.data)==true.
@@ -89,8 +89,36 @@ static inline linkedlist_node_t* linkedlist_searchNode ( linkedlist_t* list, Lin
 static inline void linkedlist_processList ( linkedlist_t* list, LinkedListProcessor_t process )
 {
      for ( volatile linkedlist_node_t** it = &list->next; *it != NULL; it = ( volatile linkedlist_node_t** ) & ( ( *it )->next ) ) {
-          process ( ( void* ) ( *it )->data ) ;
+          process ( ( linkedlist_node_t* ) ( *it ) ) ;
      }
 }
 
+/**
+ * Remove all element with a data null pointer
+ */
+static inline void linkedlist_cleanup ( linkedlist_t* list )
+{
+     for ( volatile linkedlist_node_t** it = &list->next; *it != NULL; it = ( volatile linkedlist_node_t** ) & ( ( *it )->next ) ) {
+          if ( ( *it )->data == NULL ) {
+               linkedlist_node_t* oldElement = ( linkedlist_node_t* ) *it;
+               *it = ( ( *it )->next );
+               linkedlist_freeNode ( oldElement );
+               --list->elements;
+          }
+          // end of list reached
+          if ( *it == NULL )
+               return;
+     }
+}
+
+/**
+ * Add a new element to the front of the list
+ */
+static void inline linkedlist_pushToFront ( linkedlist_t* list, linkedlist_node_t* node )
+{
+     volatile linkedlist_node_t* oldFirst = list->next;
+     list->next = node;
+     node->next = oldFirst;
+     ++list->elements;
+}
 #endif
