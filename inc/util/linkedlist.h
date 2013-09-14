@@ -39,6 +39,7 @@ static inline linkedlist_node_t* linkedlist_createNode ( void* data )
 {
      linkedlist_node_t* node = malloc ( sizeof ( linkedlist_node_t ) );
      node->data = data;
+     node->next = NULL;
      return node;
 }
 

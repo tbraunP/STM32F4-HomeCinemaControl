@@ -53,6 +53,9 @@ void SystemStateWatcher_Task_thread()
                if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) 10 ) == pdTRUE ) {
                     linkedlist_processList ( &ssw_state.connections, SystemStateWatcher_CleanConnection );
                     linkedlist_cleanup ( &ssw_state.connections );
+// 		    if(ssw_state.connections.elements == 0){
+// 		      printf("Connection list empty\n");
+// 		    }
                     xSemaphoreGive ( ssw_state.exclusiveDataAccess );
                }
           }
@@ -78,7 +81,7 @@ void SystemStateWatcher_Task_init()
 }
 
 
-/** ( portTickType ) portMAX_DELAY
+/**
  * Put Status_Update_t* into local queue, contained payload.raw is not copied and must not be used
  * futher. It will also be freed automatically.
  */
@@ -95,11 +98,11 @@ void SystemStateWatcher_registerConnection ( IncomingConnection_t* connection )
 {
      if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
           // TODO Implement implement full dump
-       
-	  // add connection
+
+          // add connection
           linkedlist_node_t* node = linkedlist_createNode ( connection );
           linkedlist_pushToFront ( &ssw_state.connections, node );
-          
+
           xSemaphoreGive ( ssw_state.exclusiveDataAccess );
      }
 }
