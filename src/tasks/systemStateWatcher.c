@@ -65,11 +65,8 @@ void SystemStateWatcher_TransmitStatusUpdate ( linkedlist_node_t* node, void* pa
 {
      Status_Update_t* status =  (Status_Update_t*) param;
      IncomingConnection_t* connection = ( IncomingConnection_t* ) node->data;
-     if ( connection->connectionBroken ) {
-          xSemaphoreGive ( connection->connectionFreeSemaphore );
-          // freeing the data is done by IncomingDataHandler
-          node->data = NULL;
-     }
+     
+     // build and transmit frame
 }
 
 /**

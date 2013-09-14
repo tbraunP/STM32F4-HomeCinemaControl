@@ -36,6 +36,9 @@ typedef struct __attribute__ ( ( __packed__ ) ) Status_Update_t {
       uint8_t uuid;
      } key;
      
+     // length of the raw encoded payload
+     size_t len;
+     
      // payload must be stored on the heap!
 union __attribute__ ( ( __packed__ ) ) {
      IRMP_Status_t* irmpStatus;
