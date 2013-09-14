@@ -27,8 +27,10 @@ struct {
 } ssw_state;
 
 
-
-void SystemStateWatcher_CleanConnection ( linkedlist_node_t* node )
+/**
+ * Process-Handler for foreach. This handler clean orphoned connections
+ */
+void SystemStateWatcher_CleanConnection ( linkedlist_node_t* node, void* param )
 {
      IncomingConnection_t* connection = ( IncomingConnection_t* ) node->data;
      if ( connection->connectionBroken ) {
@@ -54,12 +56,29 @@ bool SystemStateWatcher_SearchStatusUpdate ( void* in1, void* in2 )
      return false;
 }
 
+
+/**
+ * Process-Handler for foreach. This transfers a status update (given as param) using
+ * the connection stored in node
+ */
+void SystemStateWatcher_TransmitStatusUpdate ( linkedlist_node_t* node, void* param )
+{
+     Status_Update_t* status =  (Status_Update_t*) param;
+     IncomingConnection_t* connection = ( IncomingConnection_t* ) node->data;
+     if ( connection->connectionBroken ) {
+          xSemaphoreGive ( connection->connectionFreeSemaphore );
+          // freeing the data is done by IncomingDataHandler
+          node->data = NULL;
+     }
+}
+
 /**
  * Propagate a status update
  * \param status - Status update to propagate
  */
 void SystemStateWatcher_propagateUpdate ( Status_Update_t* status )
 {
+     linkedlist_processList ( &ssw_state.connections, SystemStateWatcher_TransmitStatusUpdate, status );
 }
 
 /* Thread to Handle status updates */
@@ -81,8 +100,10 @@ void SystemStateWatcher_Task_thread()
                          node = linkedlist_createNode ( cp );
                          linkedlist_pushToFront ( &ssw_state.statusMessages, node );
                     } else {
+                         free ( node->data );
+                         node->data = cp;
                     }
-
+                    // propagate update
                     SystemStateWatcher_propagateUpdate ( &status );
 
                     // freeSemaphore
@@ -91,7 +112,7 @@ void SystemStateWatcher_Task_thread()
           } else {
                // no updates for 1500 ms, see if we should cleanup old sockets
                if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) 10 ) == pdTRUE ) {
-                    linkedlist_processList ( &ssw_state.connections, SystemStateWatcher_CleanConnection );
+                    linkedlist_processList ( &ssw_state.connections, SystemStateWatcher_CleanConnection, NULL );
                     linkedlist_cleanup ( &ssw_state.connections );
 // 		    if(ssw_state.connections.elements == 0){
 // 		      printf("Connection list empty\n");
