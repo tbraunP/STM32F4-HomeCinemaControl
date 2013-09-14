@@ -136,39 +136,21 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
 }
 
 /*-----------------------------------------------------------------------------------*/
-/**
- * Handle incoming frames
+// timeout in ms
+const int IncomingDataHandler_timeOut = 70;
+
+// maximal number of status messages transmitted before looking for new incoming frames
+#define MAX_MESSAGE_IN_SEQ  (20)
+
+
+/*
+ * Close an existing connection
  */
-void IncomingDataHandler_thread ( void *arg )
-{
-     IncomingDataHandler_t* lArg = ( IncomingDataHandler_t* ) arg;
+static inline void IncomingDataHandler_exitConnection(IncomingDataHandler_t* lArg){
+  
      struct netconn *netconnection = lArg->netconnection;
-
-     err_t xErr;
-
-     struct netbuf *buf;
-     void *data;
-     u16_t len;
-
-     // register connection a systemWatcher
-     SystemStateWatcher_registerConnection ( &lArg->con );
-
-     while ( ( xErr = netconn_recv ( netconnection, &buf ) ) == ERR_OK ) {
-          do {
-               netbuf_data ( buf, &data, &len );
-               //netconn_write ( netconnection, data, len, NETCONN_COPY );
-               rb_write ( & ( lArg->incomingRingBuffer ), ( const uint8_t * ) data, len );
-          } while ( netbuf_next ( buf ) >= 0 );
-
-          netbuf_delete ( buf );
-
-          // try to parse frame
-          //printf("Parsing...\n");
-          IncomingDataHandler_parseFrame ( lArg );
-          //printf("Waiting for new data\n");
-     }
-
-     /* Close connection and discard connection identifier. */
+  
+       /* Close connection and discard connection identifier. */
      // wait until listener has given up the semaphore
      lArg->con.connectionBroken = true;
      while ( xSemaphoreTake ( lArg->con.connectionFreeSemaphore, ( portTickType ) portMAX_DELAY ) != pdTRUE );
@@ -188,10 +170,72 @@ void IncomingDataHandler_thread ( void *arg )
      vPortEnterCritical();
      --threads;
      vPortExitCritical();
-     printf ( "Terminating IncomingDataHandler %d\n", ( int ) lArg->received );
 
+     // terminate thread
+     printf ( "Terminating IncomingDataHandler %d\n", ( int ) lArg->received );
      vTaskDelete ( NULL );
 }
+
+
+/**
+ * Handle incoming frames
+ */
+void IncomingDataHandler_thread ( void *arg )
+{
+     IncomingDataHandler_t* lArg = ( IncomingDataHandler_t* ) arg;
+     struct netconn *netconnection = lArg->netconnection;
+
+      // register connection a systemWatcher
+     SystemStateWatcher_registerConnection ( &lArg->con );
+
+     // set receiver timeout
+     netconn_set_recvtimeout ( netconnection, IncomingDataHandler_timeOut );
+
+     // wait for incoming frames resp. outgoing messages
+     for ( ;; ) {
+	  struct netbuf *buf;
+          err_t xErr = netconn_recv ( netconnection, &buf );
+
+          switch ( xErr ) {
+	    case ERR_OK: {
+		    do {
+			void *data;
+			u16_t len;
+			netbuf_data ( buf, &data, &len );
+			rb_write ( & ( lArg->incomingRingBuffer ), ( const uint8_t * ) data, len );
+		    } while ( netbuf_next ( buf ) >= 0 );
+
+		    netbuf_delete ( buf );
+		    // try to parse frame
+		    //printf("Parsing...\n");
+		    IncomingDataHandler_parseFrame ( lArg );
+		    // no break, look for transmission requests
+		}
+
+	    // check if we have frames that should be transmitted
+	    case ERR_TIMEOUT:{
+		int i=0;
+		PhysicalFrame_t phFrame;
+		while(xQueueReceive ( lArg->con.connection, & ( phFrame ), ( portTickType ) (IncomingDataHandler_timeOut /  portTICK_RATE_MS)) == pdTRUE){
+		  netconn_write ( netconnection, phFrame.payload, phFrame.len, NETCONN_COPY );
+		  free(phFrame.payload);
+		  
+		  // exit if too many frames have been send in sequence
+		  if(++i >= MAX_MESSAGE_IN_SEQ)
+		    break;
+		}
+		break;
+	    }
+	    
+	    // broken connection
+	    default:{
+	      IncomingDataHandler_exitConnection(lArg);
+	      return;
+	    } 
+          }
+     }
+}
+
 /*-----------------------------------------------------------------------------------*/
 
 bool NewIncomingDataHandlerTask ( void* connection )

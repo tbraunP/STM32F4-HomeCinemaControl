@@ -77,7 +77,7 @@ static void inline SystemStateWatcher_Transfer ( IncomingConnection_t* connectio
 
      // send frame to output queue
      PhysicalFrame_t phyFrame = {.len = len, .payload = data};
-     if ( xQueueSend ( connection->connection, &phyFrame, 0 ) != pdTRUE ) {
+     if ( xQueueSend ( connection->connection, &phyFrame, ( portTickType ) 0 ) != pdTRUE ) {
           free ( data );
      }
 }
@@ -152,7 +152,7 @@ void SystemStateWatcher_Task_thread()
                }
           } else {
                // no updates for 1500 ms, see if we should cleanup old sockets
-               if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) 10 ) == pdTRUE ) {
+               if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) (10 / portTICK_RATE_MS) ) == pdTRUE ) {
                     linkedlist_foreach ( &ssw_state.connections, SystemStateWatcher_CleanConnection, NULL );
                     linkedlist_cleanup ( &ssw_state.connections );
 // 		    if(ssw_state.connections.elements == 0){
