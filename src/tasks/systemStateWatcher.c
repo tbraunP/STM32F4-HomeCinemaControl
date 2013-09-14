@@ -59,6 +59,7 @@ bool SystemStateWatcher_SearchStatusUpdate ( void* in1, void* in2 )
 
 static void inline SystemStateWatcher_Transfer ( IncomingConnection_t* connection, Status_Update_t* status )
 {
+      printf("..Transfering state update\n");
      // build and transmit frame
      size_t len = status->len + 8;
      uint8_t data[len];
@@ -125,6 +126,7 @@ void SystemStateWatcher_Task_thread()
      for ( ;; ) {
           if ( xQueueReceive ( ssw_state.systemStateQueue, & ( status ), ( portTickType ) ( 1500/portTICK_RATE_MS ) ) ) {
                if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
+		    printf("State update received\n");
                     // search if we must update a saved status value
                     linkedlist_node_t* node = linkedlist_searchNode ( &ssw_state.statusMessages, SystemStateWatcher_SearchStatusUpdate , &status );
 
@@ -188,13 +190,15 @@ void SystemStateWatcher_Enqueue ( Status_Update_t* status )
           // free data if command can not stored
           printf ( "Dispatcher: Queue full, dropping command\n" );
           free ( status->payload.raw );
+     }else{
+       printf("Received status update from %d\n", (int) status->key.fromComponent);
      }
 }
 
 void SystemStateWatcher_registerConnection ( IncomingConnection_t* connection )
 {
      if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
-          // TODO Implement implement full dump
+          // Implement implement full dump
           linkedlist_foreach ( &ssw_state.statusMessages, SystemStateWatcher_TransmitStatusUpdate2 ,connection->connection );
 
           // add connection

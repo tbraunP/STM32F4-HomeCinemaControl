@@ -23,8 +23,7 @@ typedef enum SolidStateRelais_t {
      BEAMER = 0,
      LEINWAND = 1,
      AMPLIFIER = 2
-}
-            SolidStateRelais_t;
+} SolidStateRelais_t;
 
 typedef enum {
      SR_ON= 0x01, SR_OFF =0x00

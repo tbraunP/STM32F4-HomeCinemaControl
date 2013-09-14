@@ -51,10 +51,10 @@ void SolidState_sendStatus ( SolidStateRelais_t relais, SolidStateRelais_Mode_t 
      status.payload.solidStateStatus = malloc ( sizeof ( SolidStateCommand_t ) );
      status.payload.solidStateStatus->relais = relais;
      status.payload.solidStateStatus->newState = mode;
-     
+
      // length of payload
-     status.len = sizeof(SolidStateCommand_t);
-     
+     status.len = sizeof ( SolidStateCommand_t );
+
      // send message
      SystemStateWatcher_Enqueue ( &status );
 }
@@ -76,6 +76,8 @@ void SolidState_thread ( void *arg )
      for ( ;; ) {
           if ( xQueueReceive ( solidStateQueue, & ( incoming ), ( portTickType ) portMAX_DELAY ) ) {
                command = incoming.payload.solidStateCommands;
+               printf ( "SolidState Task command received %d, %d\n", command->relais, command->newState );
+
                if ( pinState[command->relais] == command->newState )
                     continue;
 

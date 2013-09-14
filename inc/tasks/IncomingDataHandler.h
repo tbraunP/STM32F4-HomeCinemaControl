@@ -6,6 +6,7 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
 #include "semphr.h"
 
 #include "util/ringbuf.h"
@@ -14,8 +15,15 @@
 extern "C" {
 #endif
 
+// PhysicalFrame Layout
+typedef struct PhysicalFrame_t{
+  size_t len;
+  uint8_t* payload;
+}PhysicalFrame_t;
+  
+// Handle to provide a connection for SystemStateWatcher
 typedef struct IncomingConnection_t {
-     struct netconn *connection;
+     xQueueHandle connection;
      xSemaphoreHandle connectionFreeSemaphore;
      volatile bool connectionBroken;
 } IncomingConnection_t;

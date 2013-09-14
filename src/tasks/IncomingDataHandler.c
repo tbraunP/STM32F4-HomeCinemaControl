@@ -26,6 +26,7 @@ ParseState_t;
 
 typedef struct IncomingDataHandler_t {
      IncomingConnection_t con;
+     struct netconn *netconnection;
 
      ringbuf_t incomingRingBuffer;
      ParseState_t state;
@@ -41,10 +42,10 @@ void IncomingDataHandler_frameFound ( IncomingDataHandler_t* threadState, uint8_
           ++ ( threadState->received );
           Command_t command = { .len = len, .component = component, .payload.raw = payload};
           Dispatcher_dispatch ( &command );
-//          printf ( "Frame received\n" );
-//          printf ( "Frame of type %d for component %d received\n", ( int ) type, ( int ) component );
+//        printf ( "Frame received\n" );
+//        printf ( "Frame of type %d for component %d received\n", ( int ) type, ( int ) component );
      } else {
-//          printf ( "Unknown frametype\n" );
+//        printf ( "Unknown frametype\n" );
           free ( payload );
      }
 }
@@ -140,7 +141,7 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
 void IncomingDataHandler_thread ( void *arg )
 {
      IncomingDataHandler_t* lArg = ( IncomingDataHandler_t* ) arg;
-     struct netconn *connection = lArg->con.connection;
+     struct netconn *netconnection = lArg->netconnection;
 
      err_t xErr;
 
@@ -149,12 +150,12 @@ void IncomingDataHandler_thread ( void *arg )
      u16_t len;
 
      // register connection a systemWatcher
-     SystemStateWatcher_registerConnection(&lArg->con);
+     SystemStateWatcher_registerConnection ( &lArg->con );
 
-     while ( ( xErr = netconn_recv ( connection, &buf ) ) == ERR_OK ) {
+     while ( ( xErr = netconn_recv ( netconnection, &buf ) ) == ERR_OK ) {
           do {
                netbuf_data ( buf, &data, &len );
-               //netconn_write ( connection, data, len, NETCONN_COPY );
+               //netconn_write ( netconnection, data, len, NETCONN_COPY );
                rb_write ( & ( lArg->incomingRingBuffer ), ( const uint8_t * ) data, len );
           } while ( netbuf_next ( buf ) >= 0 );
 
@@ -163,7 +164,6 @@ void IncomingDataHandler_thread ( void *arg )
           // try to parse frame
           //printf("Parsing...\n");
           IncomingDataHandler_parseFrame ( lArg );
-
           //printf("Waiting for new data\n");
      }
 
@@ -173,9 +173,12 @@ void IncomingDataHandler_thread ( void *arg )
      while ( xSemaphoreTake ( lArg->con.connectionFreeSemaphore, ( portTickType ) portMAX_DELAY ) != pdTRUE );
 
      // clos connection and cleanup
-     netconn_close ( connection );
-     netconn_delete ( connection );
+     netconn_close ( netconnection );
+     netconn_delete ( netconnection );
      rb_free ( & ( lArg->incomingRingBuffer ) );
+
+     // free handle for systemStateWatcher
+     vQueueDelete ( lArg->con.connection );
      vSemaphoreDelete ( lArg->con.connectionFreeSemaphore );
 
      // free state container
@@ -197,17 +200,18 @@ bool NewIncomingDataHandlerTask ( void* connection )
      if ( threads < MAXTHREADS ) {
           IncomingDataHandler_t* threadState = malloc ( sizeof ( IncomingDataHandler_t ) );
 
-          // connection related stuff
-          threadState->con.connection = connection;
+          // connection related stuff for SystemStateWatcher
+          threadState->con.connection = xQueueCreate ( 30, sizeof ( PhysicalFrame_t ) );;
           threadState->con.connectionBroken = false;
           vSemaphoreCreateBinary ( threadState->con.connectionFreeSemaphore );
 
+          // internal state
+          threadState->netconnection = ( struct netconn * ) connection;
           threadState->state = init;
           threadState->received = 0;
-
-
           rb_alloc ( & ( threadState->incomingRingBuffer ), 800 );
 
+	  // create thread
           xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
                         configMINIMAL_STACK_SIZE, threadState, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
           result =  true;
