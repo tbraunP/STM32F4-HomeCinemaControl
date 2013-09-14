@@ -59,10 +59,10 @@ bool SystemStateWatcher_SearchStatusUpdate ( void* in1, void* in2 )
 
 static void inline SystemStateWatcher_Transfer ( IncomingConnection_t* connection, Status_Update_t* status )
 {
-      printf("..Transfering state update\n");
+     printf ( "..Transfering state update\n" );
      // build and transmit frame
      size_t len = status->len + 8;
-     uint8_t data[len];
+     uint8_t* data = malloc ( len );
      memcpy ( &data[6], status->payload.raw, status->len );
 
      // build header and append trailer
@@ -75,8 +75,11 @@ static void inline SystemStateWatcher_Transfer ( IncomingConnection_t* connectio
      data[len-2] = 0xEF;
      data[len-1] = 0xFE;
 
-     // send frame
-     netconn_write ( connection->connection, data, len, NETCONN_COPY );
+     // send frame to output queue
+     PhysicalFrame_t phyFrame = {.len = len, .payload = data};
+     if ( xQueueSend ( connection->connection, &phyFrame, 0 ) != pdTRUE ) {
+          free ( data );
+     }
 }
 
 /**
@@ -126,7 +129,7 @@ void SystemStateWatcher_Task_thread()
      for ( ;; ) {
           if ( xQueueReceive ( ssw_state.systemStateQueue, & ( status ), ( portTickType ) ( 1500/portTICK_RATE_MS ) ) ) {
                if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
-		    printf("State update received\n");
+                    printf ( "State update received\n" );
                     // search if we must update a saved status value
                     linkedlist_node_t* node = linkedlist_searchNode ( &ssw_state.statusMessages, SystemStateWatcher_SearchStatusUpdate , &status );
 
@@ -190,8 +193,8 @@ void SystemStateWatcher_Enqueue ( Status_Update_t* status )
           // free data if command can not stored
           printf ( "Dispatcher: Queue full, dropping command\n" );
           free ( status->payload.raw );
-     }else{
-       printf("Received status update from %d\n", (int) status->key.fromComponent);
+     } else {
+          printf ( "Received status update from %d\n", ( int ) status->key.fromComponent );
      }
 }
 
