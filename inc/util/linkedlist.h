@@ -89,7 +89,7 @@ static inline linkedlist_node_t* linkedlist_searchNode ( linkedlist_t* list, Lin
  * \param parameter - 2nd parameter for process
  * \return   pointer to the first linkedlist_node_t d1 of lst with comp(d1.data)==true or null if none exists.
  */
-static inline void linkedlist_processList ( linkedlist_t* list, LinkedListProcessor_t process, void* parameter )
+static inline void linkedlist_foreach ( linkedlist_t* list, LinkedListProcessor_t process, void* parameter )
 {
      for ( volatile linkedlist_node_t** it = &list->next; *it != NULL; it = ( volatile linkedlist_node_t** ) & ( ( *it )->next ) ) {
           process ( ( linkedlist_node_t* ) ( *it ), parameter ) ;
