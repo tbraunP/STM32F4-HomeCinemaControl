@@ -14,7 +14,7 @@ HEADER
 -- 
 TYP = 1 Byte
 0x01	-> 	Normal Package: Handy to Controller
-0x02	->	Status Package: Controller to Handy 
+0x02	->	Status Package: Controller to Handy (Status update)
 
 --
 LENGTH 	->	1 Byte Length 

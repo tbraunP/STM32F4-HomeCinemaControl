@@ -67,6 +67,22 @@ void SystemStateWatcher_TransmitStatusUpdate ( linkedlist_node_t* node, void* pa
      IncomingConnection_t* connection = ( IncomingConnection_t* ) node->data;
      
      // build and transmit frame
+     size_t len = status->len + 8;
+     uint8_t data[len];
+     memcpy(&data[6], status->payload.raw, status->len);
+     
+     // build header and append trailer
+     data[0] = 0xAB;
+     data[1] = 0xCD;
+     data[2] = (uint8_t) len;
+     data[3] = 0x02;
+     data[4] = status->key.fromComponent;
+     data[5] = 0xFF;
+     data[len-2] = 0xEF;
+     data[len-1] = 0xFE;
+     
+     // send frame
+     netconn_write(connection->connection, data, len, NETCONN_COPY);
 }
 
 /**

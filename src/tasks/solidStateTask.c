@@ -51,6 +51,8 @@ void SolidState_sendStatus ( SolidStateRelais_t relais, SolidStateRelais_Mode_t 
      status.payload.solidStateStatus = malloc ( sizeof ( SolidStateCommand_t ) );
      status.payload.solidStateStatus->relais = relais;
      status.payload.solidStateStatus->newState = mode;
+     
+     // length of payload
      status.len = sizeof(SolidStateCommand_t);
      
      // send message
