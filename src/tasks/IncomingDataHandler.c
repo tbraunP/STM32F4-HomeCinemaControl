@@ -36,7 +36,7 @@ typedef struct IncomingDataHandler_t {
 } IncomingDataHandler_t;
 
 
-void IncomingDataHandler_frameFound ( IncomingDataHandler_t* threadState, uint8_t type, uint8_t component, uint8_t* payload, size_t len )
+static inline void IncomingDataHandler_frameFound ( IncomingDataHandler_t* threadState, uint8_t type, uint8_t component, uint8_t* payload, size_t len )
 {
      if ( type==0x01 ) {
           ++ ( threadState->received );
@@ -209,7 +209,7 @@ bool NewIncomingDataHandlerTask ( void* connection )
           threadState->netconnection = ( struct netconn * ) connection;
           threadState->state = init;
           threadState->received = 0;
-          rb_alloc ( & ( threadState->incomingRingBuffer ), 800 );
+          rb_alloc ( & ( threadState->incomingRingBuffer ), 850 );
 
 	  // create thread
           xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
