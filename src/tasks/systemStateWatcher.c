@@ -57,33 +57,56 @@ bool SystemStateWatcher_SearchStatusUpdate ( void* in1, void* in2 )
 }
 
 
-/**
- * Process-Handler for foreach. This transfers a status update (given as param) using
- * the connection stored in node
- */
-void SystemStateWatcher_TransmitStatusUpdate ( linkedlist_node_t* node, void* param )
+static void inline SystemStateWatcher_Transfer ( IncomingConnection_t* connection, Status_Update_t* status )
 {
-     Status_Update_t* status =  (Status_Update_t*) param;
-     IncomingConnection_t* connection = ( IncomingConnection_t* ) node->data;
-     
      // build and transmit frame
      size_t len = status->len + 8;
      uint8_t data[len];
-     memcpy(&data[6], status->payload.raw, status->len);
-     
+     memcpy ( &data[6], status->payload.raw, status->len );
+
      // build header and append trailer
      data[0] = 0xAB;
      data[1] = 0xCD;
-     data[2] = (uint8_t) len;
+     data[2] = ( uint8_t ) len;
      data[3] = 0x02;
      data[4] = status->key.fromComponent;
      data[5] = 0xFF;
      data[len-2] = 0xEF;
      data[len-1] = 0xFE;
-     
+
      // send frame
-     netconn_write(connection->connection, data, len, NETCONN_COPY);
+     netconn_write ( connection->connection, data, len, NETCONN_COPY );
 }
+
+/**
+ * Process-Handler for foreach. This transfers a status update (given as param) using
+ * the connection stored in node
+ * \param node - IncomingConnection_t
+ * \param param - param contains the Status update
+ */
+void SystemStateWatcher_TransmitStatusUpdate ( linkedlist_node_t* node, void* param )
+{
+     Status_Update_t* status = ( Status_Update_t* ) param;
+     IncomingConnection_t* connection = ( IncomingConnection_t* ) node->data;
+
+     SystemStateWatcher_Transfer ( connection, status );
+}
+
+
+/**
+ * Process-Handler for foreach. This transfers a status update (given as param) using
+ * the connection stored in node
+ * \param node - Status_Update_t
+ * \param param - IncomingConnection_t
+ */
+void SystemStateWatcher_TransmitStatusUpdate2 ( linkedlist_node_t* node, void* param )
+{
+     IncomingConnection_t* connection = ( IncomingConnection_t* ) param;
+     Status_Update_t* status = ( Status_Update_t* ) node->data;
+
+     SystemStateWatcher_Transfer ( connection, status );
+}
+
 
 /**
  * Propagate a status update
@@ -172,6 +195,7 @@ void SystemStateWatcher_registerConnection ( IncomingConnection_t* connection )
 {
      if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
           // TODO Implement implement full dump
+          linkedlist_foreach ( &ssw_state.statusMessages, SystemStateWatcher_TransmitStatusUpdate2 ,connection->connection );
 
           // add connection
           linkedlist_node_t* node = linkedlist_createNode ( connection );
