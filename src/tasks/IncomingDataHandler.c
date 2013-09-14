@@ -15,15 +15,16 @@
 #include "lwip/sys.h"
 #include "lwip/api.h"
 
-volatile int threads = 0;
 #define MAXTHREADS	(2)
+volatile int threads = 0;
 
+// parser state
 typedef enum ParseState_t {
      init, preambleFound, headerFound
 }
 ParseState_t;
 
-
+// State for one concret connection
 typedef struct IncomingDataHandler_t {
      IncomingConnection_t con;
      struct netconn *netconnection;
@@ -211,7 +212,7 @@ bool NewIncomingDataHandlerTask ( void* connection )
           threadState->received = 0;
           rb_alloc ( & ( threadState->incomingRingBuffer ), 850 );
 
-	  // create thread
+          // create thread
           xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
                         configMINIMAL_STACK_SIZE, threadState, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
           result =  true;
