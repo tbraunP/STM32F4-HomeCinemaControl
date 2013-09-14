@@ -38,14 +38,54 @@ void SystemStateWatcher_CleanConnection ( linkedlist_node_t* node )
      }
 }
 
+/**
+ * Compare two Status_Update_t and return true if fromComponent and uuid are equal.
+ * \param in1 - first component
+ * \param in2 - second component
+ * \return true if both, key.fromComponent and key.uuid are equal
+ */
+bool SystemStateWatcher_SearchStatusUpdate ( void* in1, void* in2 )
+{
+     Status_Update_t* s1 = ( Status_Update_t* ) in1;
+     Status_Update_t* s2 = ( Status_Update_t* ) in2;
+
+     if ( ( s1->key.fromComponent == s2->key.fromComponent ) && ( s1->key.uuid == s2->key.uuid ) )
+          return true;
+     return false;
+}
+
+/**
+ * Propagate a status update
+ * \param status - Status update to propagate
+ */
+void SystemStateWatcher_propagateUpdate ( Status_Update_t* status )
+{
+}
+
+/* Thread to Handle status updates */
 void SystemStateWatcher_Task_thread()
 {
-     Status_Update_t status;
+     static Status_Update_t status;
 
      for ( ;; ) {
           if ( xQueueReceive ( ssw_state.systemStateQueue, & ( status ), ( portTickType ) ( 1500/portTICK_RATE_MS ) ) ) {
                if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
-		    
+                    // search if we must update a saved status value
+                    linkedlist_node_t* node = linkedlist_searchNode ( &ssw_state.statusMessages, SystemStateWatcher_SearchStatusUpdate , &status );
+
+                    // copy status informations
+                    Status_Update_t* cp = malloc ( sizeof ( Status_Update_t ) );
+                    memcpy ( cp, &status, sizeof ( Status_Update_t ) );
+
+                    if ( node == NULL ) {
+                         node = linkedlist_createNode ( cp );
+                         linkedlist_pushToFront ( &ssw_state.statusMessages, node );
+                    } else {
+                    }
+
+                    SystemStateWatcher_propagateUpdate ( &status );
+
+                    // freeSemaphore
                     xSemaphoreGive ( ssw_state.exclusiveDataAccess );
                }
           } else {

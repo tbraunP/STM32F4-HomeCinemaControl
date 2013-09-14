@@ -58,7 +58,7 @@ static inline void* linkedlist_freeNode ( linkedlist_node_t* node )
 /**
  * Comparator and processor
  */
-typedef bool ( *LinkedListComparator_t ) ( void* data );
+typedef bool ( *LinkedListComparator_t ) ( void* compareValue, void* data );
 typedef void ( *LinkedListProcessor_t ) ( linkedlist_node_t* data );
 
 /**
@@ -67,12 +67,13 @@ typedef void ( *LinkedListProcessor_t ) ( linkedlist_node_t* data );
  *
  * \param list - linkedlist
  * \param comp - comparator
+ * \param compareValue - 1 st parameter of comp
  * \return   pointer to the first linkedlist_node_t d1 of lst with comp(d1.data)==true or null if none exists.
  */
-static inline linkedlist_node_t* linkedlist_searchNode ( linkedlist_t* list, LinkedListComparator_t comp )
+static inline linkedlist_node_t* linkedlist_searchNode ( linkedlist_t* list, LinkedListComparator_t comp, void* compareValue )
 {
      for ( volatile linkedlist_node_t** it = &list->next; *it != NULL; it = ( volatile linkedlist_node_t** ) & ( ( *it )->next ) ) {
-          if ( comp ( ( void* ) ( *it )->data ) ) {
+          if ( comp ( compareValue, ( void* ) ( *it )->data ) ) {
                return ( linkedlist_node_t* ) *it;
           }
      }
