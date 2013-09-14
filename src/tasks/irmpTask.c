@@ -62,7 +62,7 @@ static inline void IRMP_sendIRMPData ( IRMP_DATA* irmp_data )
      ldt->messageType = 0x01;
      memcpy ( & ( ldt->payload.irmpData ), irmp_data, sizeof ( IRMP_DATA ) );
 
-     Status_Update_t status = { .key.fromComponent= IRMP, .key.uuid = 0x01, .len = sizeof(IRMP_DATA), .payload.irmpStatus = ldt };
+     Status_Update_t status = { .key.fromComponent= IRMP, .key.uuid = 0x01, .len = sizeof ( IRMP_DATA ), .payload.irmpStatus = ldt };
      SystemStateWatcher_Enqueue ( &status );
 }
 
@@ -73,7 +73,7 @@ static void IRMP_sendOnOffState ( IRMP_Command_Mode_t mode )
      ldt->messageType = 0x00;
      ldt->payload.irmpCommand = mode;
 
-     Status_Update_t status = { .key.fromComponent= IRMP, .key.uuid = 0x00, .len= sizeof(IRMP_Command_Mode_t), .payload.irmpStatus = ldt };
+     Status_Update_t status = { .key.fromComponent= IRMP, .key.uuid = 0x00, .len= sizeof ( IRMP_Command_Mode_t ), .payload.irmpStatus = ldt };
      SystemStateWatcher_Enqueue ( &status );
 }
 
