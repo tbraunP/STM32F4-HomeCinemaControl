@@ -15,9 +15,9 @@
 
 xQueueHandle solidStateQueue;
 
-static uint16_t device2pin[] = { GPIO_Pin_7, GPIO_Pin_8, GPIO_Pin_9, GPIO_Pin_10, GPIO_Pin_11};
-static SolidStateRelais_Mode_t pinState[] = { SR_OFF, SR_OFF, SR_OFF, SR_OFF, SR_OFF};
-static uint8_t devicePins = 5;
+static uint16_t device2pin[] = { GPIO_Pin_7, GPIO_Pin_9, GPIO_Pin_10, GPIO_Pin_11};
+static SolidStateRelais_Mode_t pinState[] = { SR_OFF, SR_OFF, SR_OFF, SR_OFF};
+static uint8_t devicePins = 4;
 
 
 void SolidState_Task_LowLevel_init()
@@ -26,7 +26,7 @@ void SolidState_Task_LowLevel_init()
 
      /* GPIO Configuration */
      GPIO_Init ( GPIOD, & ( GPIO_InitTypeDef ) {
-          .GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_10 | GPIO_Pin_9 | GPIO_Pin_8 | GPIO_Pin_7,
+          .GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_10 | GPIO_Pin_9 | GPIO_Pin_7,
            .GPIO_Mode = GPIO_Mode_OUT,
             .GPIO_Speed = GPIO_Speed_50MHz,
              .GPIO_OType = GPIO_OType_PP,
