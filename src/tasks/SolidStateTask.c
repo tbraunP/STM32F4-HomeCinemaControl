@@ -13,6 +13,18 @@
 #include "tasks/SystemStateWatcher.h"
 #include "tasks/Command_dispatcher.h"
 
+
+// Logging
+#ifdef ENABLE_LOG_SS
+  #define LOG_SS_LOG( ...)	printf( __VA_ARGS__ )
+  #define LOG_SS_ERR( ...) 	printf( __VA_ARGS__ )
+#else
+  #define LOG_SS_LOG( ...)
+  #define LOG_SS_ERR( ...)	printf( __VA_ARGS__)
+#endif
+
+
+
 xQueueHandle solidStateQueue;
 
 static uint16_t device2pin[] = { GPIO_Pin_7, GPIO_Pin_9, GPIO_Pin_10, GPIO_Pin_11};
@@ -38,7 +50,7 @@ void SolidState_Task_LowLevel_init()
           GPIO_ResetBits ( GPIOD, device2pin[i] );
      }
 
-     //printf ( "SolidState_Task lowlevel init done\n" );
+     LOG_SS_LOG ( "SolidState_Task lowlevel init done\n" );
 }
 
 void SolidState_sendStatus ( SolidStateRelais_t relais, SolidStateRelais_Mode_t mode )
@@ -79,7 +91,7 @@ void SolidState_thread ( void *arg )
      for ( ;; ) {
           if ( xQueueReceive ( solidStateQueue, & ( incoming ), ( portTickType ) portMAX_DELAY ) ) {
                command = incoming.payload.solidStateCommands;
-               printf ( "SolidState Task command received %d, %d\n", command->relais, command->newState );
+               LOG_SS_LOG ( "SolidState Task command received %d, %d\n", command->relais, command->newState );
 
                if ( pinState[command->relais] == command->newState )
                     continue;
@@ -108,9 +120,10 @@ void SolidState_Task_init()
      solidStateQueue = xQueueCreate ( 10, sizeof ( Command_t ) );
 
      if ( solidStateQueue == 0 ) {
-          printf ( "SolidState queue creation failed\n" );
+          LOG_SS_ERR ( "SolidState queue creation failed\n" );
      }
 
      xTaskCreate ( SolidState_thread, ( const signed char * const ) "SolidState_Task",
                    configMINIMAL_STACK_SIZE, NULL, SOLIDSTATE_TASK_PRIO, NULL );
 }
+
