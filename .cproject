@@ -1641,6 +1641,27 @@
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
+<target name="[obj] src/tasks/Command_dispatcher.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/Command_dispatcher.c.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] src/tasks/Command_dispatcher.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/Command_dispatcher.c.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] src/tasks/Command_dispatcher.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/Command_dispatcher.c.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
 <target name="[obj] src/tasks/IncomingConnectionHandler.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
@@ -1683,6 +1704,27 @@
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
+<target name="[obj] src/tasks/IrmpTask.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/IrmpTask.c.o</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[pre] src/tasks/IrmpTask.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/IrmpTask.c.i</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
+<target name="[to asm] src/tasks/IrmpTask.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<buildCommand>/usr/bin/gmake</buildCommand>
+<buildArguments>-j4</buildArguments>
+<buildTarget>src/tasks/IrmpTask.c.s</buildTarget>
+<stopOnError>true</stopOnError>
+<useDefaultCommand>false</useDefaultCommand>
+</target>
 <target name="[obj] src/tasks/LED_Alive_Task.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
@@ -1704,87 +1746,66 @@
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[obj] src/tasks/command_dispatcher.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[obj] src/tasks/SolidStateTask.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/command_dispatcher.c.o</buildTarget>
+<buildTarget>src/tasks/SolidStateTask.c.o</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[pre] src/tasks/command_dispatcher.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[pre] src/tasks/SolidStateTask.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/command_dispatcher.c.i</buildTarget>
+<buildTarget>src/tasks/SolidStateTask.c.i</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[to asm] src/tasks/command_dispatcher.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[to asm] src/tasks/SolidStateTask.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/command_dispatcher.c.s</buildTarget>
+<buildTarget>src/tasks/SolidStateTask.c.s</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[obj] src/tasks/irmpTask.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[obj] src/tasks/SystemStateWatcher.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/irmpTask.c.o</buildTarget>
+<buildTarget>src/tasks/SystemStateWatcher.c.o</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[pre] src/tasks/irmpTask.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[pre] src/tasks/SystemStateWatcher.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/irmpTask.c.i</buildTarget>
+<buildTarget>src/tasks/SystemStateWatcher.c.i</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[to asm] src/tasks/irmpTask.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[to asm] src/tasks/SystemStateWatcher.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/irmpTask.c.s</buildTarget>
+<buildTarget>src/tasks/SystemStateWatcher.c.s</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[obj] src/tasks/solidStateTask.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[obj] src/tasks/WS2803Task.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/solidStateTask.c.o</buildTarget>
+<buildTarget>src/tasks/WS2803Task.c.o</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[pre] src/tasks/solidStateTask.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[pre] src/tasks/WS2803Task.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/solidStateTask.c.i</buildTarget>
+<buildTarget>src/tasks/WS2803Task.c.i</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
-<target name="[to asm] src/tasks/solidStateTask.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
+<target name="[to asm] src/tasks/WS2803Task.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/solidStateTask.c.s</buildTarget>
-<stopOnError>true</stopOnError>
-<useDefaultCommand>false</useDefaultCommand>
-</target>
-<target name="[obj] src/tasks/systemStateWatcher.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
-<buildCommand>/usr/bin/gmake</buildCommand>
-<buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/systemStateWatcher.c.o</buildTarget>
-<stopOnError>true</stopOnError>
-<useDefaultCommand>false</useDefaultCommand>
-</target>
-<target name="[pre] src/tasks/systemStateWatcher.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
-<buildCommand>/usr/bin/gmake</buildCommand>
-<buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/systemStateWatcher.c.i</buildTarget>
-<stopOnError>true</stopOnError>
-<useDefaultCommand>false</useDefaultCommand>
-</target>
-<target name="[to asm] src/tasks/systemStateWatcher.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
-<buildCommand>/usr/bin/gmake</buildCommand>
-<buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/systemStateWatcher.c.s</buildTarget>
+<buildTarget>src/tasks/WS2803Task.c.s</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>
@@ -1806,27 +1827,6 @@
 <buildCommand>/usr/bin/gmake</buildCommand>
 <buildArguments>-j4</buildArguments>
 <buildTarget>src/tasks/tcpecho.c.s</buildTarget>
-<stopOnError>true</stopOnError>
-<useDefaultCommand>false</useDefaultCommand>
-</target>
-<target name="[obj] src/tasks/ws2803Task.c.o" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
-<buildCommand>/usr/bin/gmake</buildCommand>
-<buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/ws2803Task.c.o</buildTarget>
-<stopOnError>true</stopOnError>
-<useDefaultCommand>false</useDefaultCommand>
-</target>
-<target name="[pre] src/tasks/ws2803Task.c.i" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
-<buildCommand>/usr/bin/gmake</buildCommand>
-<buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/ws2803Task.c.i</buildTarget>
-<stopOnError>true</stopOnError>
-<useDefaultCommand>false</useDefaultCommand>
-</target>
-<target name="[to asm] src/tasks/ws2803Task.c.s" path="" targetID="org.eclipse.cdt.make.MakeTargetBuilder">
-<buildCommand>/usr/bin/gmake</buildCommand>
-<buildArguments>-j4</buildArguments>
-<buildTarget>src/tasks/ws2803Task.c.s</buildTarget>
 <stopOnError>true</stopOnError>
 <useDefaultCommand>false</useDefaultCommand>
 </target>

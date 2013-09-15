@@ -4,14 +4,14 @@
 #include "queue.h"
 
 #include "tasks/Task_Priorities.h"
-#include "tasks/solidStateTask.h"
+#include "tasks/SolidStateTask.h"
 
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 
-#include "tasks/systemStateWatcher.h"
-#include "tasks/command_dispatcher.h"
+#include "tasks/SystemStateWatcher.h"
+#include "tasks/Command_dispatcher.h"
 
 xQueueHandle solidStateQueue;
 

@@ -4,8 +4,8 @@
 
 #include "tasks/Task_Priorities.h"
 #include "tasks/IncomingConnectionHandler.h"
-#include "tasks/command_dispatcher.h"
-#include "tasks/systemStateWatcher.h"
+#include "tasks/Command_dispatcher.h"
+#include "tasks/SystemStateWatcher.h"
 
 #include "lwip/opt.h"
 

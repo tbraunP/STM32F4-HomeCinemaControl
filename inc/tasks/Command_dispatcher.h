@@ -6,8 +6,8 @@
 
 // include massage types for Command_t structs payload
 #include "irmp/irmp.h"
-#include "tasks/solidStateTask.h"
-#include "tasks/irmpTask.h"
+#include "tasks/SolidStateTask.h"
+#include "tasks/IrmpTask.h"
 
 #ifdef __cplusplus
 extern "C" {

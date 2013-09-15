@@ -8,15 +8,15 @@
 #include "queue.h"
 
 #include "tasks/Task_Priorities.h"
-#include "tasks/irmpTask.h"
+#include "tasks/IrmpTask.h"
 
 #include "irmp/irsnd.h"
 #include "irmp/irmp.h"
 #include "irmp/irmp_stm32f4.h"
 
 // dispatcher
-#include "tasks/command_dispatcher.h"
-#include "tasks/systemStateWatcher.h"
+#include "tasks/Command_dispatcher.h"
+#include "tasks/SystemStateWatcher.h"
 
 /*-----------------------------------------------------------------------------------*/
 xQueueHandle irsndQueue;

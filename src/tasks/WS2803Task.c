@@ -5,7 +5,7 @@
 #include <../../../FreeRTOS-Plus/Demo/FreeRTOS_Plus_UDP_and_CLI_LPC1830_GCC/ThirdParty/USB_CDC/include/usb.h>
 
 #include "tasks/Task_Priorities.h"
-#include "tasks/ws2803Task.h"
+#include "tasks/WS2803Task.h"
 
 #include "stm32f4xx.h"
 #include "hw/spi.h"

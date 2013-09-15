@@ -3,11 +3,11 @@
 #include <string.h>
 #include <stdio.h>
 
-#include "tasks/systemStateWatcher.h"
+#include "tasks/SystemStateWatcher.h"
 
 #include "irmp/irmp.h"
-#include "tasks/solidStateTask.h"
-#include "tasks/irmpTask.h"
+#include "tasks/SolidStateTask.h"
+#include "tasks/IrmpTask.h"
 
 #include "FreeRTOS.h"
 #include "task.h"

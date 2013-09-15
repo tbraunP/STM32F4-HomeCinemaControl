@@ -15,8 +15,8 @@
 
 // includes for status messages payload
 #include "irmp/irmp.h"
-#include "tasks/solidStateTask.h"
-#include "tasks/irmpTask.h"
+#include "tasks/SolidStateTask.h"
+#include "tasks/IrmpTask.h"
 #include "tasks/IncomingConnectionHandler.h"
 
 // lwIP

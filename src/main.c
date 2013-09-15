@@ -31,10 +31,10 @@
 #include "tasks/LED_Alive_Task.h"
 #include "tasks/tcpecho.h"
 #include "tasks/IncomingConnectionListener.h"
-#include "tasks/systemStateWatcher.h"
-#include "tasks/irmpTask.h"
-#include "tasks/ws2803Task.h"
-#include "tasks/solidStateTask.h"
+#include "tasks/SystemStateWatcher.h"
+#include "tasks/IrmpTask.h"
+#include "tasks/WS2803Task.h"
+#include "tasks/SolidStateTask.h"
 
 
 // FreeRTOS

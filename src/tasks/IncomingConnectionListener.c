@@ -8,7 +8,7 @@
 #include "tasks/Task_Priorities.h"
 #include "tasks/IncomingConnectionListener.h"
 #include "tasks/IncomingConnectionHandler.h"
-#include "tasks/command_dispatcher.h"
+#include "tasks/Command_dispatcher.h"
 
 #include "lwip/opt.h"
 
