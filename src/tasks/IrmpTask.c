@@ -18,6 +18,17 @@
 #include "tasks/Command_dispatcher.h"
 #include "tasks/SystemStateWatcher.h"
 
+#define LOG_IR_LOG
+
+// Logging
+#ifdef ENABLE_IR_ICH
+  #define LOG_IR_LOG( ...)	printf( __VA_ARGS__ )
+  #define LOG_IR_ERR( ...) 	printf( __VA_ARGS__ )
+#else
+  #define LOG_IR_LOG( ...)
+  #define LOG_IR_ERR( ...)	printf( __VA_ARGS__)
+#endif
+
 /*-----------------------------------------------------------------------------------*/
 xQueueHandle irsndQueue;
 
@@ -30,7 +41,7 @@ void IRSND_thread ( void *arg )
           if ( xQueueReceive ( irsndQueue, & ( incoming ), ( portTickType ) portMAX_DELAY ) ) {
                irmp_data = incoming.payload.irsndData;
 
-               printf ( "IRSND starting to transmit\n" );
+               LOG_IR_LOG ( "IRSND starting to transmit\n" );
                //irmp_data->protocol = IRMP_NEC_PROTOCOL; // use NEC protocol
                //irmp_data.address = 0x00FF; // set address to 0x00FF
                //irmp_data.command = 0x0001; // set command to 0x0001
