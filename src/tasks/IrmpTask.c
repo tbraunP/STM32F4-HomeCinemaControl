@@ -18,10 +18,10 @@
 #include "tasks/Command_dispatcher.h"
 #include "tasks/SystemStateWatcher.h"
 
-#define LOG_IR_LOG
+#define ENABLE_IR_LOG
 
 // Logging
-#ifdef ENABLE_IR_ICH
+#ifdef ENABLE_IR_LOG
   #define LOG_IR_LOG( ...)	printf( __VA_ARGS__ )
   #define LOG_IR_ERR( ...) 	printf( __VA_ARGS__ )
 #else
