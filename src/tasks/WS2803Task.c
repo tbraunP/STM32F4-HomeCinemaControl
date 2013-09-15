@@ -12,15 +12,25 @@
 
 #include <stdbool.h>
 
+#include "stm32f4xx.h"
+#include "stm32f4xx_rcc.h"
+#include "stm32f4xx_gpio.h"
+
+
+// Logging
+#ifdef ENABLE_LOG_WS
+  #define LOG_WS_LOG( ...)	printf( __VA_ARGS__ )
+  #define LOG_WS_ERR( ...) 	printf( __VA_ARGS__ )
+#else
+  #define LOG_WS_LOG( ...)
+  #define LOG_WS_ERR( ...)	printf( __VA_ARGS__)
+#endif
+
+
 xQueueHandle ws2803Queue;
 
 #define LEDS (6)
 static uint8_t ledState[LEDS*3];
-
-
-#include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 
 int highs = 0;
 
@@ -97,7 +107,7 @@ void WS2803_Task_init()
      ws2803Queue = xQueueCreate ( 5, sizeof ( WS2803Command_t ) );
 
      if ( ws2803Queue == 0 ) {
-          printf ( "WS2803 queue creation failed\n" );
+          LOG_WS_ERR ( "WS2803 queue creation failed\n" );
      }
 
      // deactivate all leds
@@ -108,7 +118,7 @@ void WS2803_Task_init()
      //while ( !WS2803_SPI_send ( ledState,  LEDS * 3 ));
      
      // message and start thread
-     printf ( "WS2803 init done\n" );
+     LOG_WS_LOG ( "WS2803 init done\n" );
      xTaskCreate ( WS2803_thread, ( const signed char * const ) "WS2803_Task",
                    configMINIMAL_STACK_SIZE, NULL, WS2803_TASK_PRIO, NULL );
 }
@@ -138,7 +148,7 @@ void WS2803_thread ( void *arg )
                // be sure that controller is ready again
                vTaskDelay ( 500 );
 	       i+=2;
-	       printf("Value set %x -> Highs: %d\n",(int) i, highs);
+	       LOG_WS_LOG("Value set %x -> Highs: %d\n",(int) i, highs);
           }
 
 
