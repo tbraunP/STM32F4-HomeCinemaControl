@@ -17,8 +17,6 @@ extern "C" {
 #endif
 
 
-#define SOLIDSTATE_RELAIS (3)
-
 typedef enum SolidStateRelais_t {
      BEAMER = 0,
      LEINWAND = 1,

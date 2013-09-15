@@ -61,7 +61,7 @@ void SolidState_sendStatus ( SolidStateRelais_t relais, SolidStateRelais_Mode_t 
 
 static inline void SolitState_statusFullDump()
 {
-     for ( int i=0; i< SOLIDSTATE_RELAIS; i++ )
+     for ( uint8_t i=0; i< devicePins; i++ )
           SolidState_sendStatus ( i, SR_OFF );
 }
 
