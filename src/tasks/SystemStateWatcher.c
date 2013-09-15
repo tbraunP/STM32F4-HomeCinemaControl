@@ -18,7 +18,7 @@
 #include "util/linkedlist.h"
 
 
-
+// Logging
 #ifdef ENABLE_LOG_SYS
   #define LOG_SYS_LOG(format, ...)	printf(format, __VA_ARGS__ )
   #define LOG_SYS_ERR(format, ...) 	printf(format, __VA_ARGS__ )
@@ -26,8 +26,6 @@
   #define LOG_SYS_LOG(format, ...)
   #define LOG_SYS_ERR(format, ...)
 #endif
-
-
 
 
 struct {
