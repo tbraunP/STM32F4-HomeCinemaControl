@@ -43,7 +43,7 @@ void SolidState_Task_LowLevel_init()
 
 void SolidState_sendStatus ( SolidStateRelais_t relais, SolidStateRelais_Mode_t mode )
 {
-     static Status_Update_t status;
+     Status_Update_t status;
      status.key.fromComponent = SOLIDSTATE;
      status.key.uuid = relais;
 
@@ -59,7 +59,7 @@ void SolidState_sendStatus ( SolidStateRelais_t relais, SolidStateRelais_Mode_t 
      SystemStateWatcher_Enqueue ( &status );
 }
 
-void SolitState_statusFullDump()
+static inline void SolitState_statusFullDump()
 {
      for ( int i=0; i< SOLIDSTATE_RELAIS; i++ )
           SolidState_sendStatus ( i, SR_OFF );
@@ -72,6 +72,9 @@ void SolidState_thread ( void *arg )
 {
      static Command_t incoming;
      static SolidStateCommand_t* command;
+     
+     // store current state
+     SolitState_statusFullDump();
 
      for ( ;; ) {
           if ( xQueueReceive ( solidStateQueue, & ( incoming ), ( portTickType ) portMAX_DELAY ) ) {
