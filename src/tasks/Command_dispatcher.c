@@ -13,6 +13,16 @@
 #include "task.h"
 #include "queue.h"
 
+// Logging
+#ifdef ENABLE_LOG_SS
+  #define LOG_DISP_LOG( ...)	printf( __VA_ARGS__ )
+  #define LOG_DISP_ERR( ...) 	printf( __VA_ARGS__ )
+#else
+  #define LOG_DISP_LOG( ...)
+  #define LOG_DISP_ERR( ...)	printf( __VA_ARGS__)
+#endif
+
+
 static xQueueHandle* COMPONENT_QUEUES[MAX_COMPONENTS];
 
 // Init dispatcher
@@ -29,11 +39,11 @@ void Dispatcher_dispatch ( Command_t* command )
      if ( command->component < MAX_COMPONENTS ) {
           if ( xQueueSend ( *COMPONENT_QUEUES[command->component], command , 20 / portTICK_RATE_MS ) == errQUEUE_FULL ) {
                // free data if command can not stored
-               printf ( "Dispatcher: Queue full, dropping command\n" );
+               LOG_DISP_ERR ( "Dispatcher: Queue full, dropping command\n" );
                free ( command->payload.raw );
           }
      } else {
-          printf ( "Dispatcher: Unknown component\n" );
+          LOG_DISP_ERR ( "Dispatcher: Unknown component\n" );
           free ( command->payload.raw );
      }
 }
