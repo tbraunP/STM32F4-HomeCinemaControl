@@ -15,6 +15,17 @@
 #include "lwip/sys.h"
 #include "lwip/api.h"
 
+
+// Logging
+#ifdef ENABLE_LOG_ICH
+  #define LOG_ICH_LOG( ...)	printf( __VA_ARGS__ )
+  #define LOG_ICH_ERR( ...) 	printf( __VA_ARGS__ )
+#else
+  #define LOG_ICH_LOG( ...)
+  #define LOG_ICH_ERR( ...)	printf( __VA_ARGS__)
+#endif
+
+
 #define MAXTHREADS	(2)
 volatile int threads = 0;
 
@@ -121,7 +132,7 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
                          rb_getc ( dataBuffer, &tmp );
 
                     // output buffer state
-                    //printf("DatabufferLen %d\n", (int) dataBuffer->len);
+                    //LOG_ICH_LOG("DatabufferLen %d\n", (int) dataBuffer->len);
                } else {
                     // something went wrong, retry
                     rb_getc ( dataBuffer, &tmp );
@@ -172,7 +183,7 @@ static inline void IncomingDataHandler_exitConnection(IncomingDataHandler_t* lAr
      vPortExitCritical();
 
      // terminate thread
-     printf ( "Terminating IncomingDataHandler %d\n", ( int ) lArg->received );
+     LOG_ICH_LOG ( "Terminating IncomingDataHandler %d\n", ( int ) lArg->received );
      vTaskDelete ( NULL );
 }
 
