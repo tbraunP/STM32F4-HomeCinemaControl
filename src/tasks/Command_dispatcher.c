@@ -22,7 +22,7 @@
   #define LOG_DISP_ERR( ...)	printf( __VA_ARGS__)
 #endif
 
-
+// Queues to components to transfer commands of typ Command_t
 static xQueueHandle* COMPONENT_QUEUES[MAX_COMPONENTS];
 
 // Init dispatcher
