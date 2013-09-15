@@ -17,7 +17,7 @@
 #include "irmp/irmp.h"
 #include "tasks/solidStateTask.h"
 #include "tasks/irmpTask.h"
-#include "tasks/IncomingDataHandler.h"
+#include "tasks/IncomingConnectionHandler.h"
 
 // lwIP
 #include "lwip/tcpip.h"

@@ -1,5 +1,5 @@
-#ifndef INCOMINGDATAHANDLER_H_
-#define INCOMINGDATAHANDLER_H_
+#ifndef INCOMINGCONNECTIONHANDLER_H_
+#define INCOMINGCONNECTIONHANDLER_H_
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -40,4 +40,4 @@ bool NewConnectionHandlerTask ( void* connection );
 }
 #endif
 
-#endif /* LED_ALIVE_TASK_H_ */
+#endif /* INCOMINGCONNECTIONHANDLER_H_ */
