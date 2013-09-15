@@ -17,6 +17,19 @@
 #include "tasks/Task_Priorities.h"
 #include "util/linkedlist.h"
 
+
+
+#ifdef ENABLE_LOG_SYS
+  #define LOG_SYS_LOG(format, ...)	printf(format, __VA_ARGS__ )
+  #define LOG_SYS_ERR(format, ...) 	printf(format, __VA_ARGS__ )
+#else
+  #define LOG_SYS_LOG(format, ...)
+  #define LOG_SYS_ERR(format, ...)
+#endif
+
+
+
+
 struct {
      linkedlist_t statusMessages;
      linkedlist_t connections;
@@ -59,7 +72,7 @@ bool SystemStateWatcher_SearchStatusUpdate ( void* in1, void* in2 )
 
 static void inline SystemStateWatcher_Transfer ( ConnectionHandler_t* connection, Status_Update_t* status )
 {
-     printf ( "..Transfering state update\n" );
+     LOG_SYS_LOG ( "..Transfering state update\n" );
      // build and transmit frame
      size_t len = status->len + 8;
      uint8_t* data = malloc ( len );
@@ -129,7 +142,7 @@ void SystemStateWatcher_Task_thread()
      for ( ;; ) {
           if ( xQueueReceive ( ssw_state.systemStateQueue, & ( status ), ( portTickType ) ( 1500/portTICK_RATE_MS ) ) ) {
                if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
-                    printf ( "State update received\n" );
+                    LOG_SYS_LOG ( "State update received\n" );
                     // search if we must update a saved status value
                     linkedlist_node_t* node = linkedlist_searchNode ( &ssw_state.statusMessages, SystemStateWatcher_SearchStatusUpdate , &status );
 
@@ -156,7 +169,7 @@ void SystemStateWatcher_Task_thread()
                     linkedlist_foreach ( &ssw_state.connections, SystemStateWatcher_CleanConnection, NULL );
                     linkedlist_cleanup ( &ssw_state.connections );
 // 		    if(ssw_state.connections.elements == 0){
-// 		      printf("Connection list empty\n");
+// 		      LOG_SYS_L("Connection list empty\n");
 // 		    }
                     xSemaphoreGive ( ssw_state.exclusiveDataAccess );
                }
@@ -170,7 +183,7 @@ void SystemStateWatcher_Task_init()
 {
      ssw_state.systemStateQueue = xQueueCreate ( 15, sizeof ( Status_Update_t ) );
      if ( ssw_state.systemStateQueue == 0 ) {
-          printf ( "systemStateQueue creation failed\n" );
+          LOG_SYS_ERR ( "systemStateQueue creation failed\n" );
      }
 
      ssw_state.statusMessages = createLinkedList();
@@ -191,10 +204,10 @@ void SystemStateWatcher_Enqueue ( Status_Update_t* status )
 {
      if ( xQueueSend ( ssw_state.systemStateQueue, status , 20 / portTICK_RATE_MS ) == errQUEUE_FULL ) {
           // free data if command can not stored
-          printf ( "Dispatcher: Queue full, dropping command\n" );
+          LOG_SYS_LOG ( "Dispatcher: Queue full, dropping command\n" );
           free ( status->payload.raw );
      } else {
-          printf ( "Received status update from %d\n", ( int ) status->key.fromComponent );
+          LOG_SYS_LOG ( "Received status update from %d\n", ( int ) status->key.fromComponent );
      }
 }
 
