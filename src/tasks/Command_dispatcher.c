@@ -14,7 +14,7 @@
 #include "queue.h"
 
 // Logging
-#ifdef ENABLE_LOG_SS
+#ifdef ENABLE_LOG_DISP
   #define LOG_DISP_LOG( ...)	printf( __VA_ARGS__ )
   #define LOG_DISP_ERR( ...) 	printf( __VA_ARGS__ )
 #else

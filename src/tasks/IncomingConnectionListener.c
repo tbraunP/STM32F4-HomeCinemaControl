@@ -18,6 +18,16 @@
 #include "lwip/api.h"
 
 
+// Logging
+#ifdef ENABLE_LOG_ICL
+  #define LOG_ICL_LOG( ...)	printf( __VA_ARGS__ )
+  #define LOG_ICL_ERR( ...) 	printf( __VA_ARGS__ )
+#else
+  #define LOG_ICL_LOG( ...)
+  #define LOG_ICL_ERR( ...)	printf( __VA_ARGS__)
+#endif
+
+
 /*-----------------------------------------------------------------------------------*/
 void IncomingConnectionListener_thread ( void *arg )
 {
@@ -43,19 +53,19 @@ void IncomingConnectionListener_thread ( void *arg )
 
                     /* Process the new connection. */
                     if ( xErr== ERR_OK ) {
-                         printf ( "Trying to spawn new process for incoming commands..." );
+                         LOG_ICL_LOG ( "Trying to spawn new process for incoming commands..." );
                          if ( NewConnectionHandlerTask ( newconn ) ) {
-                              printf ( "... successfull\n" );
+                              LOG_ICL_LOG ( "... successfull\n" );
                          } else {
-                              printf ( "... failed to many connections\n" );
+                              LOG_ICL_LOG ( "... failed to many connections\n" );
                          }
                     }
                }
           } else {
-               printf ( " can not bind TCP netconn" );
+               LOG_ICL_ERR ( " can not bind TCP netconn" );
           }
      } else {
-          printf ( "can not create TCP netconn" );
+          LOG_ICL_ERR ( "can not create TCP netconn" );
      }
      vTaskDelete ( NULL );
 }
