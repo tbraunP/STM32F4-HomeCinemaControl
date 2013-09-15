@@ -22,11 +22,11 @@ typedef struct PhysicalFrame_t{
 }PhysicalFrame_t;
   
 // Handle to provide a connection for SystemStateWatcher
-typedef struct IncomingConnection_t {
-     xQueueHandle connection;
+typedef struct ConnectionHandler_t {
+     xQueueHandle connectionQueue;
      xSemaphoreHandle connectionFreeSemaphore;
      volatile bool connectionBroken;
-} IncomingConnection_t;
+} ConnectionHandler_t;
 
 
 /**
@@ -34,7 +34,7 @@ typedef struct IncomingConnection_t {
  * \param connection - incoming connection
  * \result bool if new thread has been spawned, otherwise the connection is rejected and closed
  */
-bool NewIncomingDataHandlerTask ( void* connection );
+bool NewConnectionHandlerTask ( void* connection );
 
 #ifdef __cplusplus
 }

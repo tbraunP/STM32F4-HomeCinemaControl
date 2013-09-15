@@ -59,7 +59,7 @@ void SystemStateWatcher_Enqueue ( Status_Update_t* status );
 /**
  * Register a new connection
  */
-void SystemStateWatcher_registerConnection(IncomingConnection_t* connection);
+void SystemStateWatcher_registerConnection(ConnectionHandler_t* connection);
 
 #ifdef __cplusplus
 }

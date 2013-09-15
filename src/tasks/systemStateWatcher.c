@@ -32,7 +32,7 @@ struct {
  */
 void SystemStateWatcher_CleanConnection ( linkedlist_node_t* node, void* param )
 {
-     IncomingConnection_t* connection = ( IncomingConnection_t* ) node->data;
+     ConnectionHandler_t* connection = ( ConnectionHandler_t* ) node->data;
      if ( connection->connectionBroken ) {
           xSemaphoreGive ( connection->connectionFreeSemaphore );
           // freeing the data is done by IncomingDataHandler
@@ -57,7 +57,7 @@ bool SystemStateWatcher_SearchStatusUpdate ( void* in1, void* in2 )
 }
 
 
-static void inline SystemStateWatcher_Transfer ( IncomingConnection_t* connection, Status_Update_t* status )
+static void inline SystemStateWatcher_Transfer ( ConnectionHandler_t* connection, Status_Update_t* status )
 {
      printf ( "..Transfering state update\n" );
      // build and transmit frame
@@ -77,7 +77,7 @@ static void inline SystemStateWatcher_Transfer ( IncomingConnection_t* connectio
 
      // send frame to output queue
      PhysicalFrame_t phyFrame = {.len = len, .payload = data};
-     if ( xQueueSend ( connection->connection, &phyFrame, ( portTickType ) 0 ) != pdTRUE ) {
+     if ( xQueueSend ( connection->connectionQueue, &phyFrame, ( portTickType ) 0 ) != pdTRUE ) {
           free ( data );
      }
 }
@@ -85,13 +85,13 @@ static void inline SystemStateWatcher_Transfer ( IncomingConnection_t* connectio
 /**
  * Process-Handler for foreach. This transfers a status update (given as param) using
  * the connection stored in node
- * \param node - IncomingConnection_t
+ * \param node - ConnectionHandler_t
  * \param param - param contains the Status update
  */
 void SystemStateWatcher_TransmitStatusUpdate ( linkedlist_node_t* node, void* param )
 {
      Status_Update_t* status = ( Status_Update_t* ) param;
-     IncomingConnection_t* connection = ( IncomingConnection_t* ) node->data;
+     ConnectionHandler_t* connection = ( ConnectionHandler_t* ) node->data;
 
      SystemStateWatcher_Transfer ( connection, status );
 }
@@ -101,11 +101,11 @@ void SystemStateWatcher_TransmitStatusUpdate ( linkedlist_node_t* node, void* pa
  * Process-Handler for foreach. This transfers a status update (given as param) using
  * the connection stored in node
  * \param node - Status_Update_t
- * \param param - IncomingConnection_t
+ * \param param - ConnectionHandler_t
  */
 void SystemStateWatcher_TransmitStatusUpdate2 ( linkedlist_node_t* node, void* param )
 {
-     IncomingConnection_t* connection = ( IncomingConnection_t* ) param;
+     ConnectionHandler_t* connection = ( ConnectionHandler_t* ) param;
      Status_Update_t* status = ( Status_Update_t* ) node->data;
 
      SystemStateWatcher_Transfer ( connection, status );
@@ -198,11 +198,11 @@ void SystemStateWatcher_Enqueue ( Status_Update_t* status )
      }
 }
 
-void SystemStateWatcher_registerConnection ( IncomingConnection_t* connection )
+void SystemStateWatcher_registerConnection ( ConnectionHandler_t* connection )
 {
      if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
           // Implement implement full dump
-          linkedlist_foreach ( &ssw_state.statusMessages, SystemStateWatcher_TransmitStatusUpdate2 ,connection->connection );
+          linkedlist_foreach ( &ssw_state.statusMessages, SystemStateWatcher_TransmitStatusUpdate2 ,connection );
 
           // add connection
           linkedlist_node_t* node = linkedlist_createNode ( connection );

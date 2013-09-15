@@ -26,7 +26,7 @@ ParseState_t;
 
 // State for one concret connection
 typedef struct IncomingDataHandler_t {
-     IncomingConnection_t con;
+     ConnectionHandler_t con;
      struct netconn *netconnection;
 
      ringbuf_t incomingRingBuffer;
@@ -161,7 +161,7 @@ static inline void IncomingDataHandler_exitConnection(IncomingDataHandler_t* lAr
      rb_free ( & ( lArg->incomingRingBuffer ) );
 
      // free handle for systemStateWatcher
-     vQueueDelete ( lArg->con.connection );
+     vQueueDelete ( lArg->con.connectionQueue );
      vSemaphoreDelete ( lArg->con.connectionFreeSemaphore );
 
      // free state container
@@ -176,6 +176,21 @@ static inline void IncomingDataHandler_exitConnection(IncomingDataHandler_t* lAr
      vTaskDelete ( NULL );
 }
 
+static inline err_t IncomingDataHandler_sendPhysicalFrames(IncomingDataHandler_t* lArg, struct netconn *netconnection){
+  int i=0;
+  PhysicalFrame_t phFrame;
+  err_t xErr = ERR_OK;
+  while(xQueueReceive ( lArg->con.connectionQueue, & ( phFrame ), ( portTickType ) (IncomingDataHandler_timeOut /  portTICK_RATE_MS)) == pdTRUE){
+    xErr = netconn_write ( netconnection, phFrame.payload, phFrame.len, NETCONN_COPY );
+    free(phFrame.payload);
+  
+    // exit if too many frames have been send in sequence
+    if(++i >= MAX_MESSAGE_IN_SEQ){
+      return xErr;
+    }
+  }
+  return xErr;
+}
 
 /**
  * Handle incoming frames
@@ -187,6 +202,9 @@ void IncomingDataHandler_thread ( void *arg )
 
       // register connection a systemWatcher
      SystemStateWatcher_registerConnection ( &lArg->con );
+     
+     // send actual status
+     err_t xErr = IncomingDataHandler_sendPhysicalFrames(lArg, netconnection);
 
      // set receiver timeout
      netconn_set_recvtimeout ( netconnection, IncomingDataHandler_timeOut );
@@ -194,7 +212,7 @@ void IncomingDataHandler_thread ( void *arg )
      // wait for incoming frames resp. outgoing messages
      for ( ;; ) {
 	  struct netbuf *buf;
-          err_t xErr = netconn_recv ( netconnection, &buf );
+          xErr = netconn_recv ( netconnection, &buf );
 
           switch ( xErr ) {
 	    case ERR_OK: {
@@ -214,17 +232,9 @@ void IncomingDataHandler_thread ( void *arg )
 
 	    // check if we have frames that should be transmitted
 	    case ERR_TIMEOUT:{
-		int i=0;
-		PhysicalFrame_t phFrame;
-		while(xQueueReceive ( lArg->con.connection, & ( phFrame ), ( portTickType ) (IncomingDataHandler_timeOut /  portTICK_RATE_MS)) == pdTRUE){
-		  netconn_write ( netconnection, phFrame.payload, phFrame.len, NETCONN_COPY );
-		  free(phFrame.payload);
-		  
-		  // exit if too many frames have been send in sequence
-		  if(++i >= MAX_MESSAGE_IN_SEQ)
-		    break;
-		}
-		break;
+		xErr = IncomingDataHandler_sendPhysicalFrames(lArg, netconnection);
+		if(xErr == ERR_OK)
+		  break;
 	    }
 	    
 	    // broken connection
@@ -238,7 +248,7 @@ void IncomingDataHandler_thread ( void *arg )
 
 /*-----------------------------------------------------------------------------------*/
 
-bool NewIncomingDataHandlerTask ( void* connection )
+bool NewConnectionHandlerTask ( void* connection )
 {
      bool result = false;
      vPortEnterCritical();
@@ -246,7 +256,7 @@ bool NewIncomingDataHandlerTask ( void* connection )
           IncomingDataHandler_t* threadState = malloc ( sizeof ( IncomingDataHandler_t ) );
 
           // connection related stuff for SystemStateWatcher
-          threadState->con.connection = xQueueCreate ( 30, sizeof ( PhysicalFrame_t ) );;
+          threadState->con.connectionQueue = xQueueCreate ( 30, sizeof ( PhysicalFrame_t ) );;
           threadState->con.connectionBroken = false;
           vSemaphoreCreateBinary ( threadState->con.connectionFreeSemaphore );
 
