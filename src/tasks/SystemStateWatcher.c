@@ -20,8 +20,8 @@
 
 // Logging
 #ifdef ENABLE_LOG_SYS
-  #define LOG_SYS_LOG(...)	
-  #define LOG_SYS_ERR(...) 	
+  #define LOG_SYS_LOG(...)	printf( __VA_ARGS__ )
+  #define LOG_SYS_ERR(...) 	printf( __VA_ARGS__ )
 #else
   #define LOG_SYS_LOG(format, ...)
   #define LOG_SYS_ERR(...)	printf(__VA_ARGS__ )
