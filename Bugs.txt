@@ -1,0 +1,21 @@
+Running Ethernet Demo
+
+PC [R15] = 8021c7c  program counter (caused the handler call
+) 
+R0 = 2001ffff
+R1 = 0
+R2 = 801cd75
+R3 = 20008cc0
+R12 = 2000046c
+LR [R14] = fffffffd  subroutine call return address
+PSR = 2100000e
+BFAR = e000ed38
+CFSR = 1000000
+HFSR = 0
+DFSR = b
+AFSR = 0
+SCB_SHCSR = 70408
+
+###############################################################
+
+
