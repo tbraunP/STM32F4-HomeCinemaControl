@@ -222,7 +222,7 @@ void IncomingDataHandler_thread ( void *arg )
 
      // wait for incoming frames resp. outgoing messages
      for ( ;; ) {
-	  struct netbuf *buf;
+	  struct netbuf *buf = NULL;
           xErr = netconn_recv ( netconnection, &buf );
 
           switch ( xErr ) {
@@ -243,6 +243,8 @@ void IncomingDataHandler_thread ( void *arg )
 
 	    // check if we have frames that should be transmitted
 	    case ERR_TIMEOUT:{
+	        netbuf_delete ( buf );
+	        buf = NULL;
 		xErr = IncomingDataHandler_sendPhysicalFrames(lArg, netconnection);
 		if(xErr == ERR_OK)
 		  break;
@@ -250,6 +252,8 @@ void IncomingDataHandler_thread ( void *arg )
 	    
 	    // broken connection
 	    default:{
+	      netbuf_delete ( buf );
+	      buf = NULL;
 	      IncomingDataHandler_exitConnection(lArg);
 	      return;
 	    } 
