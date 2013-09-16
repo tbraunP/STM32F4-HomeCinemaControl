@@ -49,35 +49,37 @@ void prvGetRegistersFromStack ( uint32_t *pulFaultStackAddress,
      pc = pulFaultStackAddress[6];
      psr = pulFaultStackAddress[7];
 
+     POLL_PRINT ( "Fault Handler running\n\n" );
+
      // print handler
      switch ( sourceFault ) {
      case 0:
-          POLL_PRINT ( tmpOut, "\n\n[%s - all numbers in hex]\n",
+          POLL_PRINT ( "\n\n[%s - all numbers in hex]\n",
                        "NMI_Handler" )
           break;
      case 1:
-          POLL_PRINT ( tmpOut, "\n\n[%s - all numbers in hex]\n",
+          POLL_PRINT ( "\n\n[%s - all numbers in hex]\n",
                        "HardFault_Handler" )
           break;
      case 2:
-          POLL_PRINT ( tmpOut, "\n\n[%s - all numbers in hex]\n",
+          POLL_PRINT ( "\n\n[%s - all numbers in hex]\n",
                        "MemManage_Handler" )
           break;
      case 3:
-          POLL_PRINT ( tmpOut, "\n\n[%s - all numbers in hex]\n",
+          POLL_PRINT ( "\n\n[%s - all numbers in hex]\n",
                        "BusFault_Handler" )
           break;
      case 4:
-          POLL_PRINT ( tmpOut, "\n\n[%s - all numbers in hex]\n",
+          POLL_PRINT ( "\n\n[%s - all numbers in hex]\n",
                        "UsageFault_Handler" )
           break;
 
      case 5:
-          POLL_PRINT ( tmpOut, "\n\n[%s - all numbers in hex]\n",
+          POLL_PRINT ( "\n\n[%s - all numbers in hex]\n",
                        "DebugMon_Handler" )
           break;
      default:
-          POLL_PRINT ( tmpOut, "\n\n[%s - all numbers in hex]\n",
+          POLL_PRINT ( "\n\n[%s - all numbers in hex]\n",
                        "Unknown source Handler" )
           break;
      }
