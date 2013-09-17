@@ -30,7 +30,7 @@
 #include "stm32f4xx.h"
 #include "stm32f4x7_eth_bsp.h"
 
-#define USE_DHCP       /* enable DHCP, if disabled static address is used*/
+//#define USE_DHCP       /* enable DHCP, if disabled static address is used*/
 
 /* Uncomment SERIAL_DEBUG to enables retarget of printf to  serial port (COM1 on STM32 evalboard) 
    for debug purpose */   
@@ -47,8 +47,8 @@
 /*Static IP ADDRESS*/
 #define IP_ADDR0   192
 #define IP_ADDR1   168
-#define IP_ADDR2   0
-#define IP_ADDR3   10
+#define IP_ADDR2   1
+#define IP_ADDR3   105
    
 /*NETMASK*/
 #define NETMASK_ADDR0   255
