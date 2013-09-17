@@ -11,7 +11,7 @@
 #include "task.h"
 
 /*--------------- Tasks Priority -------------*/
-#define DHCP_TASK_PRIO   	( tskIDLE_PRIORITY + 5 )
+#define DHCP_TASK_PRIO   	( tskIDLE_PRIORITY + 4 )
 #define LED_TASK_PRIO    	( tskIDLE_PRIORITY + 1 )
 
 #define TCPINCOMINGListener_TASK_PRIO 	 ( tskIDLE_PRIORITY + 2 )

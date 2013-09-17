@@ -53,9 +53,9 @@ void IncomingConnectionListener_thread ( void *arg )
 
                     /* Process the new connection. */
                     if ( xErr== ERR_OK ) {
-                         LOG_ICL_LOG ( "Trying to spawn new process for incoming commands..." );
+                         LOG_ICL_ERR ( "Trying to spawn new process for incoming commands..." );
                          if ( NewConnectionHandlerTask ( newconn ) ) {
-                              LOG_ICL_LOG ( "... successfull\n" );
+                              LOG_ICL_ERR ( "... successfull\n" );
                          } else {
                               LOG_ICL_LOG ( "... failed to many connections\n" );
                          }
