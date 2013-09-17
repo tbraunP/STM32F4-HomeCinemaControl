@@ -13,15 +13,27 @@ IRMP:
 -----------
 PC13
 
+#############################
 
 SolidState
-----------
-PD11
-PD10
-PD9
-PD8
-PD7
+  
+  PowerControl
+  ----------
+  PD11
+  PD10
+  PD9
+  PD8
+  PD7
 
+  Leinwand Control
+  -----------
+  PD1
+  PD2
+  PD3
+
+  
+  
+#############################
 SPI (SPI2) for WS2803
 ----------
 CLK	-> PB10

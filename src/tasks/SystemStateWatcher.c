@@ -20,11 +20,11 @@
 
 // Logging
 #ifdef ENABLE_LOG_SYS
-  #define LOG_SYS_LOG(...)	printf( __VA_ARGS__ )
-  #define LOG_SYS_ERR(...) 	printf( __VA_ARGS__ )
+#define LOG_SYS_LOG(...)	printf( __VA_ARGS__ )
+#define LOG_SYS_ERR(...) 	printf( __VA_ARGS__ )
 #else
-  #define LOG_SYS_LOG(format, ...)
-  #define LOG_SYS_ERR(...)	printf(__VA_ARGS__ )
+#define LOG_SYS_LOG(format, ...)
+#define LOG_SYS_ERR(...)	printf(__VA_ARGS__ )
 #endif
 
 
@@ -138,8 +138,14 @@ void SystemStateWatcher_Task_thread()
      static Status_Update_t status;
 
      for ( ;; ) {
-          if ( xQueueReceive ( ssw_state.systemStateQueue, & ( status ), ( portTickType ) ( 1500/portTICK_RATE_MS ) ) ) {
-               if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
+          if ( xQueuePeek ( ssw_state.systemStateQueue, & ( status ), ( portTickType ) ( 800/portTICK_RATE_MS ) )  == pdTRUE ) {
+               if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) ( 50/portTICK_RATE_MS ) ) == pdTRUE ) {
+                    // read message again and delete it from queue
+                    if ( xQueueReceive ( ssw_state.systemStateQueue, & ( status ), ( portTickType ) ( 0 ) )  != pdTRUE ) {
+                         LOG_SYS_ERR ( "Inconsistent queue !!! \n" );
+                         continue;
+                    }
+
                     LOG_SYS_LOG ( "State update received\n" );
                     // search if we must update a saved status value
                     linkedlist_node_t* node = linkedlist_searchNode ( &ssw_state.statusMessages, SystemStateWatcher_SearchStatusUpdate , &status );
@@ -160,10 +166,12 @@ void SystemStateWatcher_Task_thread()
 
                     // freeSemaphore
                     xSemaphoreGive ( ssw_state.exclusiveDataAccess );
+               } else {
+                    LOG_SYS_ERR ( "Failed to store status update, since lock couldn't be set\n" );
                }
           } else {
                // no updates for 1500 ms, see if we should cleanup old sockets
-               if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) (10 / portTICK_RATE_MS) ) == pdTRUE ) {
+               if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) ( 20 / portTICK_RATE_MS ) ) == pdTRUE ) {
                     linkedlist_foreach ( &ssw_state.connections, SystemStateWatcher_CleanConnection, NULL );
                     linkedlist_cleanup ( &ssw_state.connections );
 // 		    if(ssw_state.connections.elements == 0){
@@ -209,9 +217,13 @@ void SystemStateWatcher_Enqueue ( Status_Update_t* status )
      }
 }
 
-void SystemStateWatcher_registerConnection ( ConnectionHandler_t* connection )
+bool SystemStateWatcher_registerConnection ( ConnectionHandler_t* connection )
 {
-     if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) portMAX_DELAY ) == pdTRUE ) {
+     if ( xSemaphoreTake ( ssw_state.exclusiveDataAccess, ( portTickType ) ( 1000 / portTICK_RATE_MS ) == pdTRUE ) ) {
+          if ( xSemaphoreTake ( connection->connectionFreeSemaphore, ( portTickType ) ( 10 / portTICK_RATE_MS ) ) == pdFALSE ) {
+               LOG_SYS_ERR ( "SystemStateWatcher_registerConnection connectionFreeSemaphore log failed\n" );
+               return false;
+          }
           // Implement implement full dump
           linkedlist_foreach ( &ssw_state.statusMessages, SystemStateWatcher_TransmitStatusUpdate2 ,connection );
 
@@ -220,5 +232,9 @@ void SystemStateWatcher_registerConnection ( ConnectionHandler_t* connection )
           linkedlist_pushToFront ( &ssw_state.connections, node );
 
           xSemaphoreGive ( ssw_state.exclusiveDataAccess );
+          return true;
+     } else {
+          LOG_SYS_ERR ( "SystemStateWatcher_registerConnection creation failed\n" );
      }
+     return false;
 }

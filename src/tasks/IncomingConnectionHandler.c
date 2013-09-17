@@ -18,11 +18,11 @@
 
 // Logging
 #ifdef ENABLE_LOG_ICH
-  #define LOG_ICH_LOG( ...)	printf( __VA_ARGS__ )
-  #define LOG_ICH_ERR( ...) 	printf( __VA_ARGS__ )
+#define LOG_ICH_LOG( ...)	printf( __VA_ARGS__ )
+#define LOG_ICH_ERR( ...) 	printf( __VA_ARGS__ )
 #else
-  #define LOG_ICH_LOG( ...)
-  #define LOG_ICH_ERR( ...)	printf( __VA_ARGS__)
+#define LOG_ICH_LOG( ...)
+#define LOG_ICH_ERR( ...)	printf( __VA_ARGS__)
 #endif
 
 
@@ -141,7 +141,7 @@ void IncomingDataHandler_parseFrame ( IncomingDataHandler_t* threadState )
                break;
           }
           default:
-               printf ( "WTF unknown state\n" );
+               LOG_ICH_ERR ( "WTF unknown state\n" );
           }
      }
 }
@@ -157,11 +157,12 @@ const int IncomingDataHandler_timeOut = 70;
 /*
  * Close an existing connection
  */
-static inline void IncomingDataHandler_exitConnection(IncomingDataHandler_t* lArg){
-  
+static inline void IncomingDataHandler_exitConnection ( IncomingDataHandler_t* lArg )
+{
+
      struct netconn *netconnection = lArg->netconnection;
-  
-       /* Close connection and discard connection identifier. */
+
+     /* Close connection and discard connection identifier. */
      // wait until listener has given up the semaphore
      lArg->con.connectionBroken = true;
      while ( xSemaphoreTake ( lArg->con.connectionFreeSemaphore, ( portTickType ) portMAX_DELAY ) != pdTRUE );
@@ -187,20 +188,21 @@ static inline void IncomingDataHandler_exitConnection(IncomingDataHandler_t* lAr
      vTaskDelete ( NULL );
 }
 
-static inline err_t IncomingDataHandler_sendPhysicalFrames(IncomingDataHandler_t* lArg, struct netconn *netconnection){
-  int i=0;
-  PhysicalFrame_t phFrame;
-  err_t xErr = ERR_OK;
-  while(xQueueReceive ( lArg->con.connectionQueue, & ( phFrame ), ( portTickType ) (IncomingDataHandler_timeOut /  portTICK_RATE_MS)) == pdTRUE){
-    xErr = netconn_write ( netconnection, phFrame.payload, phFrame.len, NETCONN_COPY );
-    free(phFrame.payload);
-  
-    // exit if too many frames have been send in sequence
-    if(++i >= MAX_MESSAGE_IN_SEQ){
-      return xErr;
-    }
-  }
-  return xErr;
+static inline err_t IncomingDataHandler_sendPhysicalFrames ( IncomingDataHandler_t* lArg, struct netconn *netconnection )
+{
+     int i=0;
+     PhysicalFrame_t phFrame;
+     err_t xErr = ERR_OK;
+     while ( xQueueReceive ( lArg->con.connectionQueue, & ( phFrame ), ( portTickType ) ( IncomingDataHandler_timeOut /  portTICK_RATE_MS ) ) == pdTRUE ) {
+          xErr = netconn_write ( netconnection, phFrame.payload, phFrame.len, NETCONN_COPY );
+          free ( phFrame.payload );
+
+          // exit if too many frames have been send in sequence
+          if ( ++i >= MAX_MESSAGE_IN_SEQ ) {
+               return xErr;
+          }
+     }
+     return xErr;
 }
 
 /**
@@ -211,54 +213,59 @@ void IncomingDataHandler_thread ( void *arg )
      IncomingDataHandler_t* lArg = ( IncomingDataHandler_t* ) arg;
      struct netconn *netconnection = lArg->netconnection;
 
-      // register connection a systemWatcher
-     SystemStateWatcher_registerConnection ( &lArg->con );
-     
+     // register connection a systemWatcher
+     if ( ! SystemStateWatcher_registerConnection ( &lArg->con ) ) {
+          IncomingDataHandler_exitConnection ( lArg );
+          return;
+     }
+
      // send actual status
-     err_t xErr = IncomingDataHandler_sendPhysicalFrames(lArg, netconnection);
+     err_t xErr = IncomingDataHandler_sendPhysicalFrames ( lArg, netconnection );
 
      // set receiver timeout
      netconn_set_recvtimeout ( netconnection, IncomingDataHandler_timeOut );
 
      // wait for incoming frames resp. outgoing messages
      for ( ;; ) {
-	  struct netbuf *buf = NULL;
+          struct netbuf *buf = NULL;
           xErr = netconn_recv ( netconnection, &buf );
 
           switch ( xErr ) {
-	    case ERR_OK: {
-		    do {
-			void *data;
-			u16_t len;
-			netbuf_data ( buf, &data, &len );
-			rb_write ( & ( lArg->incomingRingBuffer ), ( const uint8_t * ) data, len );
-		    } while ( netbuf_next ( buf ) >= 0 );
+          case ERR_OK: {
+               do {
+                    void *data;
+                    u16_t len;
+                    netbuf_data ( buf, &data, &len );
+                    rb_write ( & ( lArg->incomingRingBuffer ), ( const uint8_t * ) data, len );
+               } while ( netbuf_next ( buf ) >= 0 );
 
-		    netbuf_delete ( buf );
-		    // try to parse frame
-		    //printf("Parsing...\n");
-		    IncomingDataHandler_parseFrame ( lArg );
-		    // no break, look for transmission requests
-		}
+               netbuf_delete ( buf );
+               // try to parse frame
+               //printf("Parsing...\n");
+               IncomingDataHandler_parseFrame ( lArg );
+               // no break, look for transmission requests
+          }
 
-	    // check if we have frames that should be transmitted
-	    case ERR_TIMEOUT:{
-	        netbuf_delete ( buf );
-	        buf = NULL;
-		xErr = IncomingDataHandler_sendPhysicalFrames(lArg, netconnection);
-		if(xErr == ERR_OK)
-		  break;
-	    }
-	    
-	    // broken connection
-	    default:{
-	      netbuf_delete ( buf );
-	      buf = NULL;
-	      IncomingDataHandler_exitConnection(lArg);
-	      return;
-	    } 
+          // check if we have frames that should be transmitted
+          case ERR_TIMEOUT: {
+               netbuf_delete ( buf );
+               buf = NULL;
+               xErr = IncomingDataHandler_sendPhysicalFrames ( lArg, netconnection );
+               if ( xErr == ERR_OK )
+                    break;
+          }
+
+          // broken connection
+          default: {
+               netbuf_delete ( buf );
+               buf = NULL;
+               IncomingDataHandler_exitConnection ( lArg );
+               return;
+          }
           }
      }
+     // be sure to exit
+     IncomingDataHandler_exitConnection ( lArg );
 }
 
 /*-----------------------------------------------------------------------------------*/
@@ -266,33 +273,33 @@ void IncomingDataHandler_thread ( void *arg )
 bool NewConnectionHandlerTask ( void* connection )
 {
      bool result = false;
-     vPortEnterCritical();
-     if ( threads < MAXTHREADS ) {
-          IncomingDataHandler_t* threadState = malloc ( sizeof ( IncomingDataHandler_t ) );
+//     vPortEnterCritical();
+     //if ( threads < MAXTHREADS ) {
+     IncomingDataHandler_t* threadState = malloc ( sizeof ( IncomingDataHandler_t ) );
 
-          // connection related stuff for SystemStateWatcher
-          threadState->con.connectionQueue = xQueueCreate ( 30, sizeof ( PhysicalFrame_t ) );;
-          threadState->con.connectionBroken = false;
-          vSemaphoreCreateBinary ( threadState->con.connectionFreeSemaphore );
+     // connection related stuff for SystemStateWatcher
+     threadState->con.connectionQueue = xQueueCreate ( 30, sizeof ( PhysicalFrame_t ) );;
+     threadState->con.connectionBroken = false;
+     vSemaphoreCreateBinary ( threadState->con.connectionFreeSemaphore );
 
-          // internal state
-          threadState->netconnection = ( struct netconn * ) connection;
-          threadState->state = init;
-          threadState->received = 0;
-          rb_alloc ( & ( threadState->incomingRingBuffer ), 850 );
+     // internal state
+     threadState->netconnection = ( struct netconn * ) connection;
+     threadState->state = init;
+     threadState->received = 0;
+     rb_alloc ( & ( threadState->incomingRingBuffer ), 850 );
 
-          // create thread
-          xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
-                        configMINIMAL_STACK_SIZE, threadState, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
-          result =  true;
-          ++threads;
-     } else {
-          /* Close connection and discard connection identifier. */
-          struct netconn *connection = ( struct netconn * ) connection;
-          netconn_close ( connection );
-          netconn_delete ( connection );
-     }
-     vPortExitCritical();
+     // create thread
+     xTaskCreate ( IncomingDataHandler_thread, ( const signed char * const ) "IncomingData",
+                   configMINIMAL_STACK_SIZE, threadState, TCPINCOMINGDATAHandler_TASK_PRIO, NULL );
+     result =  true;
+     ++threads;
+//     } else {
+     /* Close connection and discard connection identifier. */
+//         struct netconn *connection = ( struct netconn * ) connection;
+//          netconn_close ( connection );
+//          netconn_delete ( connection );
+//     }
+//     vPortExitCritical();
      return result;
 }
 /*-----------------------------------------------------------------------------------*/
