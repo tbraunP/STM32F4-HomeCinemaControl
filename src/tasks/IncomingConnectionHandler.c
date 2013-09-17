@@ -184,7 +184,7 @@ static inline void IncomingDataHandler_exitConnection ( IncomingDataHandler_t* l
      vPortExitCritical();
 
      // terminate thread
-     LOG_ICH_LOG ( "Terminating IncomingDataHandler %d\n", ( int ) lArg->received );
+     LOG_ICH_ERR ( "Terminating IncomingDataHandler %d\n", ( int ) lArg->received );
      vTaskDelete ( NULL );
 }
 
